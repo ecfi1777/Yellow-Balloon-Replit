@@ -1,0 +1,388 @@
+1) styles.css (shared styles — create once and link from every page)
+/* The Yellow Balloon – shared styles */
+:root{
+  --blue:#AEE6FA; --yellow:#FFD84D; --text:#333; --light:#f9f9f9;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,system-ui,sans-serif;color:var(--text);background:#fff}
+a{color:inherit;text-decoration:none}
+header{background:var(--blue);display:flex;gap:16px;align-items:center;justify-content:space-between;padding:12px 24px;position:sticky;top:0;z-index:50}
+header img{height:46px}
+nav a{font-weight:700;margin-left:14px}
+.container{max-width:1100px;margin:0 auto;padding:28px 20px}
+.hero{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;background:var(--yellow);padding:40px 20px}
+.hero h1{margin:0 0 8px;font-size:32px}
+.btn{background:#333;color:#fff;border:0;border-radius:8px;padding:12px 16px;font-weight:700;cursor:pointer}
+.grid{display:grid;gap:16px}
+.grid-4{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.card{background:var(--light);border-radius:12px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.banner{background:var(--blue)}
+.banner.yellow{background:var(--yellow)}
+.center{text-align:center}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden}
+th,td{padding:12px;border-bottom:1px solid #eee;text-align:left}
+tfoot td{font-style:italic}
+.slideshow img{width:100%;display:block;border-radius:12px}
+footer{background:var(--blue);padding:28px;text-align:center;margin-top:40px}
+small.muted{color:#666}
+@media (max-width:760px){.hero{gap:20px}}
+
+2) header.html (optional include if your host supports partials; otherwise copy header markup into each page)
+<header>
+  <a href="index.html"><img src="logo.png" alt="The Yellow Balloon logo"></a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services & Pricing</a>
+    <a href="lice.html">Lice</a>
+    <a href="glamour.html">Glamour</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+3) index.html (Home)
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Yellow Balloon | Kids Haircuts in Gaithersburg</title>
+<link rel="stylesheet" href="styles.css">
+</head><body>
+
+<header>
+  <a href="index.html"><img src="logo.png" alt="The Yellow Balloon logo"></a>
+  <nav>
+    <a href="index.html">Home</a><a href="about.html">About</a>
+    <a href="services.html">Services & Pricing</a><a href="lice.html">Lice</a>
+    <a href="glamour.html">Glamour</a><a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="container" style="display:flex;gap:24px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+    <div style="max-width:640px">
+      <h1>Where every haircut ends with a smile, a balloon, and a lollipop!</h1>
+      <p>Serving Gaithersburg, Darnestown, Potomac, Germantown & surrounding Montgomery County for over 20 years.</p>
+      <button class="btn" onclick="location.href='tel:3015696756'">Call to Book Appointment</button>
+    </div>
+    <img src="balloon-illustration.png" alt="Balloon illustration" style="max-width:300px">
+  </div>
+</section>
+
+<section class="container">
+  <div class="slideshow">
+    <!-- Replace with your 5–7 images; link first image to Gallery -->
+    <a href="gallery.html"><img src="slide1.jpg" alt="First haircuts made fun!"></a>
+  </div>
+  <p class="center"><a class="btn" href="gallery.html" style="margin-top:14px">See More Smiles →</a></p>
+</section>
+
+<section class="container">
+  <h2 class="center">Why Families Love Us</h2>
+  <div class="grid grid-4" style="margin-top:16px">
+    <div class="card">🎈 Kid-friendly salon with toys, coloring books & fun rides</div>
+    <div class="card">📺 TVs at every station</div>
+    <div class="card">✂️ Gentle, kid-friendly stylists</div>
+    <div class="card">🍭 Every child leaves with a balloon & lollipop</div>
+  </div>
+</section>
+
+<section class="banner yellow">
+  <div class="container center">
+    <h3>Special Services</h3>
+    <div class="grid grid-3" style="margin-top:12px">
+      <a class="card" href="services.html"><b>✂️ Kids Haircuts</b><br><small class="muted">Baby’s first to tween styles</small></a>
+      <a class="card" href="lice.html"><b>🎈 Lice Screening & Treatment</b><br><small class="muted">Private, confidential care</small></a>
+      <a class="card" href="glamour.html"><b>🌟 Glamour Parties</b><br><small class="muted">Fun styling & polish</small></a>
+    </div>
+  </div>
+</section>
+
+<section class="banner">
+  <div class="container center">
+    <p><b>For more than 20 years</b>, The Yellow Balloon has been the neighborhood salon where memories are made and milestones are celebrated.</p>
+  </div>
+</section>
+
+<section class="container grid" style="grid-template-columns:1fr 1fr">
+  <div class="card">
+    <h3>Hours</h3>
+    Tue–Fri: 10am–6pm<br>Sat–Sun: 10am–5pm<br>Mon & Thu: Closed
+  </div>
+  <div class="card">
+    <h3>Call or Visit</h3>
+    📞 <a href="tel:3015696756">(301) 569-6756</a><br>
+    📍 255 Market Street West, Gaithersburg, MD 20878
+  </div>
+</section>
+
+<footer>
+  © 2025 The Yellow Balloon · (301) 569-6756 · 255 Market Street West, Gaithersburg, MD 20878
+</footer>
+</body></html>
+
+4) about.html
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>About Us | The Yellow Balloon</title>
+<link rel="stylesheet" href="styles.css">
+</head><body>
+<header> <!-- copy header nav -->
+  <a href="index.html"><img src="logo.png" alt="logo"></a>
+  <nav><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services & Pricing</a><a href="lice.html">Lice</a><a href="glamour.html">Glamour</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a></nav>
+</header>
+
+<section class="banner"><div class="container center">
+  <h1>Making Haircuts Happy for Over 20 Years</h1>
+  <p>Serving Gaithersburg, Darnestown, Potomac, Germantown & Montgomery County.</p>
+</div></section>
+
+<section class="container grid" style="grid-template-columns:1fr 1fr;align-items:center">
+  <img src="about-photo.jpg" alt="Kids at The Yellow Balloon" style="width:100%;border-radius:12px">
+  <div>
+    <h2>Our Story</h2>
+    <p>For more than 20 years, The Yellow Balloon has been the place where kids get more than a haircut — they get an experience. Families from Gaithersburg, Darnestown, Potomac, Germantown and beyond trust us to keep haircuts happy, easy, and full of smiles.</p>
+    <h3>The Yellow Balloon Experience</h3>
+    <ul>
+      <li>Toys, coloring books & rides in the waiting area</li>
+      <li>TVs at every station</li>
+      <li>Gentle stylists who love working with kids</li>
+      <li>A balloon and a lollipop after every visit</li>
+    </ul>
+  </div>
+</section>
+
+<section class="banner yellow"><div class="container center">
+  <button class="btn" onclick="location.href='tel:3015696756'">Call to Book Appointment</button>
+</div></section>
+
+<footer>© 2025 The Yellow Balloon</footer>
+</body></html>
+
+5) services.html
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Services & Pricing | The Yellow Balloon</title>
+<link rel="stylesheet" href="styles.css">
+</head><body>
+<header>
+  <a href="index.html"><img src="logo.png" alt="logo"></a>
+  <nav><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services & Pricing</a><a href="lice.html">Lice</a><a href="glamour.html">Glamour</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a></nav>
+</header>
+
+<section class="banner"><div class="container center">
+  <h1>Kid-Friendly Services & Transparent Pricing</h1>
+  <p>From first haircuts to fancy up-dos, we make every visit fun.</p>
+</div></section>
+
+<section class="container">
+  <h2>All Services & Prices</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>Service</th><th>Price</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Baby’s First Haircut (Newborn–12 mo.)</td><td>$30</td><td>Optional certificate & keepsake lock</td></tr>
+        <tr><td>Boys Haircut (Under 11)</td><td>$30–$33</td><td></td></tr>
+        <tr><td>Boys Haircut (11–17)</td><td>$30–$35</td><td></td></tr>
+        <tr><td>Girls Haircut (Under 11)</td><td>$35–$45</td><td></td></tr>
+        <tr><td>Girls Haircut (11–17)</td><td>$45–$55</td><td></td></tr>
+        <tr><td>Kids Bang Trim</td><td>$15</td><td></td></tr>
+        <tr><td>Kids Shampoo</td><td>$5</td><td></td></tr>
+        <tr><td>Kids Shampoo & Blow Out</td><td>$20+</td><td></td></tr>
+        <tr><td>Kids Flat Iron</td><td>$30+</td><td></td></tr>
+        <tr><td>Kids Fancy Up-Do</td><td>$50</td><td></td></tr>
+        <tr><td>French Braid</td><td>$15+</td><td></td></tr>
+        <tr><td>Corn Rows (Half Head)</td><td>$35</td><td></td></tr>
+        <tr><td>Kids Nail Polish</td><td>$15</td><td></td></tr>
+        <tr><td>Mom’s Haircut (no shampoo)</td><td>$55+</td><td></td></tr>
+        <tr><td>Mom’s Shampoo & Blow Dry</td><td>$40</td><td></td></tr>
+        <tr><td>Dad’s Haircut</td><td>$36</td><td></td></tr>
+        <tr><td>Color</td><td>$70+</td><td></td></tr>
+        <tr><td>Highlights (Kids)</td><td>$60+</td><td></td></tr>
+        <tr><td>Highlights (Adults)</td><td>$100+</td><td></td></tr>
+      </tbody>
+      <tfoot><tr><td colspan="3">Note: Shampoo is not included with haircuts. Prices vary with hair length & thickness.</td></tr></tfoot>
+    </table>
+  </div>
+</section>
+
+<section class="banner yellow"><div class="container">
+  <h3 class="center">Highlights</h3>
+  <div class="grid grid-3" style="margin-top:12px">
+    <a class="card" href="lice.html"><b>🎈 Lice Screening & Treatment</b><br><small class="muted">Private & confidential</small></a>
+    <a class="card" href="glamour.html"><b>🌟 Glamour Parties</b><br><small class="muted">Fun, confidence-boosting styling</small></a>
+    <div class="card"><b>✂️ Baby’s First Haircut</b><br><small class="muted">Make the milestone memorable</small></div>
+  </div>
+</div></section>
+
+<section class="banner"><div class="container center">
+  <p><b>Ready for a fun haircut experience?</b></p>
+  <button class="btn" onclick="location.href='tel:3015696756'">Call to Book Appointment</button>
+</div></section>
+
+<footer>© 2025 The Yellow Balloon</footer>
+</body></html>
+
+6) lice.html
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lice Screening & Treatment | The Yellow Balloon</title>
+<link rel="stylesheet" href="styles.css">
+</head><body>
+<header>
+  <a href="index.html"><img src="logo.png" alt="logo"></a>
+  <nav><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services & Pricing</a><a href="lice.html">Lice</a><a href="glamour.html">Glamour</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a></nav>
+</header>
+
+<section class="banner"><div class="container center">
+  <h1>Confidential Lice Screening & Treatment</h1>
+  <p>Private, gentle, and effective care trusted by families across Montgomery County.</p>
+  <button class="btn" onclick="location.href='tel:3015696756'">Call to Book Screening</button>
+</div></section>
+
+<section class="container grid grid-3">
+  <div class="card">🏠 <b>Private Location</b><br>Screenings & treatments offered away from the main salon for privacy.</div>
+  <div class="card">✂️ <b>Kid-Friendly Care</b><br>Gentle, patient approach tailored for children.</div>
+  <div class="card">✅ <b>School-Required Screenings</b><br>Many local schools request screenings — we make it easy.</div>
+</section>
+
+<section class="banner yellow"><div class="container grid" style="grid-template-columns:1fr 1fr;align-items:center">
+  <div>
+    <h2>Our Services</h2>
+    <p><b>Lice Screening</b> — Quick, confidential checks in a comfortable private setting; accepted by schools across Montgomery County.</p>
+    <p><b>Lice Treatment</b> — Effective <i>two-session</i> process with prevention tips and after-care guidance for parents.</p>
+  </div>
+  <img src="lice-hero.jpg" alt="Calm parent and child" style="width:100%;border-radius:12px">
+</div></section>
+
+<section class="container center">
+  <p><i>We know lice can feel stressful, but you don’t have to face it alone. Our private, kid-friendly approach is simple, supportive, and effective.</i></p>
+  <button class="btn" onclick="location.href='tel:3015696756'">Call to Book Screening</button>
+</section>
+
+<footer>© 2025 The Yellow Balloon</footer>
+</body></html>
+
+7) glamour.html
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Glamour Parties for Kids & Tweens | The Yellow Balloon</title>
+<link rel="stylesheet" href="styles.css">
+</head><body>
+<header>
+  <a href="index.html"><img src="logo.png" alt="logo"></a>
+  <nav><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services & Pricing</a><a href="lice.html">Lice</a><a href="glamour.html">Glamour</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a></nav>
+</header>
+
+<section class="banner yellow"><div class="container center">
+  <h1>A Magical Salon Experience for Kids & Tweens</h1>
+  <p>Celebrate milestones, achievements, or simply enjoy a fun day with friends!</p>
+  <button class="btn" onclick="location.href='tel:3015696756'">Call to Plan Your Event</button>
+</div></section>
+
+<section class="container grid" style="grid-template-columns:1fr 1fr;align-items:center">
+  <div>
+    <h2>What’s a Glamour Party?</h2>
+    <ul>
+      <li>Stylish braids, curls, or simple up-dos</li>
+      <li>Optional nail polish & glitter accents</li>
+      <li>Laugh, take photos, and make memories with friends</li>
+      <li>Leave with a confidence boost — and a Yellow Balloon!</li>
+    </ul>
+  </div>
+  <img src="glamour-photo.jpg" alt="Kids enjoying salon glamour" style="width:100%;border-radius:12px">
+</section>
+
+<section class="banner"><div class="container grid grid-3">
+  <div class="card">✨ <b>Confidence Boosting</b><br>Every child feels special and celebrated.</div>
+  <div class="card">✨ <b>Fun & Safe</b><br>Friendly stylists experienced with kids & tweens.</div>
+  <div class="card">✨ <b>Flexible Occasions</b><br>Great for achievements, milestones, or a unique outing.</div>
+</div></section>
+
+<section class="container center">
+  <button class="btn" onclick="location.href='tel:3015696756'">Call to Plan Your Event</button>
+</section>
+
+<footer>© 2025 The Yellow Balloon</footer>
+</body></html>
+
+8) gallery.html
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gallery | The Yellow Balloon</title>
+<link rel="stylesheet" href="styles.css">
+</head><body>
+<header>
+  <a href="index.html"><img src="logo.png" alt="logo"></a>
+  <nav><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services & Pricing</a><a href="lice.html">Lice</a><a href="glamour.html">Glamour</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a></nav>
+</header>
+
+<section class="banner yellow"><div class="container center">
+  <h1>See the Smiles at The Yellow Balloon</h1>
+  <p>A peek into our kid-friendly salon where every haircut ends with a balloon and a lollipop.</p>
+</div></section>
+
+<section class="container">
+  <div class="slideshow"><img src="slide1.jpg" alt="Featured photo"></div>
+  <p class="center"><small class="muted">Tap any photo to view larger</small></p>
+  <div class="grid grid-4" style="margin-top:14px">
+    <!-- Add as many as you’d like -->
+    <img class="card" src="g1.jpg" alt="Smile 1">
+    <img class="card" src="g2.jpg" alt="Smile 2">
+    <img class="card" src="g3.jpg" alt="Smile 3">
+    <img class="card" src="g4.jpg" alt="Smile 4">
+  </div>
+</section>
+
+<section class="banner center"><div class="container">
+  <p><b>Want to see your child in our gallery of smiles?</b></p>
+  <button class="btn" onclick="location.href='tel:3015696756'">Call to Book Appointment</button>
+</div></section>
+
+<footer>© 2025 The Yellow Balloon</footer>
+</body></html>
+
+9) contact.html
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hours & Contact | The Yellow Balloon</title>
+<link rel="stylesheet" href="styles.css">
+</head><body>
+<header>
+  <a href="index.html"><img src="logo.png" alt="logo"></a>
+  <nav><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services & Pricing</a><a href="lice.html">Lice</a><a href="glamour.html">Glamour</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a></nav>
+</header>
+
+<section class="banner"><div class="container center">
+  <h1>We’re Here When You Need Us</h1>
+  <p>Find our hours, location, and contact details below.</p>
+</div></section>
+
+<section class="container grid" style="grid-template-columns:1fr 1fr">
+  <div class="card">
+    <h3>Hours</h3>
+    Tuesday–Friday: 10:00am – 6:00pm<br>
+    Saturday–Sunday: 10:00am – 5:00pm<br>
+    Monday & Thursday: Closed
+  </div>
+  <div class="card">
+    <h3>Contact</h3>
+    📞 <a href="tel:3015696756">(301) 569-6756</a><br>
+    📍 255 Market Street West, Gaithersburg, MD 20878
+  </div>
+</section>
+
+<section class="container">
+  <!-- Replace src with your Google Maps embed link -->
+  <iframe title="Map"
+    src="https://www.google.com/maps?q=255%20Market%20Street%20West%20Gaithersburg%20MD%2020878&output=embed"
+    width="100%" height="360" style="border:0;border-radius:12px" loading="lazy"></iframe>
+</section>
+
+<section class="banner yellow"><div class="container center">
+  <button class="btn" onclick="location.href='tel:3015696756'">Call to Book Appointment</button>
+</div></section>
+
+<footer>© 2025 The Yellow Balloon</footer>
+</body></html>
