@@ -4,7 +4,11 @@ import heroImage from "@assets/generated_images/Happy_child_salon_haircut_f1c818
 
 export default function Hero() {
   return (
-    <section id="home" className="bg-gradient-to-br from-primary/10 via-background to-accent/5 py-16 lg:py-24">
+    <section id="home" className="bg-gradient-to-br from-primary/30 via-accent/20 to-secondary/25 py-16 lg:py-24 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 opacity-50" />
+      <div className="absolute top-10 left-10 w-32 h-32 bg-primary/30 rounded-full blur-3xl" />
+      <div className="absolute bottom-10 right-10 w-40 h-40 bg-accent/30 rounded-full blur-3xl" />
+      <div className="relative z-10">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
@@ -69,11 +73,15 @@ export default function Hero() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
             </div>
-            <div className="absolute -top-4 -right-4 w-16 h-16 bg-primary rounded-full flex items-center justify-center shadow-lg">
+            <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center shadow-xl border-4 border-white">
               <span className="text-3xl">🎈</span>
+            </div>
+            <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-to-br from-secondary to-primary rounded-full flex items-center justify-center shadow-lg border-2 border-white">
+              <span className="text-2xl">✨</span>
             </div>
           </div>
         </div>
+      </div>
       </div>
     </section>
   );

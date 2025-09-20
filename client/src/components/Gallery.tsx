@@ -66,7 +66,7 @@ export default function Gallery() {
   ];
 
   return (
-    <section id="gallery" className="py-16 lg:py-24 bg-accent/5">
+    <section id="gallery" className="py-16 lg:py-24 bg-gradient-to-b from-primary/20 to-secondary/25">
       <div className="container mx-auto px-4">
         <div className="text-center space-y-4 mb-12">
           <h2 className="text-3xl lg:text-5xl font-bold text-foreground">

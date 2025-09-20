@@ -37,7 +37,7 @@ export default function Services() {
   ];
 
   return (
-    <section id="services" className="py-16 lg:py-24 bg-accent/5">
+    <section id="services" className="py-16 lg:py-24 bg-gradient-to-b from-secondary/30 to-accent/20">
       <div className="container mx-auto px-4">
         <div className="text-center space-y-4 mb-12">
           <h2 className="text-3xl lg:text-5xl font-bold text-foreground">

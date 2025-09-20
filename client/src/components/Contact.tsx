@@ -85,7 +85,7 @@ export default function Contact() {
         </div>
 
         {/* Main CTA */}
-        <div className="bg-gradient-to-r from-primary to-accent rounded-2xl p-8 lg:p-12 text-center text-primary-foreground">
+        <div className="bg-gradient-to-r from-primary via-accent to-secondary rounded-2xl p-8 lg:p-12 text-center text-primary-foreground shadow-2xl border-4 border-white/20">
           <h3 className="text-2xl lg:text-4xl font-bold mb-4">
             Book Your Appointment Today!
           </h3>
