@@ -49,27 +49,19 @@ export default function Features() {
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {features.map((feature, index) => {
-            const gradients = [
-              "bg-gradient-to-br from-primary/80 to-accent/60",
-              "bg-gradient-to-br from-accent/80 to-secondary/60", 
-              "bg-gradient-to-br from-secondary/80 to-primary/60",
-              "bg-gradient-to-br from-primary/60 to-secondary/80"
-            ];
-            return (
-              <Card key={index} className={`text-center hover-elevate transition-all duration-300 ${gradients[index]} border-2 border-white/30 shadow-xl`} data-testid={`card-feature-${index}`}>
-                <CardContent className="pt-6 space-y-4">
-                  <div className="mx-auto w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white">
-                    {feature.icon}
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg mb-2 text-white">{feature.title}</h3>
-                    <p className="text-white/90 text-sm leading-relaxed">{feature.description}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            );
-          })}
+          {features.map((feature, index) => (
+            <Card key={index} className="text-center hover-elevate transition-all duration-300" data-testid={`card-feature-${index}`}>
+              <CardContent className="pt-6 space-y-4">
+                <div className="mx-auto w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+                  {feature.icon}
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">{feature.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
         </div>
 
         <div className="mt-16 bg-gradient-to-r from-primary/25 via-accent/20 to-secondary/25 rounded-2xl p-8 text-center shadow-xl border-2 border-primary/30">
