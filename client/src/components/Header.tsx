@@ -1,31 +1,81 @@
-import { Phone, Menu, X } from "lucide-react";
+import { Phone, Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { 
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { useState } from "react";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
     { name: "Gallery", href: "#gallery" },
     { name: "Contact", href: "#contact" },
+  ];
+
+  const serviceItems = [
+    { name: "Haircuts", href: "#haircuts" },
+    { name: "Glamour Parties", href: "#glamour-parties" },
+    { name: "Lice Screening & Treatment", href: "#lice-treatment" },
   ];
 
   return (
     <header className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 border-b">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-3">
+        <a 
+          href="#home" 
+          className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+          data-testid="logo-home-link"
+        >
           <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
             <span className="text-2xl">🎈</span>
           </div>
           <div className="font-bold text-xl text-foreground">The Yellow Balloon</div>
-        </div>
+        </a>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
-          {navItems.map((item) => (
+          <a
+            href="#about"
+            className="text-muted-foreground hover:text-foreground transition-colors font-medium"
+            data-testid="nav-about"
+          >
+            About
+          </a>
+          
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center gap-1 text-muted-foreground hover:text-foreground transition-colors font-medium" data-testid="nav-services">
+              Services
+              <ChevronDown className="w-4 h-4" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              {serviceItems.map((service) => (
+                <DropdownMenuItem key={service.name} asChild>
+                  <a
+                    href={service.href}
+                    className="w-full cursor-pointer"
+                    data-testid={`nav-service-${service.name.toLowerCase().replace(/\s+/g, '-')}`}
+                  >
+                    {service.name}
+                  </a>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <a
+            href="#pricing"
+            className="text-muted-foreground hover:text-foreground transition-colors font-medium"
+            data-testid="nav-pricing"
+          >
+            Pricing
+          </a>
+
+          {navItems.slice(1).map((item) => (
             <a
               key={item.name}
               href={item.href}
@@ -68,7 +118,42 @@ export default function Header() {
       {isMenuOpen && (
         <div className="md:hidden border-t bg-background">
           <nav className="container mx-auto px-4 py-4 space-y-3">
-            {navItems.map((item) => (
+            <a
+              href="#about"
+              className="block text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
+              onClick={() => setIsMenuOpen(false)}
+              data-testid="nav-mobile-about"
+            >
+              About
+            </a>
+            
+            <div className="space-y-2">
+              <div className="text-muted-foreground font-medium py-2">Services</div>
+              <div className="pl-4 space-y-2">
+                {serviceItems.map((service) => (
+                  <a
+                    key={service.name}
+                    href={service.href}
+                    className="block text-muted-foreground hover:text-foreground transition-colors py-1"
+                    onClick={() => setIsMenuOpen(false)}
+                    data-testid={`nav-mobile-service-${service.name.toLowerCase().replace(/\s+/g, '-')}`}
+                  >
+                    {service.name}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <a
+              href="#pricing"
+              className="block text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
+              onClick={() => setIsMenuOpen(false)}
+              data-testid="nav-mobile-pricing"
+            >
+              Pricing
+            </a>
+
+            {navItems.slice(1).map((item) => (
               <a
                 key={item.name}
                 href={item.href}
@@ -79,6 +164,7 @@ export default function Header() {
                 {item.name}
               </a>
             ))}
+            
             <Button
               className="w-full gap-2 mt-4"
               onClick={() => {
