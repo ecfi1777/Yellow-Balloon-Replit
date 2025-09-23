@@ -32,6 +32,9 @@ export default function Hero() {
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
+            <div className="animate-bounce-slow text-sm font-bold text-primary tracking-wider uppercase text-center lg:text-left">
+              Kids Hair Salon
+            </div>
             <div className="space-y-4">
               <h1 className="text-4xl lg:text-6xl font-black text-foreground leading-tight">
                 Where every haircut ends with a smile, a{" "}

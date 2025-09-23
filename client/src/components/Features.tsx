@@ -12,39 +12,39 @@ export default function Features() {
   // todo: remove mock functionality
   const features: Feature[] = [
     {
+      icon: <Heart className="w-6 h-6" />,
+      title: "Gentle Stylists",
+      description: "Experienced with wiggly clients, first-cut jitters, and children of all ages."
+    },
+    {
       icon: <Gamepad2 className="w-6 h-6" />,
-      title: "Kid-friendly salon",
-      description: "Toys, coloring books & fun rides in the waiting area"
+      title: "Fun Waiting Area", 
+      description: "Toys, coloring books, and rides to keep kids entertained while waiting."
     },
     {
       icon: <Tv className="w-6 h-6" />,
-      title: "TVs at every station",
-      description: "Keep kids entertained during their haircut"
-    },
-    {
-      icon: <Heart className="w-6 h-6" />,
-      title: "Gentle stylists",
-      description: "Patient, experienced stylists who love working with kids"
+      title: "TVs at Every Station",
+      description: "Cartoons and shows to keep children distracted and comfortable during cuts."
     },
     {
       icon: <Gift className="w-6 h-6" />,
-      title: "Balloon & lollipop",
-      description: "Every child leaves with a special treat"
+      title: "Special Rewards",
+      description: "Every child leaves with a balloon and lollipop - it's our signature touch!"
     }
   ];
 
   return (
-    <section className="py-16 lg:py-24">
+    <section id="about" className="py-16 lg:py-24">
       <div className="container mx-auto px-4">
         <div className="text-center space-y-4 mb-12">
-          <Badge variant="outline" className="text-sm px-4 py-2">
-            Over 20 Years of Experience
-          </Badge>
+          <div className="animate-bounce-slow text-sm font-bold text-primary tracking-wider uppercase">
+            About
+          </div>
           <h2 className="text-3xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-accent via-primary to-secondary">
-            Why Families Love Us
+            Made for kids. Loved by parents.
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            We've been making haircuts happy, easy, and full of smiles for families across Montgomery County
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            For over 20 years, we've been Montgomery County's trusted kids hair salon, serving families in Gaithersburg, Darnestown, Potomac, Germantown, and surrounding areas. We specialize in creating positive experiences that build confidence and make every child feel special.
           </p>
         </div>
 
