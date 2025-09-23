@@ -40,7 +40,7 @@ export default function Services() {
     <section id="services" className="py-16 lg:py-24 bg-gradient-to-b from-secondary/30 to-accent/20">
       <div className="container mx-auto px-4">
         <div className="text-center space-y-4 mb-12">
-          <div className="animate-bounce-slow text-sm font-bold text-primary tracking-wider uppercase">
+          <div className="animate-bounce-slow text-sm text-foreground tracking-wider uppercase">
             What we do
           </div>
           <h2 className="text-3xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-secondary via-accent to-primary">
