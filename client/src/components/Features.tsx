@@ -66,19 +66,6 @@ export default function Features() {
           ))}
         </div>
 
-        <div className="mt-16 bg-gradient-to-r from-primary/25 via-accent/20 to-secondary/25 rounded-2xl p-8 text-center shadow-xl border-2 border-primary/30">
-          <h3 className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-4">The Yellow Balloon Experience</h3>
-          <p className="text-muted-foreground mb-6 max-w-3xl mx-auto">
-            For more than 20 years, The Yellow Balloon has been the place where kids get more than a haircut — 
-            they get an experience. Families from Gaithersburg, Darnestown, Potomac, Germantown and beyond trust us 
-            to keep haircuts happy, easy, and full of smiles.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Badge variant="secondary" className="text-sm">First Haircuts</Badge>
-            <Badge variant="secondary" className="text-sm">Special Occasions</Badge>
-            <Badge variant="secondary" className="text-sm">Family-Friendly</Badge>
-          </div>
-        </div>
       </div>
     </section>
   );
