@@ -92,8 +92,8 @@ export default function Gallery() {
                   {item.category}
                 </Badge>
               </div>
-              <CardContent className="p-4">
-                <h3 className="font-semibold text-foreground text-center leading-tight">{item.title}</h3>
+              <CardContent className="p-6 min-h-[80px] flex items-center justify-center">
+                <h3 className="font-semibold text-foreground text-center leading-relaxed">{item.title}</h3>
               </CardContent>
             </Card>
           ))}
