@@ -33,8 +33,10 @@ export default function Hero() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <div className="space-y-4">
-              <h1 className="text-4xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-secondary leading-tight">
-                Where every haircut ends with a smile, a balloon, and a lollipop!
+              <h1 className="text-4xl lg:text-6xl font-black text-foreground leading-tight">
+                Where every haircut ends with a smile, a{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">balloon</span>, and a{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-secondary">lollipop</span>!
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Serving Gaithersburg, Darnestown, Potomac, Germantown & surrounding Montgomery County for over 20 years.
