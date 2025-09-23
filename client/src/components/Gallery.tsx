@@ -80,7 +80,7 @@ export default function Gallery() {
         {/* Gallery Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {galleryItems.map((item, index) => (
-            <Card key={index} className="overflow-hidden hover-elevate transition-all duration-300 group" data-testid={`card-gallery-${index}`}>
+            <Card key={index} className="hover-elevate transition-all duration-300 group" data-testid={`card-gallery-${index}`}>
               <div className="relative overflow-hidden">
                 <img
                   src={item.image}
@@ -92,7 +92,7 @@ export default function Gallery() {
                   {item.category}
                 </Badge>
               </div>
-              <CardContent className="p-6 min-h-[80px] flex items-center justify-center">
+              <CardContent className="p-6">
                 <h3 className="font-semibold text-foreground text-center leading-relaxed">{item.title}</h3>
               </CardContent>
             </Card>
