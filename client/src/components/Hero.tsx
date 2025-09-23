@@ -46,7 +46,7 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
                 size="lg"
-                className="gap-2 text-lg px-8 py-6"
+                className="gap-2 text-lg px-4 py-3"
                 onClick={() => {
                   console.log("Book appointment clicked");
                   window.open("tel:3015696756", "_self");
@@ -59,7 +59,7 @@ export default function Hero() {
               <Button
                 variant="outline"
                 size="lg"
-                className="gap-2 text-lg px-8 py-6"
+                className="gap-2 text-lg px-4 py-3"
                 onClick={() => {
                   console.log("View gallery clicked");
                   document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" });
