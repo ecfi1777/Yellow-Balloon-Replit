@@ -44,9 +44,9 @@ export default function Features() {
             Made for kids. Loved by parents.
           </h2>
           <div className="text-lg text-muted-foreground max-w-4xl mx-auto text-center">
-            <p>For over 20 years, we've been Montgomery County's trusted kids hair salon,</p>
-            <p>serving families in Gaithersburg, Darnestown, Potomac, Germantown, and surrounding areas.</p>
-            <p>We specialize in creating positive experiences that build confidence and make every child feel special.</p>
+            <p>For over 20 years, we've been Montgomery County's trusted kids hair salon, serving families in</p>
+            <p>Gaithersburg, Darnestown, Potomac, Germantown, and surrounding areas. We specialize in</p>
+            <p>creating positive experiences that build confidence and make every child feel special.</p>
           </div>
         </div>
 
