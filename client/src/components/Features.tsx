@@ -40,7 +40,7 @@ export default function Features() {
           <Badge variant="outline" className="text-sm px-4 py-2">
             Over 20 Years of Experience
           </Badge>
-          <h2 className="text-3xl lg:text-5xl font-bold text-foreground">
+          <h2 className="text-3xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-accent via-primary to-secondary">
             Why Families Love Us
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -65,7 +65,7 @@ export default function Features() {
         </div>
 
         <div className="mt-16 bg-gradient-to-r from-primary/25 via-accent/20 to-secondary/25 rounded-2xl p-8 text-center shadow-xl border-2 border-primary/30">
-          <h3 className="text-2xl font-bold mb-4">The Yellow Balloon Experience</h3>
+          <h3 className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-4">The Yellow Balloon Experience</h3>
           <p className="text-muted-foreground mb-6 max-w-3xl mx-auto">
             For more than 20 years, The Yellow Balloon has been the place where kids get more than a haircut — 
             they get an experience. Families from Gaithersburg, Darnestown, Potomac, Germantown and beyond trust us 

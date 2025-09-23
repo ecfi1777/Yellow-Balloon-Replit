@@ -44,7 +44,7 @@ export default function Contact() {
     <section id="contact" className="py-16 lg:py-24">
       <div className="container mx-auto px-4">
         <div className="text-center space-y-4 mb-12">
-          <h2 className="text-3xl lg:text-5xl font-bold text-foreground">
+          <h2 className="text-3xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-accent via-primary to-secondary">
             Ready for a Fun Haircut?
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
