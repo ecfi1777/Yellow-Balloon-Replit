@@ -1,8 +1,30 @@
 import { Button } from "@/components/ui/button";
 import { Phone, MapPin, Clock } from "lucide-react";
+import { useState, useEffect } from "react";
 import heroImage from "@assets/generated_images/Happy_child_salon_haircut_f1c818df.png";
+import salonInterior from "@assets/generated_images/Modern_salon_interior_50f75e1e.png";
+import beforeAfter from "@assets/generated_images/Before_after_hair_transformation_79ac8226.png";
+import teamPhoto from "@assets/generated_images/Salon_team_photo_c49ae9ec.png";
 
 export default function Hero() {
+  // todo: remove mock functionality
+  const galleryImages = [
+    { src: heroImage, alt: "Happy child getting a haircut at The Yellow Balloon" },
+    { src: salonInterior, alt: "Modern, colorful salon interior with TVs and toys" },
+    { src: beforeAfter, alt: "Before and after photos showing hair transformation" },
+    { src: teamPhoto, alt: "Professional team of experienced children's hair stylists" }
+  ];
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
+    }, 4000); // Change image every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [galleryImages.length]);
+
   return (
     <section id="home" className="bg-gradient-to-br from-primary/30 via-accent/20 to-secondary/25 py-16 lg:py-24 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 opacity-50" />
@@ -64,20 +86,31 @@ export default function Hero() {
           </div>
 
           <div className="relative">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-              <img
-                src={heroImage}
-                alt="Happy child getting a haircut at The Yellow Balloon"
-                className="w-full h-auto object-cover"
-                data-testid="img-hero"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-gradient-to-r from-primary via-accent to-secondary p-1 bg-gradient-to-r from-primary via-accent to-secondary">
+              <div className="rounded-2xl overflow-hidden bg-white">
+                <img
+                  src={galleryImages[currentImageIndex].src}
+                  alt={galleryImages[currentImageIndex].alt}
+                  className="w-full h-auto object-cover transition-all duration-1000 ease-in-out"
+                  data-testid="img-hero"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+              </div>
             </div>
-            <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center shadow-xl border-4 border-white">
-              <span className="text-3xl">🎈</span>
-            </div>
-            <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-to-br from-secondary to-primary rounded-full flex items-center justify-center shadow-lg border-2 border-white">
-              <span className="text-2xl">✨</span>
+            {/* Image indicators */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+              {galleryImages.map((_, index) => (
+                <button
+                  key={index}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentImageIndex 
+                      ? 'bg-white shadow-lg scale-125' 
+                      : 'bg-white/50 hover:bg-white/75'
+                  }`}
+                  onClick={() => setCurrentImageIndex(index)}
+                  data-testid={`indicator-${index}`}
+                />
+              ))}
             </div>
           </div>
         </div>

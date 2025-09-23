@@ -93,7 +93,7 @@ export default function Gallery() {
                 </Badge>
               </div>
               <CardContent className="p-4">
-                <h3 className="font-semibold text-foreground">{item.title}</h3>
+                <h3 className="font-semibold text-foreground truncate">{item.title}</h3>
               </CardContent>
             </Card>
           ))}
