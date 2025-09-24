@@ -12,7 +12,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { name: "About", href: "/" },
+    { name: "About", href: "/#about" },
     { name: "Gallery", href: "/#gallery" },
     { name: "Reviews", href: "/#reviews" },
     { name: "Contact", href: "/#contact" },
@@ -41,11 +41,11 @@ export default function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
           <a
-            href="#about"
+            href={navItems[0].href}
             className="text-muted-foreground hover:text-foreground transition-colors font-medium"
             data-testid="nav-about"
           >
-            About
+            {navItems[0].name}
           </a>
           
           <DropdownMenu>
