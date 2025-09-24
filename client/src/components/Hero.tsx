@@ -1,16 +1,50 @@
 import { Button } from "@/components/ui/button";
 import { Phone, MapPin, Clock } from "lucide-react";
 import { useState, useEffect } from "react";
-import heroImage from "@assets/generated_images/Happy_child_salon_haircut_f1c818df.png";
-import salonInterior from "@assets/generated_images/Modern_salon_interior_50f75e1e.png";
-import beforeAfter from "@assets/generated_images/Before_after_hair_transformation_79ac8226.png";
-import teamPhoto from "@assets/generated_images/Salon_team_photo_c49ae9ec.png";
+// Import all gallery images
+import firstHaircut1 from "@assets/stock_images/child_getting_first__d4068372.jpg";
+import firstHaircut2 from "@assets/stock_images/child_getting_first__42abb267.jpg";
+import glamourParty1 from "@assets/stock_images/little_girl_glamour__82803a0f.jpg";
+import glamourParty2 from "@assets/stock_images/little_girl_glamour__3060d1ca.jpg";
+import boyHaircut1 from "@assets/stock_images/boy_getting_haircut__b92accf7.jpg";
+import boyHaircut2 from "@assets/stock_images/boy_getting_haircut__940de3e3.jpg";
+import hairStyling1 from "@assets/stock_images/children_hair_braidi_4ff249c2.jpg";
+import hairStyling2 from "@assets/stock_images/children_hair_braidi_dec31d64.jpg";
+import happyHaircut1 from "@assets/stock_images/children_happy_hairc_93fb1c45.jpg";
+import happyHaircut2 from "@assets/stock_images/children_happy_hairc_585f1b59.jpg";
+import happyHaircut3 from "@assets/stock_images/children_happy_hairc_15e33584.jpg";
+import happyHaircut4 from "@assets/stock_images/children_happy_hairc_4a6cb1a5.jpg";
+import kidsStyling1 from "@assets/stock_images/kids_hair_styling_br_5bfc0dc2.jpg";
+import kidsStyling2 from "@assets/stock_images/kids_hair_styling_br_1571ee4e.jpg";
+import kidsStyling3 from "@assets/stock_images/kids_hair_styling_br_ff7ebbd6.jpg";
+import kidsStyling4 from "@assets/stock_images/kids_hair_styling_br_ee67fd2e.jpg";
+import babyFirst1 from "@assets/stock_images/toddler_baby_first_h_81f53ad7.jpg";
+import babyFirst2 from "@assets/stock_images/toddler_baby_first_h_3dec3334.jpg";
+import babyFirst3 from "@assets/stock_images/toddler_baby_first_h_de795191.jpg";
+import babyFirst4 from "@assets/stock_images/toddler_baby_first_h_bb0e2284.jpg";
 
 export default function Hero() {
-  // todo: remove mock functionality - Only using same aspect ratio images
   const galleryImages = [
-    { src: heroImage, alt: "Happy child getting a haircut at The Yellow Balloon" },
-    { src: salonInterior, alt: "Modern, colorful salon interior with TVs and toys" }
+    { src: firstHaircut1, alt: "Child getting their first haircut with a big smile" },
+    { src: boyHaircut1, alt: "Young boy getting a professional haircut" },
+    { src: glamourParty1, alt: "Girl enjoying glamour party styling session" },
+    { src: hairStyling1, alt: "Children getting special hair braiding and styling" },
+    { src: firstHaircut2, alt: "Another happy child during their first haircut experience" },
+    { src: boyHaircut2, alt: "Boy receiving professional haircut service" },
+    { src: glamourParty2, alt: "Girl getting glamour party makeup and hair styling" },
+    { src: hairStyling2, alt: "Creative hair braiding and styling for children" },
+    { src: happyHaircut1, alt: "Happy children enjoying their haircut experience" },
+    { src: happyHaircut2, alt: "Salon transformation showing before and after results" },
+    { src: happyHaircut3, alt: "Children excited about their new hairstyles" },
+    { src: happyHaircut4, alt: "Professional haircut service for young clients" },
+    { src: kidsStyling1, alt: "Fun hair styling and braiding session" },
+    { src: kidsStyling2, alt: "Creative ponytails and styling for kids" },
+    { src: kidsStyling3, alt: "Stylish braids and hair accessories" },
+    { src: kidsStyling4, alt: "Professional hair styling for special occasions" },
+    { src: babyFirst1, alt: "Toddler's first haircut milestone moment" },
+    { src: babyFirst2, alt: "Baby enjoying their first salon experience" },
+    { src: babyFirst3, alt: "Happy toddler getting first professional haircut" },
+    { src: babyFirst4, alt: "Gentle first haircut service for young children" }
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -18,7 +52,7 @@ export default function Hero() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
-    }, 4000); // Change image every 4 seconds
+    }, 3000); // Change image every 3 seconds
 
     return () => clearInterval(interval);
   }, [galleryImages.length]);
