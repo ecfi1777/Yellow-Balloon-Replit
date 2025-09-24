@@ -12,13 +12,13 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { name: "About", href: "#about" },
-    { name: "Gallery", href: "#gallery" },
-    { name: "Contact", href: "#contact" },
+    { name: "About", href: "/#about" },
+    { name: "Gallery", href: "/#gallery" },
+    { name: "Contact", href: "/#contact" },
   ];
 
   const serviceItems = [
-    { name: "Haircuts", href: "#services" },
+    { name: "Haircuts", href: "/#services" },
     { name: "Glamour Parties", href: "/glamour-parties" },
     { name: "Lice Screening & Treatment", href: "/lice-treatment" },
   ];
@@ -27,7 +27,7 @@ export default function Header() {
     <header className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 border-b">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <a 
-          href="#home" 
+          href="/" 
           className="flex items-center gap-3 hover:opacity-80 transition-opacity"
           data-testid="logo-home-link"
         >
@@ -68,7 +68,7 @@ export default function Header() {
           </DropdownMenu>
 
           <a
-            href="#pricing"
+            href="/#pricing"
             className="text-muted-foreground hover:text-foreground transition-colors font-medium"
             data-testid="nav-pricing"
           >
@@ -119,7 +119,7 @@ export default function Header() {
         <div className="md:hidden border-t bg-background">
           <nav className="container mx-auto px-4 py-4 space-y-3">
             <a
-              href="#about"
+              href="/#about"
               className="block text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
               onClick={() => setIsMenuOpen(false)}
               data-testid="nav-mobile-about"
@@ -145,7 +145,7 @@ export default function Header() {
             </div>
 
             <a
-              href="#pricing"
+              href="/#pricing"
               className="block text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
               onClick={() => setIsMenuOpen(false)}
               data-testid="nav-mobile-pricing"
