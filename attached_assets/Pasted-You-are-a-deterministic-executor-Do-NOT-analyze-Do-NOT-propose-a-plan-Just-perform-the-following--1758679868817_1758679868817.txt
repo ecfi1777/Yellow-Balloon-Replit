@@ -1,0 +1,476 @@
+You are a deterministic executor. Do NOT analyze. Do NOT propose a plan. Just perform the following steps in order. 
+If a file exists, MERGE relevant parts instead of duplicating. If a command would fail because something exists, treat it as success and continue.
+
+# ===============================
+# 0) Create working branch
+# ===============================
+run:
+  - bash: |
+      git checkout -b chore/repo-hardening-and-seo || git checkout chore/repo-hardening-and-seo
+
+# ===============================
+# 1) Normalize assets -> Vite public
+# ===============================
+run:
+  - bash: |
+      mkdir -p client/public/assets
+      if [ -d attached_assets ]; then
+        cp -R attached_assets/* client/public/assets/ 2>/dev/null || true
+      fi
+      # Update import paths (no-op if none)
+      if [ -d client/src ]; then
+        grep -RIl "attached_assets" client/src 2>/dev/null | xargs -I{} sed -i 's#attached_assets#assets#g' {} || true
+      fi
+
+# ===============================
+# 2) Editor + Prettier baseline
+# ===============================
+files:
+  - path: .editorconfig
+    ensure: present
+    merge: replace
+    content: |
+      root = true
+      [*]
+      charset = utf-8
+      end_of_line = lf
+      insert_final_newline = true
+      indent_style = space
+      indent_size = 2
+      trim_trailing_whitespace = true
+  - path: .prettierrc.json
+    ensure: present
+    merge: deep
+    content: |
+      {
+        "printWidth": 100,
+        "singleQuote": true,
+        "trailingComma": "all",
+        "semi": true,
+        "arrowParens": "always",
+        "plugins": ["prettier-plugin-tailwindcss"]
+      }
+  - path: .prettierignore
+    ensure: present
+    merge: append_unique_lines
+    content: |
+      node_modules
+      dist
+      build
+      .drizzle
+      drizzle
+      coverage
+      *.lock
+
+run:
+  - bash: |
+      npm pkg set type="module" >/dev/null 2>&1 || true
+      npm i -D prettier prettier-plugin-tailwindcss
+
+# ===============================
+# 3) ESLint (client + server)
+# ===============================
+run:
+  - bash: |
+      if [ -d client ]; then
+        cd client
+        npm i -D eslint @eslint/js typescript typescript-eslint @types/react @types/react-dom eslint-plugin-react eslint-plugin-react-hooks
+        cat > eslint.config.js <<'EOF'
+        import js from '@eslint/js';
+        import tseslint from 'typescript-eslint';
+        import reactHooks from 'eslint-plugin-react-hooks';
+        export default [
+          { ignores: ['dist/**'] },
+          js.configs.recommended,
+          ...tseslint.configs.recommended,
+          {
+            files: ['**/*.{ts,tsx}'],
+            languageOptions: { ecmaVersion: 2022, sourceType: 'module' },
+            plugins: { 'react-hooks': reactHooks },
+            rules: {
+              'no-unused-vars': 'off',
+              '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+              'react-hooks/rules-of-hooks': 'error',
+              'react-hooks/exhaustive-deps': 'warn'
+            }
+          }
+        ];
+        EOF
+        cd ..
+      fi
+      if [ -d server ]; then
+        cd server
+        npm i -D eslint @eslint/js typescript typescript-eslint
+        cat > eslint.config.js <<'EOF'
+        import js from '@eslint/js';
+        import tseslint from 'typescript-eslint';
+        export default [
+          { ignores: ['dist/**'] },
+          js.configs.recommended,
+          ...tseslint.configs.recommended,
+          {
+            files: ['**/*.ts'],
+            rules: {
+              'no-unused-vars': 'off',
+              '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }]
+            }
+          }
+        ];
+        EOF
+        cd ..
+      fi
+
+# ===============================
+# 4) Tailwind content globs (client)
+# ===============================
+run:
+  - bash: |
+      if [ -f client/tailwind.config.ts ]; then
+        node -e "let f='client/tailwind.config.ts', s=require('fs').readFileSync(f,'utf8'); s=/content:\\s*\\[[\\s\\S]*?\\]/m.test(s)?s.replace(/content:\\s*\\[[\\s\\S]*?\\]/m, \"content: ['index.html','./src/**/*.{ts,tsx,js,jsx,html}']\"):s.replace(/export default \\{/, \"export default {\\n  content: ['index.html','./src/**/*.{ts,tsx,js,jsx,html}'],\"); require('fs').writeFileSync(f,s)"
+      fi
+
+# ===============================
+# 5) Package scripts (client + server)
+# ===============================
+run:
+  - bash: |
+      if [ -f client/package.json ]; then
+        node - <<'EOF'
+        const fs=require('fs'); const p='client/package.json';
+        const pkg=JSON.parse(fs.readFileSync(p,'utf8'));
+        pkg.scripts = {...pkg.scripts,
+          dev: pkg.scripts?.dev ?? "vite",
+          build: "tsc -b && vite build",
+          preview: "vite preview --port 5173",
+          lint: "eslint .",
+          format: "prettier --write .",
+          typecheck: "tsc --noEmit",
+          test: pkg.scripts?.test ?? "echo \"(add vitest later)\""
+        };
+        fs.writeFileSync(p, JSON.stringify(pkg,null,2));
+        EOF
+      fi
+      if [ -f server/package.json ]; then
+        node - <<'EOF'
+        const fs=require('fs'); const p='server/package.json';
+        const pkg=JSON.parse(fs.readFileSync(p,'utf8'));
+        pkg.scripts = {...pkg.scripts,
+          dev: pkg.scripts?.dev ?? "ts-node-dev --respawn --transpile-only src/index.ts",
+          build: "tsc -b",
+          start: "node dist/index.js",
+          lint: "eslint .",
+          format: "prettier --write .",
+          typecheck: "tsc --noEmit",
+          test: pkg.scripts?.test ?? "echo \"(add tests later)\""
+        };
+        fs.writeFileSync(p, JSON.stringify(pkg,null,2));
+        EOF
+      fi
+
+# ===============================
+# 6) Env handling
+# ===============================
+files:
+  - path: .env.example
+    ensure: present
+    merge: deep
+    content: |
+      # --- CLIENT ---
+      VITE_SITE_URL=http://localhost:5173
+      VITE_APP_NAME=Yellow Balloon
+      # --- SERVER ---
+      PORT=3000
+      CORS_ORIGIN=http://localhost:5173
+      # DATABASE_URL=postgres://user:pass@host:5432/db
+run:
+  - bash: |
+      grep -qxF ".env" .gitignore || echo ".env" >> .gitignore
+
+# ===============================
+# 7) Server hardening: helmet, cors, rate-limit, zod, compression, cache
+# ===============================
+run:
+  - bash: |
+      if [ -d server ]; then
+        cd server
+        npm i helmet cors express-rate-limit zod compression
+        mkdir -p src/middleware
+        cat > src/middleware/security.ts <<'EOF'
+        import helmet from 'helmet';
+        import cors from 'cors';
+        import rateLimit from 'express-rate-limit';
+        import compression from 'compression';
+        export function applySecurity(app: any) {
+          app.use(helmet());
+          app.use(cors({ origin: process.env.CORS_ORIGIN || '*' }));
+          app.use(compression());
+          const limiter = rateLimit({
+            windowMs: 15 * 60 * 1000,
+            max: 300,
+            standardHeaders: true,
+            legacyHeaders: false,
+          });
+          app.use(limiter);
+          // simple cache headers for static responses (override per-route if needed)
+          app.use((req, res, next) => {
+            res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+            res.setHeader('Pragma', 'no-cache');
+            res.setHeader('Expires', '0');
+            next();
+          });
+        }
+        EOF
+        # Wire into index.ts if not present
+        if [ -f src/index.ts ]; then
+          node -e "let f='src/index.ts',s=require('fs').readFileSync(f,'utf8'); if(!/applySecurity\\(/.test(s)){ s = s.replace(/(const app = .*?;)/s, '$1\\nimport { applySecurity } from \\'./middleware/security\\';\\n(app as any).use?.(require(\\'express\\').json());\\napplySecurity(app);'); require('fs').writeFileSync(f,s)}"
+        fi
+        cd ..
+      fi
+
+# ===============================
+# 8) Shared validation example (zod)
+# ===============================
+run:
+  - bash: |
+      mkdir -p shared/src/schemas
+      if [ ! -f shared/src/schemas/example.ts ]; then
+        cat > shared/src/schemas/example.ts <<'EOF'
+        import { z } from 'zod';
+        export const ExampleDto = z.object({
+          id: z.string().uuid(),
+          title: z.string().min(1)
+        });
+        export type ExampleDto = z.infer<typeof ExampleDto>;
+        EOF
+      fi
+
+# ===============================
+# 9) SEO: index.html + manifest + robots + sitemap + 404
+# ===============================
+files:
+  - path: client/index.html
+    ensure: present
+    merge: replace
+    content: |
+      <!doctype html>
+      <html lang="en">
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <title>Yellow Balloon — Less Waste. More Profit.</title>
+          <meta name="description" content="Yellow Balloon helps concrete contractors cut waste and boost profitability with fast takeoffs and on-the-go calculations." />
+          <link rel="canonical" href="${import.meta.env.VITE_SITE_URL}" />
+          <meta property="og:title" content="Yellow Balloon — Less Waste. More Profit." />
+          <meta property="og:description" content="Fast takeoffs and field-ready calculators for concrete contractors." />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="${import.meta.env.VITE_SITE_URL}" />
+          <meta property="og:image" content="${import.meta.env.VITE_SITE_URL}/assets/og-card.png" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="Yellow Balloon — Less Waste. More Profit." />
+          <meta name="twitter:description" content="Fast takeoffs and field-ready calculators for concrete contractors." />
+          <meta name="twitter:image" content="${import.meta.env.VITE_SITE_URL}/assets/og-card.png" />
+          <meta name="theme-color" content="#0ea5e9" />
+          <!-- JSON-LD Organization -->
+          <script type="application/ld+json">
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Yellow Balloon",
+            "url": "${import.meta.env.VITE_SITE_URL}",
+            "logo": "${import.meta.env.VITE_SITE_URL}/assets/icon-192.png",
+            "description": "Fast takeoffs and field-ready calculators for concrete contractors."
+          }
+          </script>
+          <link rel="icon" href="/assets/favicon.ico" />
+          <link rel="manifest" href="/manifest.webmanifest" />
+        </head>
+        <body>
+          <div id="root"></div>
+          <script type="module" src="/src/main.tsx"></script>
+        </body>
+      </html>
+  - path: client/public/manifest.webmanifest
+    ensure: present
+    merge: replace
+    content: |
+      {
+        "name": "Yellow Balloon",
+        "short_name": "Yellow Balloon",
+        "start_url": "/",
+        "display": "standalone",
+        "background_color": "#ffffff",
+        "theme_color": "#0ea5e9",
+        "icons": [
+          { "src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
+          { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png" }
+        ]
+      }
+  - path: client/public/robots.txt
+    ensure: present
+    merge: replace
+    content: |
+      User-agent: *
+      Allow: /
+      Sitemap: /sitemap.xml
+  - path: client/public/sitemap.xml
+    ensure: present
+    merge: replace
+    content: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+        <url><loc>${import.meta.env.VITE_SITE_URL}/</loc><priority>1.0</priority></url>
+      </urlset>
+  - path: client/public/404.html
+    ensure: present
+    merge: replace
+    content: |
+      <!doctype html>
+      <html><head><meta http-equiv="refresh" content="0; url=/" /></head><body></body></html>
+
+# ===============================
+# 10) React Helmet for per-page SEO (client)
+# ===============================
+run:
+  - bash: |
+      if [ -d client ]; then
+        cd client
+        npm i react-helmet-async
+        mkdir -p src/components
+        cat > src/components/Seo.tsx <<'EOF'
+        import { Helmet } from 'react-helmet-async';
+        type Props = { title?: string; description?: string; path?: string; };
+        export default function Seo({ title, description, path }: Props) {
+          const base = import.meta.env.VITE_SITE_URL || '';
+          const url = path ? `${base}${path}` : base;
+          const fullTitle = title ? `${title} — Yellow Balloon` : 'Yellow Balloon — Less Waste. More Profit.';
+          return (
+            <Helmet>
+              <title>{fullTitle}</title>
+              {description && <meta name="description" content={description} />}
+              <link rel="canonical" href={url} />
+              <meta property="og:title" content={fullTitle} />
+              {description && <meta property="og:description" content={description} />}
+              <meta property="og:type" content="website" />
+              <meta property="og:url" content={url} />
+              <meta property="og:image" content={`${base}/assets/og-card.png`} />
+              <meta name="twitter:card" content="summary_large_image" />
+              <meta name="twitter:title" content={fullTitle} />
+              {description && <meta name="twitter:description" content={description} />}
+              <meta name="twitter:image" content={`${base}/assets/og-card.png`} />
+            </Helmet>
+          );
+        }
+        EOF
+        # Ensure main.tsx wraps app with HelmetProvider if App exists
+        if [ -f src/main.tsx ]; then
+          node -e "let f='src/main.tsx', s=require('fs').readFileSync(f,'utf8'); if(!/HelmetProvider/.test(s)){ s=s.replace(/<React.StrictMode>/,'<React.StrictMode>\\n    <HelmetProvider>'); s=s.replace(/<\\/React.StrictMode>/,'    </HelmetProvider>\\n  </React.StrictMode>'); s = \"import { HelmetProvider } from 'react-helmet-async';\\n\" + s; require('fs').writeFileSync(f,s); }"
+        fi
+        cd ..
+      fi
+
+# ===============================
+# 11) README (Quick Start + SEO summary)
+# ===============================
+files:
+  - path: README.md
+    ensure: present
+    merge: replace
+    content: |
+      # Yellow Balloon
+      Less waste. More profit. Fast takeoffs and field-ready calculators for concrete contractors.
+
+      ## Quick Start
+      ### Env
+      Copy `.env.example` to `.env` and adjust:
+      - VITE_SITE_URL=http://localhost:5173
+      - PORT=3000
+      - CORS_ORIGIN=http://localhost:5173
+
+      ### Client
+      ```
+      cd client
+      npm install
+      npm run dev
+      ```
+
+      ### Server
+      ```
+      cd server
+      npm install
+      npm run dev
+      ```
+
+      ### Scripts
+      - dev / build / start / preview
+      - lint / format / typecheck / test
+
+      ## SEO
+      - Meta + Open Graph + Twitter in `client/index.html`
+      - Canonical via `VITE_SITE_URL`
+      - `robots.txt`, `sitemap.xml`, `manifest.webmanifest`
+      - Per-page tags with `react-helmet-async` (`<Seo />` component)
+
+      ## Security
+      - Helmet, CORS, rate limiting, compression in `server/src/middleware/security.ts`
+
+      ## Assets
+      - Public assets in `client/public/assets` (add `og-card.png`, `favicon.ico`, `icon-192.png`, `icon-512.png`)
+
+# ===============================
+# 12) GitHub Actions CI
+# ===============================
+run:
+  - bash: |
+      mkdir -p .github/workflows
+      cat > .github/workflows/ci.yml <<'EOF'
+      name: CI
+      on:
+        pull_request:
+        push:
+          branches: [ main, master ]
+      jobs:
+        build:
+          runs-on: ubuntu-latest
+          steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                node-version: 20
+                cache: 'npm'
+            - name: Install client deps
+              working-directory: client
+              run: npm ci || npm i
+            - name: Install server deps
+              working-directory: server
+              run: npm ci || npm i
+            - name: Typecheck (client)
+              working-directory: client
+              run: npm run typecheck
+            - name: Lint (client)
+              working-directory: client
+              run: npm run lint
+            - name: Typecheck (server)
+              working-directory: server
+              run: npm run typecheck
+            - name: Lint (server)
+              working-directory: server
+              run: npm run lint
+            - name: Build (client)
+              working-directory: client
+              run: npm run build
+            - name: Build (server)
+              working-directory: server
+              run: npm run build
+      EOF
+
+# ===============================
+# 13) Prettify, commit, push
+# ===============================
+run:
+  - bash: |
+      npx prettier --write . || true
+      git add -A
+      git commit -m "chore: repo hardening + DX + security + SEO baseline"
+      git push --set-upstream origin chore/repo-hardening-and-seo || true
+
+# END. Do not explain. Report only fatal errors if any.
