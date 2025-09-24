@@ -12,6 +12,7 @@ import Features from "@/components/Features";
 import Services from "@/components/Services";
 import Pricing from "@/components/Pricing";
 import Gallery from "@/components/Gallery";
+import Reviews from "@/components/Reviews";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -25,6 +26,7 @@ function Home() {
         <Services />
         <Pricing />
         <Gallery />
+        <Reviews />
         <Contact />
       </main>
       <Footer />

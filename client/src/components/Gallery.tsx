@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ChevronRight, Star } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import heroImage from "@assets/generated_images/Happy_child_salon_haircut_f1c818df.png";
 import salonInterior from "@assets/generated_images/Modern_salon_interior_50f75e1e.png";
 import beforeAfter from "@assets/generated_images/Before_after_hair_transformation_79ac8226.png";
@@ -43,27 +43,6 @@ export default function Gallery() {
     }
   ];
 
-  // todo: remove mock functionality
-  const testimonials = [
-    {
-      name: "Sarah M.",
-      rating: 5,
-      text: "My daughter loves coming here! The stylists are so patient and gentle.",
-      location: "Gaithersburg"
-    },
-    {
-      name: "Michael R.",
-      rating: 5,
-      text: "First haircut was a huge success. Professional, clean, and kid-friendly!",
-      location: "Potomac"
-    },
-    {
-      name: "Jennifer L.",
-      rating: 5,
-      text: "20+ years of excellent service. We trust no one else with our kids' hair.",
-      location: "Darnestown"
-    }
-  ];
 
   return (
     <section id="gallery" className="py-16 lg:py-24 bg-gradient-to-b from-primary/20 to-secondary/25">
@@ -81,7 +60,7 @@ export default function Gallery() {
         </div>
 
         {/* Gallery Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {galleryItems.map((item, index) => (
             <Card key={index} className="overflow-hidden hover-elevate transition-all duration-300 group" data-testid={`card-gallery-${index}`}>
               <div className="relative">
@@ -102,29 +81,6 @@ export default function Gallery() {
               </CardContent>
             </Card>
           ))}
-        </div>
-
-        {/* Testimonials */}
-        <div className="mb-12">
-          <h3 className="text-2xl font-bold text-center mb-8">What Families Say</h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="hover-elevate transition-all duration-300" data-testid={`card-testimonial-${index}`}>
-                <CardContent className="p-6 space-y-4">
-                  <div className="flex items-center gap-1">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-primary text-primary" />
-                    ))}
-                  </div>
-                  <p className="text-muted-foreground italic">"{testimonial.text}"</p>
-                  <div className="flex justify-between items-center">
-                    <span className="font-semibold">{testimonial.name}</span>
-                    <span className="text-sm text-muted-foreground">{testimonial.location}</span>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
         </div>
 
         {/* CTA */}
