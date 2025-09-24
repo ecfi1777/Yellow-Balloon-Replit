@@ -63,7 +63,7 @@ export default function Services() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => {
             const cardContent = (
-              <Card className={`hover-elevate transition-all duration-300 text-center ${service.url ? 'cursor-pointer' : ''}`} data-testid={`card-service-${index}`}>
+              <Card className={`hover:scale-105 transition-all duration-300 text-center ${service.url ? 'cursor-pointer' : ''}`} data-testid={`card-service-${index}`}>
                 <CardHeader className="space-y-4">
                   <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
                     {service.icon}

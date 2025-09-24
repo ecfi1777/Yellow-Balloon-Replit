@@ -52,7 +52,7 @@ export default function Features() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((feature, index) => (
-            <Card key={index} className="text-center hover-elevate transition-all duration-300" data-testid={`card-feature-${index}`}>
+            <Card key={index} className="text-center hover:scale-105 transition-all duration-300" data-testid={`card-feature-${index}`}>
               <CardContent className="pt-6 space-y-4">
                 <div className="mx-auto w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
                   {feature.icon}

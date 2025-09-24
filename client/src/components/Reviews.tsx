@@ -48,7 +48,7 @@ export default function Reviews() {
 
         <div className="grid md:grid-cols-3 gap-6">
           {testimonials.map((testimonial, index) => (
-            <Card key={index} className="hover-elevate transition-all duration-300" data-testid={`card-testimonial-${index}`}>
+            <Card key={index} className="hover:scale-105 transition-all duration-300" data-testid={`card-testimonial-${index}`}>
               <CardContent className="p-6 space-y-4">
                 <div className="flex items-center gap-1">
                   {[...Array(testimonial.rating)].map((_, i) => (

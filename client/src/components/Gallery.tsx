@@ -2,14 +2,14 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ChevronRight } from "lucide-react";
 import { Link } from "wouter";
-import firstHaircut1 from "@assets/stock_images/child_getting_first__d4068372.jpg";
-import firstHaircut2 from "@assets/stock_images/child_getting_first__42abb267.jpg";
-import glamourParty1 from "@assets/stock_images/little_girl_glamour__82803a0f.jpg";
-import glamourParty2 from "@assets/stock_images/little_girl_glamour__3060d1ca.jpg";
-import boyHaircut1 from "@assets/stock_images/boy_getting_haircut__b92accf7.jpg";
-import boyHaircut2 from "@assets/stock_images/boy_getting_haircut__940de3e3.jpg";
-import hairStyling1 from "@assets/stock_images/children_hair_braidi_4ff249c2.jpg";
-import hairStyling2 from "@assets/stock_images/children_hair_braidi_dec31d64.jpg";
+import firstHaircut1 from "@assets/generated_images/First_haircut_salon_photo_93504202.png";
+import boyHaircut1 from "@assets/generated_images/Boy_haircut_salon_photo_f149f7c7.png";
+import glamourParty1 from "@assets/generated_images/Glamour_party_styling_photo_1558caf6.png";
+import hairStyling1 from "@assets/generated_images/Hair_braiding_salon_photo_81cddccf.png";
+import firstHaircut2 from "@assets/generated_images/Toddler_first_haircut_photo_84ad34eb.png";
+import boyHaircut2 from "@assets/generated_images/School_boy_haircut_photo_358e2981.png";
+import glamourParty2 from "@assets/generated_images/Special_occasion_styling_photo_50692872.png";
+import hairStyling2 from "@assets/generated_images/Group_glamour_party_photo_fc0c14de.png";
 
 interface GalleryItem {
   image: string;
@@ -20,35 +20,35 @@ export default function Gallery() {
   const galleryItems: GalleryItem[] = [
     {
       image: firstHaircut1,
-      alt: "Child getting their first haircut with a big smile"
+      alt: "Child getting their first haircut at The Yellow Balloon salon with professional stylist"
     },
     {
       image: boyHaircut1,
-      alt: "Young boy getting a professional haircut"
+      alt: "Young boy watching cartoons while getting a professional haircut at The Yellow Balloon"
     },
     {
       image: glamourParty1,
-      alt: "Girl enjoying glamour party styling session"
+      alt: "Girl enjoying glamour party makeover with updo styling and nail polish at salon"
     },
     {
       image: hairStyling1,
-      alt: "Children getting special hair braiding and styling"
+      alt: "Professional hair braiding and styling service at The Yellow Balloon kids salon"
     },
     {
       image: firstHaircut2,
-      alt: "Another happy child during their first haircut experience"
+      alt: "Toddler's milestone first haircut with gentle, patient stylist at The Yellow Balloon"
     },
     {
       image: boyHaircut2,
-      alt: "Boy receiving professional haircut service"
+      alt: "School-age boy receiving professional haircut while playing with educational toys"
     },
     {
       image: glamourParty2,
-      alt: "Girl getting glamour party makeup and hair styling"
+      alt: "Special occasion hair styling with elaborate updo and accessories at salon"
     },
     {
       image: hairStyling2,
-      alt: "Creative hair braiding and styling for children"
+      alt: "Group glamour party with multiple children getting styling services together"
     }
   ];
 
@@ -71,7 +71,7 @@ export default function Gallery() {
         {/* Gallery Grid - 2 Rows */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 mb-12">
           {galleryItems.map((item, index) => (
-            <Card key={index} className="overflow-hidden hover-elevate transition-all duration-300 group" data-testid={`card-gallery-${index}`}>
+            <Card key={index} className="overflow-hidden hover:scale-105 transition-all duration-300 group" data-testid={`card-gallery-${index}`}>
               <div className="relative">
                 <div className="overflow-hidden">
                   <img

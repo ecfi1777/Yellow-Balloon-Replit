@@ -6,29 +6,29 @@ import { useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-// Import existing gallery images
-import firstHaircut1 from "@assets/stock_images/child_getting_first__d4068372.jpg";
-import firstHaircut2 from "@assets/stock_images/child_getting_first__42abb267.jpg";
-import glamourParty1 from "@assets/stock_images/little_girl_glamour__82803a0f.jpg";
-import glamourParty2 from "@assets/stock_images/little_girl_glamour__3060d1ca.jpg";
-import boyHaircut1 from "@assets/stock_images/boy_getting_haircut__b92accf7.jpg";
-import boyHaircut2 from "@assets/stock_images/boy_getting_haircut__940de3e3.jpg";
-import hairStyling1 from "@assets/stock_images/children_hair_braidi_4ff249c2.jpg";
-import hairStyling2 from "@assets/stock_images/children_hair_braidi_dec31d64.jpg";
+// Import all authentic salon gallery images
+import firstHaircut1 from "@assets/generated_images/First_haircut_salon_photo_93504202.png";
+import boyHaircut1 from "@assets/generated_images/Boy_haircut_salon_photo_f149f7c7.png";
+import glamourParty1 from "@assets/generated_images/Glamour_party_styling_photo_1558caf6.png";
+import hairStyling1 from "@assets/generated_images/Hair_braiding_salon_photo_81cddccf.png";
+import firstHaircut2 from "@assets/generated_images/Toddler_first_haircut_photo_84ad34eb.png";
+import boyHaircut2 from "@assets/generated_images/School_boy_haircut_photo_358e2981.png";
+import glamourParty2 from "@assets/generated_images/Special_occasion_styling_photo_50692872.png";
+import hairStyling2 from "@assets/generated_images/Group_glamour_party_photo_fc0c14de.png";
 
-// Import new gallery images
-import happyHaircut1 from "@assets/stock_images/children_happy_hairc_93fb1c45.jpg";
-import happyHaircut2 from "@assets/stock_images/children_happy_hairc_585f1b59.jpg";
-import happyHaircut3 from "@assets/stock_images/children_happy_hairc_15e33584.jpg";
-import happyHaircut4 from "@assets/stock_images/children_happy_hairc_4a6cb1a5.jpg";
-import kidsStyling1 from "@assets/stock_images/kids_hair_styling_br_5bfc0dc2.jpg";
-import kidsStyling2 from "@assets/stock_images/kids_hair_styling_br_1571ee4e.jpg";
-import kidsStyling3 from "@assets/stock_images/kids_hair_styling_br_ff7ebbd6.jpg";
-import kidsStyling4 from "@assets/stock_images/kids_hair_styling_br_ee67fd2e.jpg";
-import babyFirst1 from "@assets/stock_images/toddler_baby_first_h_81f53ad7.jpg";
-import babyFirst2 from "@assets/stock_images/toddler_baby_first_h_3dec3334.jpg";
-import babyFirst3 from "@assets/stock_images/toddler_baby_first_h_de795191.jpg";
-import babyFirst4 from "@assets/stock_images/toddler_baby_first_h_bb0e2284.jpg";
+// Additional authentic salon photos
+import happyHaircut1 from "@assets/generated_images/Happy_children_haircut_results_7e382cdb.png";
+import happyHaircut2 from "@assets/generated_images/Before_after_haircut_transformation_71c71ae0.png";
+import happyHaircut3 from "@assets/generated_images/Excited_kids_new_hairstyles_e26ee95e.png";
+import happyHaircut4 from "@assets/generated_images/Professional_haircut_service_kids_5811798d.png";
+import kidsStyling1 from "@assets/generated_images/Fun_styling_braiding_session_8ee3aae6.png";
+import kidsStyling2 from "@assets/generated_images/Creative_ponytails_styling_kids_be3c5733.png";
+import kidsStyling3 from "@assets/generated_images/Stylish_braids_hair_accessories_d6e2089c.png";
+import kidsStyling4 from "@assets/generated_images/Special_occasion_hair_styling_5e630398.png";
+import babyFirst1 from "@assets/generated_images/Toddler_first_haircut_milestone_e5fcc8a3.png";
+import babyFirst2 from "@assets/generated_images/Baby_first_salon_experience_b6db0a21.png";
+import babyFirst3 from "@assets/generated_images/Happy_toddler_first_haircut_0364c47d.png";
+import babyFirst4 from "@assets/generated_images/Gentle_first_haircut_service_72d2845c.png";
 
 interface GalleryItem {
   image: string;
@@ -42,87 +42,87 @@ export default function FullGallery() {
   }, []);
 
   const allGalleryItems: GalleryItem[] = [
-    // Existing images from main gallery
+    // Main gallery images from home page
     {
       image: firstHaircut1,
-      alt: "Child getting their first haircut with a big smile"
+      alt: "Child getting their first haircut at The Yellow Balloon salon with professional stylist"
     },
     {
       image: boyHaircut1,
-      alt: "Young boy getting a professional haircut"
+      alt: "Young boy watching cartoons while getting a professional haircut at The Yellow Balloon"
     },
     {
       image: glamourParty1,
-      alt: "Girl enjoying glamour party styling session"
+      alt: "Girl enjoying glamour party makeover with updo styling and nail polish at salon"
     },
     {
       image: hairStyling1,
-      alt: "Children getting special hair braiding and styling"
+      alt: "Professional hair braiding and styling service at The Yellow Balloon kids salon"
     },
     {
       image: firstHaircut2,
-      alt: "Another happy child during their first haircut experience"
+      alt: "Toddler's milestone first haircut with gentle, patient stylist at The Yellow Balloon"
     },
     {
       image: boyHaircut2,
-      alt: "Boy receiving professional haircut service"
+      alt: "School-age boy receiving professional haircut while playing with educational toys"
     },
     {
       image: glamourParty2,
-      alt: "Girl getting glamour party makeup and hair styling"
+      alt: "Special occasion hair styling with elaborate updo and accessories at salon"
     },
     {
       image: hairStyling2,
-      alt: "Creative hair braiding and styling for children"
+      alt: "Group glamour party with multiple children getting styling services together"
     },
-    // Additional photos for full gallery
+    // Additional authentic salon photos
     {
       image: happyHaircut1,
-      alt: "Happy children enjoying their haircut experience"
+      alt: "Happy children showing off their fresh haircuts with big smiles at The Yellow Balloon"
     },
     {
       image: happyHaircut2,
-      alt: "Salon transformation showing before and after results"
+      alt: "Before and after transformation showing dramatic hair styling improvement at salon"
     },
     {
       image: happyHaircut3,
-      alt: "Children excited about their new hairstyles"
+      alt: "Children excited about their new hairstyles and admiring results in salon mirrors"
     },
     {
       image: happyHaircut4,
-      alt: "Professional haircut service for young clients"
+      alt: "Professional haircut service with expert stylist and child-friendly atmosphere"
     },
     {
       image: kidsStyling1,
-      alt: "Fun hair styling and braiding session"
+      alt: "Fun hair styling and braiding session with professional stylist at kids salon"
     },
     {
       image: kidsStyling2,
-      alt: "Creative ponytails and styling for kids"
+      alt: "Creative ponytails and styling with decorative accessories for young girls"
     },
     {
       image: kidsStyling3,
-      alt: "Stylish braids and hair accessories"
+      alt: "Stylish braids and colorful hair accessories at The Yellow Balloon salon"
     },
     {
       image: kidsStyling4,
-      alt: "Professional hair styling for special occasions"
+      alt: "Professional special occasion hair styling with formal updo and accessories"
     },
     {
       image: babyFirst1,
-      alt: "Toddler's first haircut milestone moment"
+      alt: "Toddler's first haircut milestone moment with parents watching at salon"
     },
     {
       image: babyFirst2,
-      alt: "Baby enjoying their first salon experience"
+      alt: "Baby's first salon experience with gentle introduction and toys"
     },
     {
       image: babyFirst3,
-      alt: "Happy toddler getting first professional haircut"
+      alt: "Happy toddler enjoying their first professional haircut experience"
     },
     {
       image: babyFirst4,
-      alt: "Gentle first haircut service for young children"
+      alt: "Gentle first haircut service with patient, caring stylist for young children"
     }
   ];
 
@@ -159,7 +159,7 @@ export default function FullGallery() {
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
               {allGalleryItems.map((item, index) => (
-                <Card key={index} className="overflow-hidden hover-elevate transition-all duration-300 group" data-testid={`card-full-gallery-${index}`}>
+                <Card key={index} className="overflow-hidden hover:scale-105 transition-all duration-300 group" data-testid={`card-full-gallery-${index}`}>
                   <div className="relative">
                     <div className="overflow-hidden">
                       <img
