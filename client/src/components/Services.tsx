@@ -1,10 +1,12 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Scissors, Sparkles, ShieldCheck, Baby, Paintbrush, Users } from "lucide-react";
+import { Link } from "wouter";
 
 interface Service {
   icon: React.ReactNode;
   title: string;
   description: string;
+  url?: string;
 }
 
 export default function Services() {
@@ -22,12 +24,14 @@ export default function Services() {
     {
       icon: <ShieldCheck className="w-8 h-8 text-secondary" />,
       title: "Lice Treatment",
-      description: "Private, confidential screening and treatment. Results accepted by schools."
+      description: "Private, confidential screening and treatment. Results accepted by schools.",
+      url: "/lice-treatment"
     },
     {
       icon: <Sparkles className="w-8 h-8 text-primary" />,
       title: "Glamour Parties",
-      description: "Confidence-boosting styling parties perfect for achievements and special celebrations."
+      description: "Confidence-boosting styling parties perfect for achievements and special celebrations.",
+      url: "/glamour-parties"
     },
     {
       icon: <Paintbrush className="w-8 h-8 text-accent" />,
@@ -57,19 +61,29 @@ export default function Services() {
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, index) => (
-            <Card key={index} className="hover-elevate transition-all duration-300 text-center" data-testid={`card-service-${index}`}>
-              <CardHeader className="space-y-4">
-                <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
-                  {service.icon}
-                </div>
-                <div>
-                  <CardTitle className="text-xl mb-2">{service.title}</CardTitle>
-                  <CardDescription className="text-base leading-relaxed">{service.description}</CardDescription>
-                </div>
-              </CardHeader>
-            </Card>
-          ))}
+          {services.map((service, index) => {
+            const cardContent = (
+              <Card className={`hover-elevate transition-all duration-300 text-center ${service.url ? 'cursor-pointer' : ''}`} data-testid={`card-service-${index}`}>
+                <CardHeader className="space-y-4">
+                  <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+                    {service.icon}
+                  </div>
+                  <div>
+                    <CardTitle className="text-xl mb-2">{service.title}</CardTitle>
+                    <CardDescription className="text-base leading-relaxed">{service.description}</CardDescription>
+                  </div>
+                </CardHeader>
+              </Card>
+            );
+
+            return service.url ? (
+              <Link key={index} href={service.url}>
+                {cardContent}
+              </Link>
+            ) : (
+              <div key={index}>{cardContent}</div>
+            );
+          })}
         </div>
       </div>
     </section>
