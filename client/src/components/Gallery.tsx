@@ -1,45 +1,53 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
 import { ChevronRight } from "lucide-react";
-import heroImage from "@assets/generated_images/Happy_child_salon_haircut_f1c818df.png";
-import salonInterior from "@assets/generated_images/Modern_salon_interior_50f75e1e.png";
-import beforeAfter from "@assets/generated_images/Before_after_hair_transformation_79ac8226.png";
-import teamPhoto from "@assets/generated_images/Salon_team_photo_c49ae9ec.png";
+import firstHaircut1 from "@assets/stock_images/child_getting_first__d4068372.jpg";
+import firstHaircut2 from "@assets/stock_images/child_getting_first__42abb267.jpg";
+import glamourParty1 from "@assets/stock_images/little_girl_glamour__82803a0f.jpg";
+import glamourParty2 from "@assets/stock_images/little_girl_glamour__3060d1ca.jpg";
+import boyHaircut1 from "@assets/stock_images/boy_getting_haircut__b92accf7.jpg";
+import boyHaircut2 from "@assets/stock_images/boy_getting_haircut__940de3e3.jpg";
+import hairStyling1 from "@assets/stock_images/children_hair_braidi_4ff249c2.jpg";
+import hairStyling2 from "@assets/stock_images/children_hair_braidi_dec31d64.jpg";
 
 interface GalleryItem {
   image: string;
-  title: string;
-  category: string;
   alt: string;
 }
 
 export default function Gallery() {
-  // todo: remove mock functionality
   const galleryItems: GalleryItem[] = [
     {
-      image: heroImage,
-      title: "Happy First Haircut",
-      category: "First Cuts",
+      image: firstHaircut1,
       alt: "Child getting their first haircut with a big smile"
     },
     {
-      image: beforeAfter,
-      title: "Amazing Transformation",
-      category: "Before & After",
-      alt: "Before and after photos showing hair transformation"
+      image: boyHaircut1,
+      alt: "Young boy getting a professional haircut"
     },
     {
-      image: salonInterior,
-      title: "Our Kid-Friendly Salon",
-      category: "Our Space",
-      alt: "Modern, colorful salon interior with TVs and toys"
+      image: glamourParty1,
+      alt: "Girl enjoying glamour party styling session"
     },
     {
-      image: teamPhoto,
-      title: "Our Expert Team",
-      category: "Meet the Stylists",
-      alt: "Professional team of experienced children's hair stylists"
+      image: hairStyling1,
+      alt: "Children getting special hair braiding and styling"
+    },
+    {
+      image: firstHaircut2,
+      alt: "Another happy child during their first haircut experience"
+    },
+    {
+      image: boyHaircut2,
+      alt: "Boy receiving professional haircut service"
+    },
+    {
+      image: glamourParty2,
+      alt: "Girl getting glamour party makeup and hair styling"
+    },
+    {
+      image: hairStyling2,
+      alt: "Creative hair braiding and styling for children"
     }
   ];
 
@@ -59,8 +67,8 @@ export default function Gallery() {
           </p>
         </div>
 
-        {/* Gallery Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        {/* Gallery Grid - 2 Rows */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 mb-12">
           {galleryItems.map((item, index) => (
             <Card key={index} className="overflow-hidden hover-elevate transition-all duration-300 group" data-testid={`card-gallery-${index}`}>
               <div className="relative">
@@ -72,13 +80,7 @@ export default function Gallery() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-                <Badge className="absolute top-3 left-3 bg-primary text-primary-foreground">
-                  {item.category}
-                </Badge>
               </div>
-              <CardContent className="p-4">
-                <h3 className="font-semibold text-foreground truncate">{item.title}</h3>
-              </CardContent>
             </Card>
           ))}
         </div>
