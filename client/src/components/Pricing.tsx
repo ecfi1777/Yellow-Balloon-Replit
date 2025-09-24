@@ -22,7 +22,7 @@ export default function Pricing() {
           <div className="animate-bounce-slow text-sm text-foreground tracking-wider uppercase">
             Pricing
           </div>
-          <h2 className="text-3xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-accent via-secondary to-primary">
+          <h2 className="text-3xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-secondary">
             Transparent Pricing
           </h2>
         </div>

@@ -47,7 +47,7 @@ export default function Contact() {
           <div className="animate-bounce-slow text-sm text-foreground tracking-wider uppercase">
             Contact
           </div>
-          <h2 className="text-3xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-accent via-primary to-secondary">
+          <h2 className="text-3xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-accent via-secondary to-primary">
             Visit Us Today
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

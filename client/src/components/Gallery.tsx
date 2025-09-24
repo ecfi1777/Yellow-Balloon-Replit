@@ -60,7 +60,7 @@ export default function Gallery() {
           <div className="animate-bounce-slow text-sm text-foreground tracking-wider uppercase">
             Gallery
           </div>
-          <h2 className="text-3xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-accent">
+          <h2 className="text-3xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-secondary via-primary to-accent">
             Happy cuts, happy kids
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

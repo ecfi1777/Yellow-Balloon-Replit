@@ -38,7 +38,7 @@ export default function Reviews() {
           <div className="animate-bounce-slow text-sm text-foreground tracking-wider uppercase">
             Reviews
           </div>
-          <h2 className="text-3xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-accent via-primary to-secondary">
+          <h2 className="text-3xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-accent">
             What Families Say
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
