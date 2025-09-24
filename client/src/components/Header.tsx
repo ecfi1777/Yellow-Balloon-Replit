@@ -18,9 +18,9 @@ export default function Header() {
   ];
 
   const serviceItems = [
-    { name: "Haircuts", href: "#haircuts" },
-    { name: "Glamour Parties", href: "#glamour-parties" },
-    { name: "Lice Screening & Treatment", href: "#lice-treatment" },
+    { name: "Haircuts", href: "#services" },
+    { name: "Glamour Parties", href: "/glamour-parties" },
+    { name: "Lice Screening & Treatment", href: "/lice-treatment" },
   ];
 
   return (
