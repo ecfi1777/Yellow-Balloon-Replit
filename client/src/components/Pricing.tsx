@@ -16,7 +16,7 @@ export default function Pricing() {
   ];
 
   return (
-    <section id="pricing" className="py-16 lg:py-24 bg-gradient-to-b from-accent/20 to-secondary/30">
+    <section id="pricing" className="py-16 lg:py-24">
       <div className="container mx-auto px-4">
         <div className="text-center space-y-4 mb-12">
           <div className="animate-bounce-slow text-sm text-foreground tracking-wider uppercase">
