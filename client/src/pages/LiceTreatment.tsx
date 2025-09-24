@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ShieldCheck, Phone, CheckCircle, Lock } from "lucide-react";
+import { ShieldCheck, Phone, CheckCircle, Lock, MapPin, Clock } from "lucide-react";
 import { Link } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import liceTreatmentImage from "@assets/generated_images/Lice_treatment_salon_scene_b170b8e3.png";
 
 export default function LiceTreatment() {
   const features = [
@@ -35,27 +36,78 @@ export default function LiceTreatment() {
       <Header />
       <main>
         {/* Hero Section */}
-        <section className="py-20 lg:py-32 bg-gradient-to-b from-secondary/20 to-accent/15">
-          <div className="container mx-auto px-4 text-center">
-            <div className="animate-bounce-slow text-sm text-foreground tracking-wider uppercase mb-4">
-              Lice Services
-            </div>
-            <h1 className="text-4xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-secondary via-accent to-primary mb-6">
-              Lice Treatment & Screening
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-              Private, confidential lice screening and treatment in a separate area. We understand this can be stressful - we're here to help with compassion and expertise.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" data-testid="button-call-now">
-                <Phone className="w-4 h-4 mr-2" />
-                Call (301) 569-6756
-              </Button>
-              <Link href="/#contact">
-                <Button variant="outline" size="lg" data-testid="button-contact">
-                  Contact Us
-                </Button>
-              </Link>
+        <section className="bg-gradient-to-br from-secondary/30 via-accent/20 to-primary/25 py-16 lg:py-24 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-secondary/20 to-accent/20 opacity-50" />
+          <div className="absolute top-10 left-10 w-32 h-32 bg-secondary/30 rounded-full blur-3xl" />
+          <div className="absolute bottom-10 right-10 w-40 h-40 bg-accent/30 rounded-full blur-3xl" />
+          <div className="relative z-10">
+            <div className="container mx-auto px-4">
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <div className="space-y-6">
+                  <div className="animate-bounce-slow text-sm text-foreground tracking-wider uppercase text-center lg:text-left">
+                    Lice Services
+                  </div>
+                  <div className="space-y-4">
+                    <h1 className="text-4xl lg:text-6xl font-black text-foreground leading-tight">
+                      Lice Treatment & Screening
+                    </h1>
+                    <p className="text-lg text-muted-foreground leading-relaxed">
+                      Private, confidential lice screening and treatment in a separate area. We understand this can be stressful - we're here to help with compassion and expertise.
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Button
+                      size="lg"
+                      className="gap-2 text-lg px-4 py-3"
+                      onClick={() => {
+                        window.open("tel:3015696756", "_self");
+                      }}
+                      data-testid="button-call-now"
+                    >
+                      <Phone className="w-5 h-5" />
+                      Call (301) 569-6756
+                    </Button>
+                    <Link href="/#contact">
+                      <Button
+                        variant="outline"
+                        size="lg"
+                        className="gap-2 text-lg px-4 py-3"
+                        data-testid="button-contact"
+                      >
+                        Contact Us
+                      </Button>
+                    </Link>
+                  </div>
+
+                  <div className="grid sm:grid-cols-2 gap-4 pt-6">
+                    <div className="flex items-center gap-3 text-muted-foreground">
+                      <MapPin className="w-5 h-5 text-secondary flex-shrink-0" />
+                      <span className="text-sm">255 Market Street West, Gaithersburg, MD</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-muted-foreground">
+                      <Clock className="w-5 h-5 text-secondary flex-shrink-0" />
+                      <span className="text-sm">Tue-Fri: 10am-6pm | Sat-Sun: 10am-5pm</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="relative">
+                  <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-gradient-to-r from-secondary via-accent to-primary p-1 bg-gradient-to-r from-secondary via-accent to-primary">
+                    <div className="rounded-2xl overflow-hidden bg-white">
+                      <div className="w-full h-[400px] relative">
+                        <img
+                          src={liceTreatmentImage}
+                          alt="Professional lice treatment in private, comfortable salon environment"
+                          className="w-full h-full object-cover"
+                          data-testid="img-hero"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
