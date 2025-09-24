@@ -31,14 +31,6 @@ export default function GlamourParties() {
     }
   ];
 
-  const occasions = [
-    "Birthday Parties",
-    "School Achievement Celebrations", 
-    "Dance Recitals",
-    "Special Milestones",
-    "Friend Group Gatherings",
-    "Holiday Celebrations"
-  ];
 
   return (
     <div className="min-h-screen">
@@ -160,27 +152,15 @@ export default function GlamourParties() {
                   <div className="text-4xl font-bold text-primary mb-4">$35 <span className="text-lg font-normal text-muted-foreground">per child</span></div>
                   <Badge variant="secondary" className="mb-6">Minimum 4 children required</Badge>
                   
-                  <div className="grid md:grid-cols-2 gap-8 text-left">
-                    <div>
-                      <h4 className="font-semibold mb-3">Includes:</h4>
-                      <div className="space-y-2 text-sm">
-                        <p>• Styling and up-dos</p>
-                        <p>• Nail polish application</p>
-                        <p>• Glitter hair spray</p>
-                        <p>• Photos of each child</p>
-                        <p>• Balloon and lollipop</p>
-                        <p>• Fun group atmosphere</p>
-                      </div>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-3">Perfect For:</h4>
-                      <div className="grid grid-cols-1 gap-1">
-                        {occasions.map((occasion, index) => (
-                          <Badge key={index} variant="outline" className="text-xs justify-start">
-                            {occasion}
-                          </Badge>
-                        ))}
-                      </div>
+                  <div className="text-left max-w-md mx-auto">
+                    <h4 className="font-semibold mb-3 text-center">Includes:</h4>
+                    <div className="space-y-2 text-sm">
+                      <p>• Styling and up-dos</p>
+                      <p>• Nail polish application</p>
+                      <p>• Glitter hair spray</p>
+                      <p>• Photos of each child</p>
+                      <p>• Balloon and lollipop</p>
+                      <p>• Fun group atmosphere</p>
                     </div>
                   </div>
                 </CardContent>
