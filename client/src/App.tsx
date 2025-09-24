@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import LiceTreatment from "@/pages/LiceTreatment";
 import GlamourParties from "@/pages/GlamourParties";
+import FullGallery from "@/pages/FullGallery";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
@@ -40,6 +41,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/lice-treatment" component={LiceTreatment} />
       <Route path="/glamour-parties" component={GlamourParties} />
+      <Route path="/gallery" component={FullGallery} />
       <Route component={NotFound} />
     </Switch>
   );

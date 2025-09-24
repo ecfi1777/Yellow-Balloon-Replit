@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ChevronRight } from "lucide-react";
+import { Link } from "wouter";
 import firstHaircut1 from "@assets/stock_images/child_getting_first__d4068372.jpg";
 import firstHaircut2 from "@assets/stock_images/child_getting_first__42abb267.jpg";
 import glamourParty1 from "@assets/stock_images/little_girl_glamour__82803a0f.jpg";
@@ -87,18 +88,16 @@ export default function Gallery() {
 
         {/* CTA */}
         <div className="text-center">
-          <Button
-            size="lg"
-            className="gap-2"
-            onClick={() => {
-              console.log("View more photos clicked");
-              // In a real app, this would open a full gallery
-            }}
-            data-testid="button-view-more"
-          >
-            View More Photos
-            <ChevronRight className="w-4 h-4" />
-          </Button>
+          <Link href="/gallery">
+            <Button
+              size="lg"
+              className="gap-2"
+              data-testid="button-view-more"
+            >
+              View More Photos
+              <ChevronRight className="w-4 h-4" />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
