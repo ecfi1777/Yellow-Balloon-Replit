@@ -1,0 +1,175 @@
+You are a deterministic executor. Do NOT analyze. Do NOT propose a plan. Execute steps. If something already exists, treat it as success and continue.
+
+# ===============================
+# 0) Variables (edit if you want)
+# ===============================
+set:
+  PROJECT_NAME: "The Yellow Balloon"
+  TAGLINE: "Kids’ haircuts made happy."
+  DESCRIPTION: "The Yellow Balloon is a children’s hair salon in Gaithersburg, MD. We make haircuts fun with toys, rides, TVs, gentle stylists—and every visit ends with a balloon and a lollipop. Services include kids’ haircuts, baby’s first haircut, lice screening & two-session treatment (private location), glamour styling experiences for kids & tweens, plus select adult services."
+  OG_IMAGE_PATH: "/assets/og-card.svg"
+  PHONE: "(301) 569-6756"
+  PHONE_TEL: "tel:3015696756"
+  STREET: "255 Market Street West"
+  CITY: "Gaithersburg"
+  REGION: "MD"
+  POSTAL: "20878"
+  COUNTRY: "US"
+  THEME_COLOR: "#FFD84D"          # Brand yellow
+  ACCENT_COLOR: "#AEE6FA"         # Brand sky blue
+
+# ===============================
+# 1) Ensure public assets folder
+# ===============================
+run:
+  - bash: |
+      mkdir -p client/public/assets
+
+# (Optional) Placeholder OG card (SVG). Safe to overwrite.
+files:
+  - path: client/public/assets/og-card.svg
+    ensure: present
+    merge: replace
+    content: |
+      <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630">
+        <defs>
+          <linearGradient id="g" x1="0" x2="1">
+            <stop offset="0" stop-color="#AEE6FA"/>
+            <stop offset="1" stop-color="#FFD84D"/>
+          </linearGradient>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#g)"/>
+        <text x="60" y="340" font-size="84" fill="#222" font-family="Arial, Helvetica, sans-serif" font-weight="700">${PROJECT_NAME}</text>
+        <text x="60" y="430" font-size="36" fill="#333" font-family="Arial, Helvetica, sans-serif">${TAGLINE}</text>
+      </svg>
+
+# ===============================
+# 2) SEO: index.html head tags
+# ===============================
+# If client/index.html exists, replace its <head> with branded SEO + LocalBusiness schema.
+run:
+  - bash: |
+      if [ -f client/index.html ]; then
+        node -e "const fs=require('fs');const p='client/index.html';let s=fs.readFileSync(p,'utf8');
+          const env=(k,d)=>process.env[k]||d;
+          const head=`  <head>
+          <meta charset=\"UTF-8\" />
+          <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />
+          <title>${env('PROJECT_NAME','The Yellow Balloon')} — ${env('TAGLINE','Kids’ haircuts made happy.')}</title>
+          <meta name=\"description\" content=\"${env('DESCRIPTION','The Yellow Balloon is a children’s hair salon in Gaithersburg, MD. We make haircuts fun with toys, rides, TVs, gentle stylists—and every visit ends with a balloon and a lollipop. Services include kids’ haircuts, baby’s first haircut, lice screening & two-session treatment (private location), glamour styling experiences for kids & tweens, plus select adult services.')}\" />
+          <link rel=\"canonical\" href=\"\${import.meta.env.VITE_SITE_URL}\" />
+          <meta property=\"og:title\" content=\"${env('PROJECT_NAME','The Yellow Balloon')} — ${env('TAGLINE','Kids’ haircuts made happy.')}\" />
+          <meta property=\"og:description\" content=\"${env('DESCRIPTION','The Yellow Balloon is a children’s hair salon in Gaithersburg, MD. We make haircuts fun with toys, rides, TVs, gentle stylists—and every visit ends with a balloon and a lollipop. Services include kids’ haircuts, baby’s first haircut, lice screening & two-session treatment (private location), glamour styling experiences for kids & tweens, plus select adult services.')}\" />
+          <meta property=\"og:type\" content=\"website\" />
+          <meta property=\"og:url\" content=\"\${import.meta.env.VITE_SITE_URL}\" />
+          <meta property=\"og:image\" content=\"\${import.meta.env.VITE_SITE_URL}${env('OG_IMAGE_PATH','/assets/og-card.svg')}\" />
+          <meta name=\"twitter:card\" content=\"summary_large_image\" />
+          <meta name=\"twitter:title\" content=\"${env('PROJECT_NAME','The Yellow Balloon')} — ${env('TAGLINE','Kids’ haircuts made happy.')}\" />
+          <meta name=\"twitter:description\" content=\"${env('DESCRIPTION','The Yellow Balloon is a children’s hair salon in Gaithersburg, MD. We make haircuts fun with toys, rides, TVs, gentle stylists—and every visit ends with a balloon and a lollipop. Services include kids’ haircuts, baby’s first haircut, lice screening & two-session treatment (private location), glamour styling experiences for kids & tweens, plus select adult services.')}\" />
+          <meta name=\"twitter:image\" content=\"\${import.meta.env.VITE_SITE_URL}${env('OG_IMAGE_PATH','/assets/og-card.svg')}\" />
+          <meta name=\"theme-color\" content=\"${env('THEME_COLOR','#FFD84D')}\" />
+          <link rel=\"icon\" href=\"/assets/favicon.ico\" />
+          <link rel=\"manifest\" href=\"/manifest.webmanifest\" />
+          <!-- JSON-LD LocalBusiness / HairSalon -->
+          <script type=\"application/ld+json\">
+          {
+            \"@context\": \"https://schema.org\",
+            \"@type\": \"HairSalon\",
+            \"name\": \"${env('PROJECT_NAME','The Yellow Balloon')}\",
+            \"telephone\": \"${env('PHONE','(301) 569-6756')}\",
+            \"url\": \"\${import.meta.env.VITE_SITE_URL}\",
+            \"image\": [\"\${import.meta.env.VITE_SITE_URL}${env('OG_IMAGE_PATH','/assets/og-card.svg')}\"],
+            \"address\": {
+              \"@type\": \"PostalAddress\",
+              \"streetAddress\": \"${env('STREET','255 Market Street West')}\",
+              \"addressLocality\": \"${env('CITY','Gaithersburg')}\",
+              \"addressRegion\": \"${env('REGION','MD')}\",
+              \"postalCode\": \"${env('POSTAL','20878')}\",
+              \"addressCountry\": \"${env('COUNTRY','US')}\"
+            },
+            \"areaServed\": [\"Gaithersburg\",\"Darnestown\",\"Potomac\",\"Germantown\",\"Montgomery County\"],
+            \"openingHoursSpecification\": [
+              {\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"Tuesday\",\"Wednesday\",\"Friday\"],\"opens\":\"10:00\",\"closes\":\"18:00\"},
+              {\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Thursday\",\"opens\":\"00:00\",\"closes\":\"00:00\",\"validFrom\":\"0000-01-01\",\"validThrough\":\"9999-12-31\",\"description\":\"Closed\"},
+              {\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"Saturday\",\"Sunday\"],\"opens\":\"10:00\",\"closes\":\"17:00\"},
+              {\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Monday\",\"opens\":\"00:00\",\"closes\":\"00:00\",\"description\":\"Closed\"}
+            ],
+            \"description\": \"${env('DESCRIPTION','The Yellow Balloon is a children’s hair salon in Gaithersburg, MD. We make haircuts fun with toys, rides, TVs, gentle stylists—and every visit ends with a balloon and a lollipop. Services include kids’ haircuts, baby’s first haircut, lice screening & two-session treatment (private location), glamour styling experiences for kids & tweens, plus select adult services.')}\"
+          }
+          </script>
+        </head>`;
+          s = s.replace(/<head>[\s\S]*?<\/head>/, head);
+          fs.writeFileSync(p,s); console.log('Updated SEO head in client/index.html');"
+      fi
+
+# ===============================
+# 3) robots.txt, sitemap, manifest, 404
+# ===============================
+files:
+  - path: client/public/robots.txt
+    ensure: present
+    merge: replace
+    content: |
+      User-agent: *
+      Allow: /
+      Sitemap: /sitemap.xml
+  - path: client/public/sitemap.xml
+    ensure: present
+    merge: replace
+    content: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+        <url><loc>${import.meta.env.VITE_SITE_URL}/</loc><priority>1.0</priority></url>
+        <url><loc>${import.meta.env.VITE_SITE_URL}/about</loc><priority>0.8</priority></url>
+        <url><loc>${import.meta.env.VITE_SITE_URL}/services</loc><priority>0.9</priority></url>
+        <url><loc>${import.meta.env.VITE_SITE_URL}/lice</loc><priority>0.9</priority></url>
+        <url><loc>${import.meta.env.VITE_SITE_URL}/glamour</loc><priority>0.8</priority></url>
+        <url><loc>${import.meta.env.VITE_SITE_URL}/gallery</loc><priority>0.7</priority></url>
+        <url><loc>${import.meta.env.VITE_SITE_URL}/contact</loc><priority>0.8</priority></url>
+      </urlset>
+  - path: client/public/manifest.webmanifest
+    ensure: present
+    merge: replace
+    content: |
+      {
+        "name": "${PROJECT_NAME}",
+        "short_name": "Yellow Balloon",
+        "start_url": "/",
+        "display": "standalone",
+        "background_color": "#ffffff",
+        "theme_color": "${THEME_COLOR}",
+        "icons": [
+          { "src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
+          { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png" }
+        ]
+      }
+  - path: client/public/404.html
+    ensure: present
+    merge: replace
+    content: |
+      <!doctype html><html><head><meta http-equiv="refresh" content="0; url=/" /></head><body></body></html>
+
+# ===============================
+# 4) Minimal /health route (server) for uptime checks
+# ===============================
+run:
+  - bash: |
+      for f in server/src/index.ts server/src/server.ts; do
+        if [ -f "$f" ]; then
+          node -e "const fs=require('fs');let p='$f',s=fs.readFileSync(p,'utf8'); if(!/app\\.get\\('\\/health'\\)/.test(s)){ s=s.replace(/(const app =[\\s\\S]*?;)/,'$1\\napp.get(\\'/health\\',(req,res)=>res.json({status:\\'ok\\'}));'); fs.writeFileSync(p,s); console.log('Added /health route to',p);} else {console.log('/health already present in',p)}"
+          break
+        fi
+      done
+
+# ===============================
+# 5) Gentle reminders (console output only)
+# ===============================
+run:
+  - bash: |
+      echo "REMINDER: Add these secrets/env values:"
+      echo "  VITE_SITE_URL=https://<your-public-url>"
+      echo "Optional: PROJECT_NAME, TAGLINE, DESCRIPTION, OG_IMAGE_PATH, THEME_COLOR"
+      echo "Upload real icons to client/public/assets/:"
+      echo "  favicon.ico, icon-192.png, icon-512.png, and a PNG OG card if preferred."
+      echo "After deploying, submit /sitemap.xml in Search Console."
+      echo "Primary CTA everywhere should link to ${PHONE_TEL} (${PHONE})."
