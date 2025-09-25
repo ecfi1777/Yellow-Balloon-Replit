@@ -102,6 +102,8 @@ export default function GlamourParties() {
                           alt="Children enjoying a glamour party with styling and celebrations"
                           className="w-full h-full object-cover"
                           data-testid="img-hero"
+                          loading="lazy"
+                          decoding="async"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                       </div>
