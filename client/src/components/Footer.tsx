@@ -6,8 +6,9 @@ export default function Footer() {
       <div className="container mx-auto px-4">
         <div className="text-center space-y-6">
           <div className="flex items-center justify-center gap-3">
-            <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-              <span className="text-xl">🎈</span>
+            <div className="w-8 h-8 bg-accent rounded-full flex items-center justify-center relative">
+              <div className="w-4 h-5 bg-primary rounded-full"></div>
+              <div className="absolute bottom-0 w-0.5 h-1 bg-primary"></div>
             </div>
             <span className="font-bold text-xl text-foreground">The Yellow Balloon</span>
           </div>

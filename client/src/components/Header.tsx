@@ -32,8 +32,9 @@ export default function Header() {
           className="flex items-center gap-3 hover:opacity-80 transition-opacity"
           data-testid="logo-home-link"
         >
-          <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
-            <span className="text-2xl">🎈</span>
+          <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center relative">
+            <div className="w-6 h-7 bg-primary rounded-full"></div>
+            <div className="absolute bottom-0 w-0.5 h-2 bg-primary"></div>
           </div>
           <div className="font-bold text-xl text-foreground">The Yellow Balloon</div>
         </a>
