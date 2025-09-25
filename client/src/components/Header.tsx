@@ -33,7 +33,7 @@ export default function Header() {
           data-testid="logo-home-link"
         >
           <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm border border-primary/20">
-            <img src="/assets/yellow-balloon-logo.svg" alt="Yellow Balloon" className="w-6 h-6" />
+            <img src="/attached_assets/ChatGPT Image Sep 25, 2025, 01_26_45 PM_1758821217612.png" alt="Yellow Balloon" className="w-6 h-6 object-contain" />
           </div>
           <div className="font-bold text-xl text-foreground">The Yellow Balloon</div>
         </a>
