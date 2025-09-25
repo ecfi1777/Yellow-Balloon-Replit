@@ -48,8 +48,10 @@ export default function LiceTreatment() {
                     Lice Services
                   </div>
                   <div className="space-y-4">
-                    <h1 className="text-4xl lg:text-6xl font-black text-foreground leading-tight">
-                      Lice Treatment & Screening
+                    <h1 className="text-4xl lg:text-6xl font-black leading-tight">
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-accent to-primary">
+                        Lice Treatment & Screening
+                      </span>
                     </h1>
                     <p className="text-lg text-muted-foreground leading-relaxed">
                       Private, confidential lice screening and treatment in a separate area. We understand this can be stressful - we're here to help with compassion and expertise.

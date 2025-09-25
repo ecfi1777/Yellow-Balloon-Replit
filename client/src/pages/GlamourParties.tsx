@@ -49,8 +49,10 @@ export default function GlamourParties() {
                     Glamour Parties
                   </div>
                   <div className="space-y-4">
-                    <h1 className="text-4xl lg:text-6xl font-black text-foreground leading-tight">
-                      Confidence-Boosting Styling Parties
+                    <h1 className="text-4xl lg:text-6xl font-black leading-tight">
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-secondary">
+                        Confidence-Boosting Styling Parties
+                      </span>
                     </h1>
                     <p className="text-lg text-muted-foreground leading-relaxed">
                       Confidence-boosting styling experiences perfect for achievements and special celebrations. Every child feels like a star with our glamour party experience!
