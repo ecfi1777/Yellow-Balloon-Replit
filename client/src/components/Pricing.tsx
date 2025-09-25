@@ -1,18 +1,24 @@
 export default function Pricing() {
   const pricingData = [
-    { service: "Baby's First Haircut", price: "$30", notes: "Includes certificate & keepsake lock of hair" },
-    { service: "Boys Haircut (2-10 years)", price: "$25", notes: "Includes wash, cut, and styling" },
-    { service: "Girls Haircut (2-10 years)", price: "$28", notes: "Includes wash, cut, and styling" },
-    { service: "Teen Boys (11-17 years)", price: "$30", notes: "Modern styles and trends" },
-    { service: "Teen Girls (11-17 years)", price: "$35", notes: "Includes styling consultation" },
-    { service: "Adult Haircut", price: "$40", notes: "For parents accompanying children" },
-    { service: "Simple Braid", price: "$15", notes: "French braid, side braid" },
-    { service: "Fancy Up-Do", price: "$45", notes: "Special occasions, parties" },
-    { service: "Nail Polish", price: "$8", notes: "Fun colors available" },
-    { service: "Glitter Hair Spray", price: "$5", notes: "Temporary sparkle" },
-    { service: "Lice Screening", price: "$25", notes: "Private, confidential service" },
-    { service: "Lice Treatment", price: "$85/hour", notes: "Thorough removal process" },
-    { service: "Glamour Party (per child)", price: "$35", notes: "Minimum 4 children" }
+    { service: "Baby's First Haircut (Newborn–12 mo.)", price: "$30", notes: "Includes certificate & keepsake lock (optional)" },
+    { service: "Boys Haircut (Under 11)", price: "$30–$33", notes: "" },
+    { service: "Boys Haircut (11–17)", price: "$30–$35", notes: "" },
+    { service: "Girls Haircut (Under 11)", price: "$35–$45", notes: "" },
+    { service: "Girls Haircut (11–17)", price: "$45–$55", notes: "" },
+    { service: "Kids Bang Trim", price: "$15", notes: "" },
+    { service: "Kids Shampoo", price: "$5", notes: "" },
+    { service: "Kids Shampoo & Blow Out", price: "$20+", notes: "" },
+    { service: "Kids Flat Iron", price: "$30+", notes: "" },
+    { service: "Kids Fancy Up-Do", price: "$50", notes: "" },
+    { service: "French Braid", price: "$15+", notes: "" },
+    { service: "Corn Rows (Half Head)", price: "$35", notes: "" },
+    { service: "Kids Nail Polish", price: "$15", notes: "" },
+    { service: "Mom's Haircut (no shampoo)", price: "$55+", notes: "" },
+    { service: "Mom's Shampoo & Blow Dry", price: "$40", notes: "" },
+    { service: "Dad's Haircut", price: "$36", notes: "" },
+    { service: "Color", price: "$70+", notes: "" },
+    { service: "Highlights (Kids)", price: "$60+", notes: "" },
+    { service: "Highlights (Adults)", price: "$100+", notes: "" }
   ];
 
   return (
@@ -55,7 +61,7 @@ export default function Pricing() {
             </div>
             <div className="px-6 py-4 bg-gradient-to-r from-secondary/10 to-accent/10 border-t border-primary/20">
               <p className="text-sm text-muted-foreground text-center">
-                All services include balloon and lollipop. Prices subject to change.
+                Shampoo is not included with haircuts. Prices may vary depending on hair length & thickness.
               </p>
             </div>
           </div>
