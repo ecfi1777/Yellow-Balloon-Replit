@@ -33,11 +33,11 @@ export default function Header() {
           className="flex items-center gap-3 hover:opacity-80 transition-opacity"
           data-testid="logo-home-link"
         >
-          <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center p-1">
+          <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center">
             <img 
               src={balloonImg} 
               alt="Yellow Balloon Logo" 
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain scale-110"
             />
           </div>
           <div className="font-bold text-xl text-foreground">The Yellow Balloon</div>

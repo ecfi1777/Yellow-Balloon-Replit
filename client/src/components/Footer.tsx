@@ -7,11 +7,11 @@ export default function Footer() {
       <div className="container mx-auto px-4">
         <div className="text-center space-y-6">
           <div className="flex items-center justify-center gap-3">
-            <div className="w-8 h-8 bg-accent rounded-full flex items-center justify-center p-1">
+            <div className="w-8 h-8 bg-accent rounded-full flex items-center justify-center">
               <img 
                 src={balloonImg} 
                 alt="Yellow Balloon Logo" 
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain scale-110"
               />
             </div>
             <span className="font-bold text-xl text-foreground">The Yellow Balloon</span>
