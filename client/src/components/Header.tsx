@@ -32,8 +32,8 @@ export default function Header() {
           className="flex items-center gap-3 hover:opacity-80 transition-opacity"
           data-testid="logo-home-link"
         >
-          <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm border border-primary/20">
-            <img src="/attached_assets/ChatGPT Image Sep 25, 2025, 01_26_45 PM_1758821217612.png" alt="Yellow Balloon" className="w-6 h-6 object-contain" />
+          <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+            <span className="text-2xl">🎈</span>
           </div>
           <div className="font-bold text-xl text-foreground">The Yellow Balloon</div>
         </a>
