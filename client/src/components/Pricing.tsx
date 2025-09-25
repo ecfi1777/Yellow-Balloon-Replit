@@ -1,24 +1,24 @@
 export default function Pricing() {
   const pricingData = [
-    { service: "Baby's First Haircut (Newborn–12 mo.)", price: "$30", notes: "Includes certificate & keepsake lock (optional)" },
-    { service: "Boys Haircut (Under 11)", price: "$30–$33", notes: "" },
-    { service: "Boys Haircut (11–17)", price: "$30–$35", notes: "" },
-    { service: "Girls Haircut (Under 11)", price: "$35–$45", notes: "" },
-    { service: "Girls Haircut (11–17)", price: "$45–$55", notes: "" },
-    { service: "Kids Bang Trim", price: "$15", notes: "" },
-    { service: "Kids Shampoo", price: "$5", notes: "" },
-    { service: "Kids Shampoo & Blow Out", price: "$20+", notes: "" },
-    { service: "Kids Flat Iron", price: "$30+", notes: "" },
-    { service: "Kids Fancy Up-Do", price: "$50", notes: "" },
-    { service: "French Braid", price: "$15+", notes: "" },
-    { service: "Corn Rows (Half Head)", price: "$35", notes: "" },
-    { service: "Kids Nail Polish", price: "$15", notes: "" },
-    { service: "Mom's Haircut (no shampoo)", price: "$55+", notes: "" },
-    { service: "Mom's Shampoo & Blow Dry", price: "$40", notes: "" },
-    { service: "Dad's Haircut", price: "$36", notes: "" },
-    { service: "Color", price: "$70+", notes: "" },
-    { service: "Highlights (Kids)", price: "$60+", notes: "" },
-    { service: "Highlights (Adults)", price: "$100+", notes: "" }
+    { service: "Baby's First Haircut (Newborn–12 mo.)", price: "$30", hasNote: true },
+    { service: "Boys Haircut (Under 11)", price: "$30–$33" },
+    { service: "Boys Haircut (11–17)", price: "$30–$35" },
+    { service: "Girls Haircut (Under 11)", price: "$35–$45" },
+    { service: "Girls Haircut (11–17)", price: "$45–$55" },
+    { service: "Kids Bang Trim", price: "$15" },
+    { service: "Kids Shampoo", price: "$5" },
+    { service: "Kids Shampoo & Blow Out", price: "$20+" },
+    { service: "Kids Flat Iron", price: "$30+" },
+    { service: "Kids Fancy Up-Do", price: "$50" },
+    { service: "French Braid", price: "$15+" },
+    { service: "Corn Rows (Half Head)", price: "$35" },
+    { service: "Kids Nail Polish", price: "$15" },
+    { service: "Mom's Haircut (no shampoo)", price: "$55+" },
+    { service: "Mom's Shampoo & Blow Dry", price: "$40" },
+    { service: "Dad's Haircut", price: "$36" },
+    { service: "Color", price: "$70+" },
+    { service: "Highlights (Kids)", price: "$60+" },
+    { service: "Highlights (Adults)", price: "$100+" }
   ];
 
   return (
@@ -41,7 +41,6 @@ export default function Pricing() {
                   <tr className="bg-gradient-to-r from-primary/10 to-accent/10 border-b border-primary/20">
                     <th className="px-6 py-4 text-left font-bold text-foreground" data-testid="header-service">Service</th>
                     <th className="px-6 py-4 text-left font-bold text-foreground" data-testid="header-price">Price</th>
-                    <th className="px-6 py-4 text-left font-bold text-foreground" data-testid="header-notes">Notes</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -51,9 +50,15 @@ export default function Pricing() {
                       className="border-b border-primary/10 hover-elevate transition-all duration-200"
                       data-testid={`row-pricing-${index}`}
                     >
-                      <td className="px-6 py-4 font-medium text-foreground">{item.service}</td>
+                      <td className="px-6 py-4 font-medium text-foreground">
+                        {item.service}
+                        {item.hasNote && (
+                          <div className="text-sm text-muted-foreground mt-1">
+                            Includes certificate & keepsake lock (optional)
+                          </div>
+                        )}
+                      </td>
                       <td className="px-6 py-4 font-semibold text-primary">{item.price}</td>
-                      <td className="px-6 py-4 text-muted-foreground">{item.notes}</td>
                     </tr>
                   ))}
                 </tbody>
