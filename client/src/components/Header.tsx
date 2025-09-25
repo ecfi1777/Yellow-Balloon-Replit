@@ -32,8 +32,8 @@ export default function Header() {
           className="flex items-center gap-3 hover:opacity-80 transition-opacity"
           data-testid="logo-home-link"
         >
-          <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
-            <span className="text-2xl">🎈</span>
+          <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm border border-primary/20">
+            <img src="/assets/yellow-balloon-logo.svg" alt="Yellow Balloon" className="w-6 h-6" />
           </div>
           <div className="font-bold text-xl text-foreground">The Yellow Balloon</div>
         </a>
