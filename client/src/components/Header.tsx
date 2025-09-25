@@ -1,4 +1,5 @@
 import { Phone, Menu, X, ChevronDown } from "lucide-react";
+import balloonImg from "@assets/yellow_balloon.png";
 import { Button } from "@/components/ui/button";
 import { 
   DropdownMenu,
@@ -32,17 +33,12 @@ export default function Header() {
           className="flex items-center gap-3 hover:opacity-80 transition-opacity"
           data-testid="logo-home-link"
         >
-          <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center relative overflow-visible">
-            <div className="w-6 h-6 bg-primary rounded-full border-2 border-foreground/80"></div>
-            <svg className="absolute top-6 left-1/2 transform -translate-x-1/2" width="16" height="12" viewBox="0 0 16 12">
-              <path 
-                d="M8 0 C8 2, 6 4, 4 6 C2 8, 6 10, 8 12" 
-                stroke="currentColor" 
-                strokeWidth="1.5" 
-                fill="none"
-                className="text-foreground/60"
-              />
-            </svg>
+          <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center p-1">
+            <img 
+              src={balloonImg} 
+              alt="Yellow Balloon Logo" 
+              className="w-full h-full object-contain"
+            />
           </div>
           <div className="font-bold text-xl text-foreground">The Yellow Balloon</div>
         </a>
