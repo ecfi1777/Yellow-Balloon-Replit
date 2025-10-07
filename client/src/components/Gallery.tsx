@@ -2,55 +2,10 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ChevronRight } from "lucide-react";
 import { Link } from "wouter";
-import firstHaircut1 from "@assets/generated_images/First_haircut_salon_photo_93504202.png";
-import boyHaircut1 from "@assets/generated_images/Boy_haircut_salon_photo_f149f7c7.png";
-import glamourParty1 from "@assets/generated_images/Glamour_party_styling_photo_1558caf6.png";
-import hairStyling1 from "@assets/generated_images/Hair_braiding_salon_photo_81cddccf.png";
-import firstHaircut2 from "@assets/generated_images/Toddler_first_haircut_photo_84ad34eb.png";
-import boyHaircut2 from "@assets/generated_images/School_boy_haircut_photo_358e2981.png";
-import glamourParty2 from "@assets/generated_images/Special_occasion_styling_photo_50692872.png";
-import hairStyling2 from "@assets/generated_images/Group_glamour_party_photo_fc0c14de.png";
-
-interface GalleryItem {
-  image: string;
-  alt: string;
-}
+import { mainGalleryImages } from "@/data/galleries";
 
 export default function Gallery() {
-  const galleryItems: GalleryItem[] = [
-    {
-      image: firstHaircut1,
-      alt: "Child getting their first haircut at The Yellow Balloon salon with professional stylist"
-    },
-    {
-      image: boyHaircut1,
-      alt: "Young boy watching cartoons while getting a professional haircut at The Yellow Balloon"
-    },
-    {
-      image: glamourParty1,
-      alt: "Girl enjoying glamour party makeover with updo styling and nail polish at salon"
-    },
-    {
-      image: hairStyling1,
-      alt: "Professional hair braiding and styling service at The Yellow Balloon kids salon"
-    },
-    {
-      image: firstHaircut2,
-      alt: "Toddler's milestone first haircut with gentle, patient stylist at The Yellow Balloon"
-    },
-    {
-      image: boyHaircut2,
-      alt: "School-age boy receiving professional haircut while playing with educational toys"
-    },
-    {
-      image: glamourParty2,
-      alt: "Special occasion hair styling with elaborate updo and accessories at salon"
-    },
-    {
-      image: hairStyling2,
-      alt: "Group glamour party with multiple children getting styling services together"
-    }
-  ];
+  const galleryItems = mainGalleryImages.slice(0, 8);
 
 
   return (
@@ -75,7 +30,7 @@ export default function Gallery() {
               <div className="relative">
                 <div className="overflow-hidden">
                   <img
-                    src={item.image}
+                    src={item.src}
                     alt={item.alt}
                     className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
                   />
