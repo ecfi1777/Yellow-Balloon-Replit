@@ -6,7 +6,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import LiceTreatment from "@/pages/LiceTreatment";
 import GlamourParties from "@/pages/GlamourParties";
-import FullGallery from "@/pages/FullGallery";
 import MainGalleryPage from "@/pages/Gallery/MainGalleryPage";
 import GlamourPartiesGalleryPage from "@/pages/Gallery/GlamourPartiesGalleryPage";
 import LiceTreatmentGalleryPage from "@/pages/Gallery/LiceTreatmentGalleryPage";
