@@ -50,7 +50,7 @@ export default function Pricing() {
                       className="border-b border-primary/10 hover-elevate transition-all duration-200"
                       data-testid={`row-pricing-${index}`}
                     >
-                      <td className="px-6 py-4 font-medium text-foreground">
+                      <td className="px-6 py-4 text-foreground">
                         {item.service}
                         {item.hasNote && (
                           <div className="text-sm text-muted-foreground mt-1">
