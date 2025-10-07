@@ -1,0 +1,102 @@
+# 1) Create a helper that picks the largest JPG/PNG in client/public (avoid icons/logos)
+mkdir -p tools
+
+cat > tools/choose-og.mjs <<'JS'
+import { promises as fs } from "fs";
+import path from "path";
+
+const ROOT = process.cwd();
+const PUB = path.join(ROOT, "client", "public");
+const exts = new Set([".jpg", ".jpeg", ".png"]);
+
+async function walk(dir) {
+  const out = [];
+  try {
+    const ents = await fs.readdir(dir, { withFileTypes: true });
+    for (const e of ents) {
+      const p = path.join(dir, e.name);
+      if (e.isDirectory()) out.push(...await walk(p));
+      else out.push(p);
+    }
+  } catch {}
+  return out;
+}
+function isCandidate(p) {
+  const ext = path.extname(p).toLowerCase();
+  if (!exts.has(ext)) return false;
+  const name = path.basename(p).toLowerCase();
+  if (name.includes("favicon") || name.includes("apple-touch") || name.includes("icon") || name.includes("logo")) return false;
+  return true;
+}
+
+const files = (await walk(PUB)).filter(isCandidate);
+if (files.length === 0) {
+  console.error("No JPG/PNG candidates found under client/public.");
+  process.exit(2);
+}
+const sizes = await Promise.all(files.map(async f => ({ f, s: await fs.stat(f).catch(() => null) })));
+const withSize = sizes.filter(x => x.s).map(x => ({ f: x.f, size: x.s.size }));
+withSize.sort((a, b) => b.size - a.size);
+const chosen = withSize[0];
+
+const ext = path.extname(chosen.f).toLowerCase();
+const targetAbs = path.join(PUB, `og-card${ext}`);
+if (chosen.f !== targetAbs) {
+  await fs.copyFile(chosen.f, targetAbs);
+}
+const webPath = `/og-card${ext}`;
+console.log(webPath);
+JS
+
+# 2) Create a helper that injects/updates the social meta tags in client/index.html
+cat > tools/set-og-tags.mjs <<'JS'
+import { promises as fs } from "fs";
+import path from "path";
+
+const webPath = process.argv[2];
+if (!webPath) {
+  console.error("Usage: node tools/set-og-tags.mjs /og-card.jpg");
+  process.exit(1);
+}
+
+const ROOT = process.cwd();
+const INDEX = path.join(ROOT, "client", "index.html");
+let html;
+try {
+  html = await fs.readFile(INDEX, "utf8");
+} catch {
+  console.error("client/index.html not found");
+  process.exit(2);
+}
+
+const block = `
+    <!-- START: social meta -->
+    <meta property="og:title" content="The Yellow Balloon" />
+    <meta property="og:description" content="Kid-friendly salon services, glamour parties, and safe lice treatment." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="${webPath}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="The Yellow Balloon" />
+    <meta name="twitter:description" content="Kid-friendly salon services, glamour parties, and safe lice treatment." />
+    <meta name="twitter:image" content="${webPath}" />
+    <!-- END: social meta -->
+`;
+
+if (html.includes("<!-- START: social meta -->") && html.includes("<!-- END: social meta -->")) {
+  html = html.replace(/<!-- START: social meta -->[\s\S]*?<!-- END: social meta -->/, block);
+} else {
+  html = html.replace("</head>", `${block}\n  </head>`);
+}
+
+await fs.writeFile(INDEX, html, "utf8");
+console.log("Updated social meta tags in client/index.html");
+JS
+
+# 3) Run the helpers, commit, and tell us which image got used
+OG_WEB_PATH=$(node tools/choose-og.mjs)
+node tools/set-og-tags.mjs "$OG_WEB_PATH"
+
+git add client/index.html client/public/og-card.* tools/choose-og.mjs tools/set-og-tags.mjs
+git commit -m "feat: add Open Graph & Twitter share image and meta tags ($OG_WEB_PATH)" || echo "No changes to commit"
+
+echo "Done. Sharing image set to: $OG_WEB_PATH"

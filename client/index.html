@@ -6,15 +6,6 @@
     <title>The Yellow Balloon — Kids' haircuts made happy.</title>
     <meta name="description" content="The Yellow Balloon is a children's hair salon in Gaithersburg, MD. We make haircuts fun with toys, rides, TVs, gentle stylists—and every visit ends with a balloon and a lollipop. Services include kids' haircuts, baby's first haircut, lice screening & two-session treatment (private location), glamour styling experiences for kids & tweens, plus select adult services." />
     <link rel="canonical" href="${import.meta.env.VITE_SITE_URL}" />
-    <meta property="og:title" content="The Yellow Balloon — Kids' haircuts made happy." />
-    <meta property="og:description" content="The Yellow Balloon is a children's hair salon in Gaithersburg, MD. We make haircuts fun with toys, rides, TVs, gentle stylists—and every visit ends with a balloon and a lollipop. Services include kids' haircuts, baby's first haircut, lice screening & two-session treatment (private location), glamour styling experiences for kids & tweens, plus select adult services." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="${import.meta.env.VITE_SITE_URL}" />
-    <meta property="og:image" content="${import.meta.env.VITE_SITE_URL}/assets/og-card.svg" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="The Yellow Balloon — Kids' haircuts made happy." />
-    <meta name="twitter:description" content="The Yellow Balloon is a children's hair salon in Gaithersburg, MD. We make haircuts fun with toys, rides, TVs, gentle stylists—and every visit ends with a balloon and a lollipop. Services include kids' haircuts, baby's first haircut, lice screening & two-session treatment (private location), glamour styling experiences for kids & tweens, plus select adult services." />
-    <meta name="twitter:image" content="${import.meta.env.VITE_SITE_URL}/assets/og-card.svg" />
     <meta name="theme-color" content="#FFD84D" />
     <link rel="icon" href="/assets/favicon.ico" />
     <link rel="manifest" href="/manifest.webmanifest" />
@@ -29,7 +20,7 @@
       "name": "The Yellow Balloon",
       "telephone": "(301) 569-6756",
       "url": "${import.meta.env.VITE_SITE_URL}",
-      "image": ["${import.meta.env.VITE_SITE_URL}/assets/og-card.svg"],
+      "image": ["/og-card.png"],
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "255 Market Street West",
@@ -48,6 +39,18 @@
       "description": "The Yellow Balloon is a children's hair salon in Gaithersburg, MD. We make haircuts fun with toys, rides, TVs, gentle stylists—and every visit ends with a balloon and a lollipop. Services include kids' haircuts, baby's first haircut, lice screening & two-session treatment (private location), glamour styling experiences for kids & tweens, plus select adult services."
     }
     </script>
+  
+    <!-- START: social meta -->
+    <meta property="og:title" content="The Yellow Balloon" />
+    <meta property="og:description" content="Kid-friendly salon services, glamour parties, and safe lice treatment." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/og-card.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="The Yellow Balloon" />
+    <meta name="twitter:description" content="Kid-friendly salon services, glamour parties, and safe lice treatment." />
+    <meta name="twitter:image" content="/og-card.png" />
+    <!-- END: social meta -->
+
   </head>
   <body>
     <div id="root"></div>
