@@ -1,24 +1,24 @@
 export default function Pricing() {
   const pricingData = [
-    { service: "Baby's First Haircut (Newborn–12 mo.)", price: "$30", hasNote: true },
-    { service: "Boys Haircut (Under 11)", price: "$30–$33" },
-    { service: "Boys Haircut (11–17)", price: "$30–$35" },
-    { service: "Girls Haircut (Under 11)", price: "$35–$45" },
-    { service: "Girls Haircut (11–17)", price: "$45–$55" },
+    { service: "Baby First Haircut (Newborn to 12 mo.) Includes certificate & keepsake lock (optional)", price: "$30" },
+    { service: "Boys Haircut (Under 11)", price: "$30 to $33" },
+    { service: "Boys Haircut (11-17)", price: "$30 to $35" },
+    { service: "Girls Haircut (Under 11)", price: "$30 to $35" },
+    { service: "Girls Haircut (11-17)", price: "$45 to $55" },
     { service: "Kids Bang Trim", price: "$15" },
     { service: "Kids Shampoo", price: "$5" },
-    { service: "Kids Shampoo & Blow Out", price: "$20+" },
-    { service: "Kids Flat Iron", price: "$30+" },
-    { service: "Kids Fancy Up-Do", price: "$50" },
-    { service: "French Braid", price: "$15+" },
+    { service: "Kids Shampoo & Blow Out", price: "$20 & up" },
+    { service: "Kids Flat Iron", price: "$30 & up" },
+    { service: "Kids Fancy Up Do", price: "$50" },
+    { service: "French Braid", price: "$15 & up" },
     { service: "Corn Rows (Half Head)", price: "$35" },
-    { service: "Kids Nail Polish", price: "$15" },
-    { service: "Mom's Haircut (no shampoo)", price: "$55+" },
+    { service: "Mom's Haircut (Shampoo Not Included)", price: "$55 & up" },
     { service: "Mom's Shampoo & Blow Dry", price: "$40" },
     { service: "Dad's Haircut", price: "$36" },
-    { service: "Color", price: "$70+" },
-    { service: "Highlights (Kids)", price: "$60+" },
-    { service: "Highlights (Adults)", price: "$100+" }
+    { service: "Color", price: "$70 & up" },
+    { service: "Highlights for Kids", price: "$60 & up" },
+    { service: "Highlights for Adults", price: "$100 & up" },
+    { service: "Kids Nail Polish", price: "$15" }
   ];
 
   return (
@@ -52,11 +52,6 @@ export default function Pricing() {
                     >
                       <td className="px-6 py-4 font-medium text-foreground">
                         {item.service}
-                        {item.hasNote && (
-                          <div className="text-sm text-muted-foreground mt-1">
-                            Includes certificate & keepsake lock (optional)
-                          </div>
-                        )}
                       </td>
                       <td className="px-6 py-4 font-semibold text-primary">{item.price}</td>
                     </tr>
