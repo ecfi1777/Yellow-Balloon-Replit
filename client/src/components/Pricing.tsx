@@ -53,7 +53,7 @@ export default function Pricing() {
                       <td className="px-6 py-4 text-foreground">
                         {item.service}
                         {item.hasNote && (
-                          <div className="text-sm text-muted-foreground mt-1">
+                          <div className="text-sm text-muted-foreground">
                             Includes certificate & keepsake lock (optional)
                           </div>
                         )}
