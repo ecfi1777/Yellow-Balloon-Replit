@@ -9,8 +9,7 @@
 - None ✅
 
 ### Orphan images (not referenced in code)
-- client/public/assets/og-card.svg
-- client/public/assets/gallery/other/Fun_styling_braiding_session_8ee3aae6.png
+- None ✅
 
 ### Orphan source files (not reachable from entrypoints)
 - client/src/pages/GlamourParties.tsx
