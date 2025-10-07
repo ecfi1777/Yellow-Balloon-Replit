@@ -1,0 +1,170 @@
+I tried opening the repo again — GitHub still shows the “Uh oh! There was an error while loading” banner on file views, so I can’t reliably read files inline. The top-level repo page loads, though. 
+GitHub
+
+No worries — let’s verify everything locally in one clean pass. Start with this single prompt to your Replit Agent:
+
+Prompt 1 — create the audit script
+
+Create (or overwrite) tools/audit.mjs with the content below. Don’t change any other files.
+
+mkdir -p tools
+cat > tools/audit.mjs <<'EOF'
+// Node >=16. No deps. Scans client/src + client/public.
+import { promises as fs } from "fs";
+import path from "path";
+import crypto from "crypto";
+
+const ROOT = process.cwd();
+const CLIENT = path.join(ROOT, "client");
+const SRC = path.join(CLIENT, "src");
+const PUBLIC = path.join(CLIENT, "public");
+
+const IMG_EXTS = new Set([".png", ".jpg", ".jpeg", ".webp", ".gif", ".svg", ".avif"]);
+const CODE_EXTS = new Set([".ts", ".tsx", ".js", ".jsx"]);
+
+const exists = async (p) => !!(await fs.stat(p).catch(() => null));
+const read = (p) => fs.readFile(p, "utf8");
+const isImage = (p) => IMG_EXTS.has(path.extname(p).toLowerCase());
+const isCode = (p) => CODE_EXTS.has(path.extname(p).toLowerCase());
+
+async function walk(dir) {
+  const out = [];
+  if (!(await exists(dir))) return out;
+  const st = [dir];
+  while (st.length) {
+    const d = st.pop();
+    const ents = await fs.readdir(d, { withFileTypes: true });
+    for (const e of ents) {
+      const p = path.join(d, e.name);
+      if (e.isDirectory()) st.push(p);
+      else out.push(p);
+    }
+  }
+  return out;
+}
+
+function toURLFromPublic(abs) {
+  const rel = path.relative(PUBLIC, abs);
+  if (!rel || rel.startsWith("..")) return null;
+  return "/" + rel.split(path.sep).join("/");
+}
+
+function findImports(code) {
+  const specs = new Set();
+  const r1 = /from\s+["']([^"']+)["']/g;
+  const r2 = /import\s+["']([^"']+)["']/g;
+  const r3 = /import\(\s*["']([^"']+)["']\s*\)/g;
+  for (const re of [r1, r2, r3]) for (const m of code.matchAll(re)) specs.add(m[1]);
+  return [...specs];
+}
+function normalizeImportPath(fromFile, spec) {
+  if (!spec.startsWith(".")) return null;
+  const base = path.resolve(path.dirname(fromFile), spec);
+  return [
+    base, base + ".tsx", base + ".ts", base + ".jsx", base + ".js",
+    path.join(base, "index.tsx"), path.join(base, "index.ts"),
+    path.join(base, "index.jsx"), path.join(base, "index.js"),
+  ];
+}
+async function resolveFirstExisting(cands) {
+  for (const c of cands) if (await exists(c)) return c;
+  return null;
+}
+async function hashFile(p) {
+  const buf = await fs.readFile(p);
+  return crypto.createHash("sha1").update(buf).digest("hex");
+}
+
+(async () => {
+  const codeFiles = (await walk(SRC)).filter(isCode);
+  const publicFiles = await walk(PUBLIC);
+  const imageFiles = publicFiles.filter(isImage);
+
+  // Build import graph + collect URL image references
+  const referencedURLs = new Set();
+  const importGraph = new Map();
+  const nameIssues = [];
+
+  for (const f of codeFiles) {
+    const code = await read(f).catch(() => "");
+    for (const m of code.matchAll(/["'`](\/[^"'`]+\.(?:png|jpe?g|webp|gif|svg|avif))["'`]/gi)) {
+      referencedURLs.add(m[1]);
+    }
+    const deps = [];
+    for (const s of findImports(code) ?? []) {
+      const cands = normalizeImportPath(f, s);
+      if (!cands) continue;
+      const resolved = await resolveFirstExisting(cands);
+      if (resolved) deps.push(resolved);
+    }
+    importGraph.set(f, deps);
+
+    // Suggest PascalCase for components under components/
+    if (/\.(tsx|jsx)$/.test(f) && f.includes(path.join("components"))) {
+      const fn = path.basename(f);
+      if (!/^[A-Z][A-Za-z0-9]*\.(tsx|jsx)$/.test(fn)) {
+        const base = fn.replace(/\.(tsx|jsx)$/i, "");
+        const pas = base.replace(/(^|[-_ ]+)([a-zA-Z0-9])/g, (_, __, c) => c.toUpperCase()) + fn.slice(fn.lastIndexOf("."));
+        nameIssues.push({ file: f, suggestion: pas });
+      }
+    }
+  }
+
+  // Map URL refs to files inside public/
+  const referencedPublicFiles = new Set();
+  for (const imgAbs of imageFiles) {
+    const url = toURLFromPublic(imgAbs);
+    if (url && referencedURLs.has(url)) referencedPublicFiles.add(imgAbs);
+  }
+
+  // Duplicates by content hash + filename
+  const byHash = new Map(), byName = new Map();
+  for (const img of imageFiles) {
+    const h = await hashFile(img);
+    (byHash.get(h) || byHash.set(h, []).get(h)).push(img);
+    const nm = path.basename(img).toLowerCase();
+    (byName.get(nm) || byName.set(nm, []).get(nm)).push(img);
+  }
+  const dupByHash = [...byHash.entries()].filter(([, arr]) => arr.length > 1);
+  const dupByName = [...byName.entries()].filter(([, arr]) => arr.length > 1);
+
+  // Reachability from common entrypoints
+  const roots = [];
+  for (const c of ["main.tsx", "main.jsx", "App.tsx", "App.jsx"]) {
+    const p = path.join(SRC, c);
+    if (await exists(p)) roots.push(p);
+  }
+  const reachable = new Set();
+  const visit = (f) => { if (reachable.has(f)) return; reachable.add(f); (importGraph.get(f) || []).forEach(visit); };
+  roots.forEach(visit);
+
+  const orphanCode = codeFiles.filter((f) => !reachable.has(f));
+  const orphanImages = imageFiles.filter((f) => !referencedPublicFiles.has(f));
+
+  const out = [];
+  out.push("# Repo Audit Report", "", "## Potential issues", "");
+  out.push("### Duplicate images (by content hash)");
+  dupByHash.length ? dupByHash.forEach(([h, arr]) => { out.push(`- **${h.slice(0,8)}…**`); arr.forEach(p => out.push(`  - ${path.relative(ROOT, p)}`)); })
+                   : out.push("- None ✅");
+  out.push("", "### Duplicate image filenames (case-insensitive)");
+  dupByName.length ? dupByName.forEach(([nm, arr]) => { out.push(`- **${nm}**`); arr.forEach(p => out.push(`  - ${path.relative(ROOT, p)}`)); })
+                   : out.push("- None ✅");
+  out.push("", "### Orphan images (not referenced in code)");
+  orphanImages.length ? orphanImages.forEach(p => out.push(`- ${path.relative(ROOT, p)}`))
+                      : out.push("- None ✅");
+  out.push("", "### Orphan source files (not reachable from entrypoints)");
+  orphanCode.length ? orphanCode.forEach(p => out.push(`- ${path.relative(ROOT, p)}`))
+                    : out.push("- None ✅");
+  out.push("", "### Naming suggestions (components)");
+  nameIssues.length ? nameIssues.forEach(n => out.push(`- ${path.relative(ROOT, n.file)} → ${n.suggestion}`))
+                    : out.push("- None ✅");
+  out.push("", "## Notes",
+           "- Orphans can be false positives if referenced dynamically at runtime.",
+           "- If your images live under client/src/assets and are imported, this script won’t see them as public URLs; consider moving them to client/public for stable paths or extending the script.");
+  await fs.writeFile(path.join(ROOT, "audit-report.md"), out.join("\n"), "utf8");
+  console.log("Wrote audit-report.md");
+})().catch(e => { console.error(e); process.exit(1); });
+EOF
+
+
+Reply “done” when that’s created, and I’ll give you Prompt 2 to run it and share the findings.
