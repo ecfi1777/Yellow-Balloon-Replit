@@ -61,7 +61,9 @@ Preferred communication style: Simple, everyday language.
 - **ESBuild**: Fast JavaScript bundler for production builds
 
 ### Asset Management
-- **Generated Images**: AI-generated images stored in attached_assets for salon photos
+- **Gallery Images**: Organized in `client/public/assets/gallery/` with categorized folders (home, glamour, lice, other)
+- **Logo Asset**: Yellow balloon logo stored in `client/public/assets/`
+- **Image Management**: Single source of truth via `client/src/data/galleries.ts` for all gallery images
 - **Font Integration**: Google Fonts (Poppins) via CDN
 
 ### Form and Data Management

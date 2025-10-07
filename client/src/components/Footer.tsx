@@ -1,5 +1,4 @@
 import { Heart } from "lucide-react";
-import balloonImg from "@assets/yellow_balloon.png";
 
 export default function Footer() {
   return (
@@ -9,7 +8,7 @@ export default function Footer() {
           <div className="flex items-center justify-center gap-3">
             <div className="w-8 h-8 bg-accent rounded-full flex items-center justify-center">
               <img 
-                src={balloonImg} 
+                src="/assets/yellow_balloon.png" 
                 alt="Yellow Balloon Logo" 
                 className="w-full h-full object-contain scale-110"
               />

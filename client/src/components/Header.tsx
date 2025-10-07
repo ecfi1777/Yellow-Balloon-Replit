@@ -1,5 +1,4 @@
 import { Phone, Menu, X, ChevronDown } from "lucide-react";
-import balloonImg from "@assets/yellow_balloon.png";
 import { Button } from "@/components/ui/button";
 import { 
   DropdownMenu,
@@ -35,7 +34,7 @@ export default function Header() {
         >
           <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center">
             <img 
-              src={balloonImg} 
+              src="/assets/yellow_balloon.png" 
               alt="Yellow Balloon Logo" 
               className="w-full h-full object-contain scale-110"
             />
