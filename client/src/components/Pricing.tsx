@@ -1,6 +1,6 @@
 export default function Pricing() {
   const pricingData = [
-    { service: "Baby First Haircut (Newborn to 12 mo.) Includes certificate & keepsake lock (optional)", price: "$30" },
+    { service: "Baby First Haircut (Newborn to 12 mo.)", price: "$30", hasNote: true },
     { service: "Boys Haircut (Under 11)", price: "$30 to $33" },
     { service: "Boys Haircut (11-17)", price: "$30 to $35" },
     { service: "Girls Haircut (Under 11)", price: "$30 to $35" },
@@ -52,6 +52,11 @@ export default function Pricing() {
                     >
                       <td className="px-6 py-4 font-medium text-foreground">
                         {item.service}
+                        {item.hasNote && (
+                          <div className="text-sm text-muted-foreground mt-1">
+                            Includes certificate & keepsake lock (optional)
+                          </div>
+                        )}
                       </td>
                       <td className="px-6 py-4 font-semibold text-primary">{item.price}</td>
                     </tr>
