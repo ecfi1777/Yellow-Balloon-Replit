@@ -82,6 +82,7 @@ export const GalleryCarousel: React.FC<Props> = ({ images, autoPlayMs = 4000, cl
               src={img.src}
               alt={img.alt ?? ""}
               loading="lazy"
+              decoding="async"
               style={{
                 position: isCenter ? "absolute" : "absolute",
                 inset: 0,

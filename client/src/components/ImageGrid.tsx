@@ -28,6 +28,7 @@ export const ImageGrid: React.FC<Props> = ({
               src={img.src}
               alt={img.alt ?? ""}
               loading="lazy"
+              decoding="async"
               style={{
                 position: "absolute", inset: 0,
                 width: "100%", height: "100%", objectFit: "cover"
