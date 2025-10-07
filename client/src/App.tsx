@@ -15,7 +15,8 @@ import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import Services from "@/components/Services";
 import Pricing from "@/components/Pricing";
-import { GallerySection } from "@/components/GallerySection";
+import { ImageGrid } from "@/components/ImageGrid";
+import { ViewMoreButton } from "@/components/ViewMoreButton";
 import { mainGalleryImages } from "@/data/galleries";
 import Reviews from "@/components/Reviews";
 import Contact from "@/components/Contact";
@@ -30,12 +31,13 @@ function Home() {
         <Features />
         <Services />
         <Pricing />
-        <GallerySection
-          title="Our Work"
-          images={mainGalleryImages}
-          viewMoreHref="/gallery"
-          gridCount={8}
-        />
+        <section className="py-16 lg:py-24">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl lg:text-4xl font-bold text-center mb-12">Our Work</h2>
+            <ImageGrid images={mainGalleryImages} maxItems={8} />
+            <ViewMoreButton to="/gallery" label="View More" />
+          </div>
+        </section>
         <Reviews />
         <Contact />
       </main>

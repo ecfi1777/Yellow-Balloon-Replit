@@ -6,6 +6,8 @@ import { Link } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { GalleryCarousel } from "@/components/GalleryCarousel";
+import { ImageGrid } from "@/components/ImageGrid";
+import { ViewMoreButton } from "@/components/ViewMoreButton";
 import { liceTreatmentImages } from "@/data/galleries";
 
 export default function LiceTreatment() {
@@ -192,12 +194,16 @@ export default function LiceTreatment() {
                 <Phone className="w-4 h-4 mr-2" />
                 Call (301) 569-6756
               </Button>
-              <Link href="/gallery/lice-treatment">
-                <Button variant="outline" size="lg" data-testid="button-view-gallery">
-                  View Gallery
-                </Button>
-              </Link>
             </div>
+          </div>
+        </section>
+
+        {/* Gallery Section */}
+        <section className="py-16 lg:py-24 bg-gradient-to-b from-accent/10 to-secondary/15">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl lg:text-4xl font-bold text-center mb-12">Lice Treatment Gallery</h2>
+            <ImageGrid images={liceTreatmentImages} maxItems={8} />
+            <ViewMoreButton to="/gallery/lice-treatment" label="View More" />
           </div>
         </section>
       </main>
