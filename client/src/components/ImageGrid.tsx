@@ -14,10 +14,10 @@ export const ImageGrid: React.FC<Props> = ({
 }) => {
   const toShow = typeof maxItems === "number" ? images.slice(0, maxItems) : images;
 
-  // Simple responsive CSS grid; columns prop can override
+  // Responsive grid: 2 columns mobile, 3 tablet, 4 desktop max
   const gridTemplate = columns
     ? `repeat(${columns}, minmax(0, 1fr))`
-    : "repeat(auto-fill, minmax(160px, 1fr))";
+    : "repeat(auto-fill, minmax(300px, 1fr))";
 
   return (
     <div className={className} style={{ display: "grid", gridTemplateColumns: gridTemplate, gap }}>

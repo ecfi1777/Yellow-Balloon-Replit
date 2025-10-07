@@ -78,7 +78,7 @@ export const GalleryCarousel: React.FC<Props> = ({ images, autoPlayMs = 4000, cl
           const isCenter = img === current;
           return (
             <img
-              key={img.src}
+              key={`${img.src}-${i}`}
               src={img.src}
               alt={img.alt ?? ""}
               loading="lazy"
