@@ -5,9 +5,8 @@ import { Sparkles, Phone, Users, Camera, Star, MapPin, Clock } from "lucide-reac
 import { Link } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { GallerySection } from "@/components/GallerySection";
+import { GalleryCarousel } from "@/components/GalleryCarousel";
 import { glamourPartyImages } from "@/data/galleries";
-import glamourPartyImage from "@assets/generated_images/Glamour_party_celebration_5e0f28c4.png";
 
 export default function GlamourParties() {
   const features = [
@@ -98,21 +97,7 @@ export default function GlamourParties() {
                 </div>
 
                 <div className="relative">
-                  <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-gradient-to-r from-primary via-accent to-secondary p-1 bg-gradient-to-r from-primary via-accent to-secondary">
-                    <div className="rounded-2xl overflow-hidden bg-white">
-                      <div className="w-full h-[400px] relative">
-                        <img
-                          src={glamourPartyImage}
-                          alt="Children enjoying a glamour party with styling and celebrations"
-                          className="w-full h-full object-cover"
-                          data-testid="img-hero"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                      </div>
-                    </div>
-                  </div>
+                  <GalleryCarousel images={glamourPartyImages} className="rounded-3xl overflow-hidden shadow-2xl" />
                 </div>
               </div>
             </div>
@@ -217,20 +202,19 @@ export default function GlamourParties() {
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
               Call us today to schedule an unforgettable glamour party experience that will make every child feel special!
             </p>
-            <Button size="lg" data-testid="button-schedule">
-              <Phone className="w-4 h-4 mr-2" />
-              Call (301) 569-6756
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button size="lg" data-testid="button-schedule">
+                <Phone className="w-4 h-4 mr-2" />
+                Call (301) 569-6756
+              </Button>
+              <Link href="/gallery/glamour-parties">
+                <Button variant="outline" size="lg" data-testid="button-view-gallery">
+                  View Gallery
+                </Button>
+              </Link>
+            </div>
           </div>
         </section>
-
-        {/* Gallery Section */}
-        <GallerySection
-          title="Glamour Parties Gallery"
-          images={glamourPartyImages}
-          viewMoreHref="/gallery/glamour-parties"
-          gridCount={8}
-        />
       </main>
       <Footer />
     </div>

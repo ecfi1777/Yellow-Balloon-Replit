@@ -5,9 +5,8 @@ import { ShieldCheck, Phone, CheckCircle, Lock, MapPin, Clock } from "lucide-rea
 import { Link } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { GallerySection } from "@/components/GallerySection";
+import { GalleryCarousel } from "@/components/GalleryCarousel";
 import { liceTreatmentImages } from "@/data/galleries";
-import liceTreatmentImage from "@assets/generated_images/Lice_treatment_salon_scene_b170b8e3.png";
 
 export default function LiceTreatment() {
   const features = [
@@ -97,21 +96,7 @@ export default function LiceTreatment() {
                 </div>
 
                 <div className="relative">
-                  <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-gradient-to-r from-secondary via-accent to-primary p-1 bg-gradient-to-r from-secondary via-accent to-primary">
-                    <div className="rounded-2xl overflow-hidden bg-white">
-                      <div className="w-full h-[400px] relative">
-                        <img
-                          src={liceTreatmentImage}
-                          alt="Professional lice treatment in private, comfortable salon environment"
-                          className="w-full h-full object-cover"
-                          data-testid="img-hero"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                      </div>
-                    </div>
-                  </div>
+                  <GalleryCarousel images={liceTreatmentImages} className="rounded-3xl overflow-hidden shadow-2xl" />
                 </div>
               </div>
             </div>
@@ -202,20 +187,19 @@ export default function LiceTreatment() {
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
               Call us today for confidential lice screening or treatment. We're here to help with care and understanding.
             </p>
-            <Button size="lg" data-testid="button-schedule">
-              <Phone className="w-4 h-4 mr-2" />
-              Call (301) 569-6756
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button size="lg" data-testid="button-schedule">
+                <Phone className="w-4 h-4 mr-2" />
+                Call (301) 569-6756
+              </Button>
+              <Link href="/gallery/lice-treatment">
+                <Button variant="outline" size="lg" data-testid="button-view-gallery">
+                  View Gallery
+                </Button>
+              </Link>
+            </div>
           </div>
         </section>
-
-        {/* Gallery Section */}
-        <GallerySection
-          title="Lice Treatment Gallery"
-          images={liceTreatmentImages}
-          viewMoreHref="/gallery/lice-treatment"
-          gridCount={8}
-        />
       </main>
       <Footer />
     </div>
