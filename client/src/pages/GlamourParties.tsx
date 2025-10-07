@@ -5,6 +5,8 @@ import { Sparkles, Phone, Users, Camera, Star, MapPin, Clock } from "lucide-reac
 import { Link } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { GallerySection } from "@/components/GallerySection";
+import { glamourPartyImages } from "@/data/galleries";
 import glamourPartyImage from "@assets/generated_images/Glamour_party_celebration_5e0f28c4.png";
 
 export default function GlamourParties() {
@@ -221,6 +223,14 @@ export default function GlamourParties() {
             </Button>
           </div>
         </section>
+
+        {/* Gallery Section */}
+        <GallerySection
+          title="Glamour Parties Gallery"
+          images={glamourPartyImages}
+          viewMoreHref="/gallery/glamour-parties"
+          gridCount={8}
+        />
       </main>
       <Footer />
     </div>

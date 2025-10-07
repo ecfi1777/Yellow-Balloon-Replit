@@ -5,6 +5,8 @@ import { ShieldCheck, Phone, CheckCircle, Lock, MapPin, Clock } from "lucide-rea
 import { Link } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { GallerySection } from "@/components/GallerySection";
+import { liceTreatmentImages } from "@/data/galleries";
 import liceTreatmentImage from "@assets/generated_images/Lice_treatment_salon_scene_b170b8e3.png";
 
 export default function LiceTreatment() {
@@ -206,6 +208,14 @@ export default function LiceTreatment() {
             </Button>
           </div>
         </section>
+
+        {/* Gallery Section */}
+        <GallerySection
+          title="Lice Treatment Gallery"
+          images={liceTreatmentImages}
+          viewMoreHref="/gallery/lice-treatment"
+          gridCount={8}
+        />
       </main>
       <Footer />
     </div>

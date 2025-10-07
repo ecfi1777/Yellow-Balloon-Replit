@@ -15,7 +15,8 @@ import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import Services from "@/components/Services";
 import Pricing from "@/components/Pricing";
-import Gallery from "@/components/Gallery";
+import { GallerySection } from "@/components/GallerySection";
+import { mainGalleryImages } from "@/data/galleries";
 import Reviews from "@/components/Reviews";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -29,7 +30,12 @@ function Home() {
         <Features />
         <Services />
         <Pricing />
-        <Gallery />
+        <GallerySection
+          title="Our Work"
+          images={mainGalleryImages}
+          viewMoreHref="/gallery"
+          gridCount={8}
+        />
         <Reviews />
         <Contact />
       </main>
