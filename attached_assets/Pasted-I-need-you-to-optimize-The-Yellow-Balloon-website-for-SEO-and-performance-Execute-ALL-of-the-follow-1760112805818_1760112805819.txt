@@ -1,0 +1,211 @@
+I need you to optimize The Yellow Balloon website for SEO and performance. Execute ALL of the following tasks:
+
+═══════════════════════════════════════════════════════════════
+TASK 1: Remove Unused Dependencies (Reduces Bundle Size)
+═══════════════════════════════════════════════════════════════
+
+Run this command to remove heavy unused libraries:
+npm uninstall framer-motion recharts embla-carousel-react vaul react-resizable-panels tw-animate-css
+
+═══════════════════════════════════════════════════════════════
+TASK 2: Optimize Font Loading (25+ fonts → 1 font)
+═══════════════════════════════════════════════════════════════
+
+Replace the ENTIRE content of client/index.html with this optimized version that only loads Poppins font:
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Yellow Balloon — Kids' haircuts made happy.</title>
+    <meta name="description" content="The Yellow Balloon is a children's hair salon in Gaithersburg, MD. We make haircuts fun with toys, rides, TVs, gentle stylists—and every visit ends with a balloon and a lollipop. Services include kids' haircuts, baby's first haircut, lice screening & two-session treatment (private location), glamour styling experiences for kids & tweens, plus select adult services." />
+    <link rel="canonical" href="https://www.theyellowballoonmaryland.com" />
+    <meta property="og:title" content="The Yellow Balloon — Kids' haircuts made happy." />
+    <meta property="og:description" content="The Yellow Balloon is a children's hair salon in Gaithersburg, MD. We make haircuts fun with toys, rides, TVs, gentle stylists—and every visit ends with a balloon and a lollipop. Services include kids' haircuts, baby's first haircut, lice screening & two-session treatment (private location), glamour styling experiences for kids & tweens, plus select adult services." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.theyellowballoonmaryland.com" />
+    <meta property="og:image" content="https://www.theyellowballoonmaryland.com/assets/og-card.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="The Yellow Balloon — Kids' haircuts made happy." />
+    <meta name="twitter:description" content="The Yellow Balloon is a children's hair salon in Gaithersburg, MD. We make haircuts fun with toys, rides, TVs, gentle stylists—and every visit ends with a balloon and a lollipop. Services include kids' haircuts, baby's first haircut, lice screening & two-session treatment (private location), glamour styling experiences for kids & tweens, plus select adult services." />
+    <meta name="twitter:image" content="https://www.theyellowballoonmaryland.com/assets/og-card.svg" />
+    <meta name="theme-color" content="#FFD84D" />
+    <link rel="icon" href="/assets/favicon.ico" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    
+    <!-- Local SEO improvements -->
+    <meta name="robots" content="index, follow">
+    <link rel="sitemap" href="/sitemap.xml">
+    <meta name="geo.region" content="US-MD">
+    <meta name="geo.placename" content="Gaithersburg, Maryland">
+    <meta name="geo.position" content="39.1434;-77.2014">
+    <meta name="ICBM" content="39.1434, -77.2014">
+    <link rel="alternate" hreflang="en-us" href="https://www.theyellowballoonmaryland.com/" />
+    
+    <!-- OPTIMIZED: Only load Poppins (the font actually used) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+    <!-- JSON-LD LocalBusiness / HairSalon -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HairSalon",
+      "name": "The Yellow Balloon",
+      "telephone": "(301) 569-6756",
+      "url": "https://www.theyellowballoonmaryland.com",
+      "image": ["https://www.theyellowballoonmaryland.com/assets/og-card.svg"],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "255 Market Street West",
+        "addressLocality": "Gaithersburg",
+        "addressRegion": "MD",
+        "postalCode": "20878",
+        "addressCountry": "US"
+      },
+      "areaServed": ["Gaithersburg","Darnestown","Potomac","Germantown","Montgomery County"],
+      "openingHoursSpecification": [
+        {"@type":"OpeningHoursSpecification","dayOfWeek":["Tuesday","Wednesday","Friday"],"opens":"10:00","closes":"18:00"},
+        {"@type":"OpeningHoursSpecification","dayOfWeek":"Thursday","opens":"00:00","closes":"00:00","validFrom":"0000-01-01","validThrough":"9999-12-31","description":"Closed"},
+        {"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday","Sunday"],"opens":"10:00","closes":"17:00"},
+        {"@type":"OpeningHoursSpecification","dayOfWeek":"Monday","opens":"00:00","closes":"00:00","description":"Closed"}
+      ],
+      "description": "The Yellow Balloon is a children's hair salon in Gaithersburg, MD. We make haircuts fun with toys, rides, TVs, gentle stylists—and every visit ends with a balloon and a lollipop. Services include kids' haircuts, baby's first haircut, lice screening & two-session treatment (private location), glamour styling experiences for kids & tweens, plus select adult services."
+    }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
+    <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
+  </body>
+</html>
+
+═══════════════════════════════════════════════════════════════
+TASK 3: Add Lazy Loading to App.tsx (Code Splitting)
+═══════════════════════════════════════════════════════════════
+
+Replace the imports and Router function in client/src/App.tsx with this optimized version:
+
+import { Switch, Route } from "wouter";
+import { queryClient } from "./lib/queryClient";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "@/components/ui/toaster";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { lazy, Suspense } from 'react';
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import Features from "@/components/Features";
+import Services from "@/components/Services";
+import Pricing from "@/components/Pricing";
+import Gallery from "@/components/Gallery";
+import Reviews from "@/components/Reviews";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
+
+// Lazy load heavy pages
+const NotFound = lazy(() => import("@/pages/not-found"));
+const LiceTreatment = lazy(() => import("@/pages/LiceTreatment"));
+const GlamourParties = lazy(() => import("@/pages/GlamourParties"));
+const FullGallery = lazy(() => import("@/pages/FullGallery"));
+
+function Home() {
+  return (
+    <div className="min-h-screen">
+      <Header />
+      <main>
+        <Hero />
+        <Features />
+        <Services />
+        <Pricing />
+        <Gallery />
+        <Reviews />
+        <Contact />
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
+function Router() {
+  return (
+    <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/lice-treatment" component={LiceTreatment} />
+        <Route path="/glamour-parties" component={GlamourParties} />
+        <Route path="/gallery" component={FullGallery} />
+        <Route component={NotFound} />
+      </Switch>
+    </Suspense>
+  );
+}
+
+export default function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Router />
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+}
+
+═══════════════════════════════════════════════════════════════
+TASK 4: Optimize Gallery Component with Lazy Loading
+═══════════════════════════════════════════════════════════════
+
+Replace client/src/components/Gallery.tsx with the optimized version from the attached file (includes OptimizedImage component with loading states, error handling, and lazy loading)
+
+═══════════════════════════════════════════════════════════════
+TASK 5: Add Image Lazy Loading to Other Pages
+═══════════════════════════════════════════════════════════════
+
+Add this OptimizedImage component to LiceTreatment.tsx and GlamourParties.tsx pages:
+
+// Add at the top of each file (after imports)
+function OptimizedImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
+  return (
+    <img src={src} alt={alt} className={className} loading="lazy" decoding="async" />
+  );
+}
+
+// Then replace any <img> tags with <OptimizedImage>
+
+═══════════════════════════════════════════════════════════════
+TASK 6: Update Sitemap with Production URLs
+═══════════════════════════════════════════════════════════════
+
+Replace client/public/sitemap.xml with:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.theyellowballoonmaryland.com/</loc>
+    <lastmod>2025-01-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.theyellowballoonmaryland.com/lice-treatment</loc>
+    <lastmod>2025-01-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.theyellowballoonmaryland.com/glamour-parties</loc>
+    <lastmod>2025-01-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.theyellowballoonmaryland.com/gallery</loc>
+    <lastmod>2025-01-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+</urlset>
