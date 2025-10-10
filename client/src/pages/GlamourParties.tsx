@@ -213,9 +213,9 @@ export default function GlamourParties() {
                     <p>• Deposit: $150 non-refundable deposit required to reserve</p>
                   </div>
                   
-                  <div className="text-left max-w-md mx-auto">
+                  <div className="max-w-md mx-auto">
                     <h4 className="font-semibold mb-3 text-center">Includes:</h4>
-                    <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                    <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm max-w-sm mx-auto text-left">
                       <p>• Styling and up-dos</p>
                       <p>• Nail polish application</p>
                       <p>• Glitter hair spray</p>
