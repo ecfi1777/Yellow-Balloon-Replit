@@ -153,6 +153,9 @@ export default function GlamourParties() {
                         <img
                           src={glamourPartyImages[currentImageIndex].src}
                           alt={glamourPartyImages[currentImageIndex].alt}
+                          width={glamourPartyImages[currentImageIndex].width}
+                          height={glamourPartyImages[currentImageIndex].height}
+                          loading="eager"
                           className="w-auto h-auto max-w-full max-h-[500px] object-contain transition-all duration-1000 ease-in-out"
                           data-testid="img-glamour-carousel"
                         />

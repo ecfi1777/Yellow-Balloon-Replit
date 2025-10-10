@@ -85,6 +85,9 @@ export default function Hero() {
                   <img
                     src={galleryImages[currentImageIndex].src}
                     alt={galleryImages[currentImageIndex].alt}
+                    width={galleryImages[currentImageIndex].width}
+                    height={galleryImages[currentImageIndex].height}
+                    loading="eager"
                     className="w-auto h-auto max-w-full max-h-[500px] object-contain transition-all duration-1000 ease-in-out"
                     data-testid="img-hero"
                   />

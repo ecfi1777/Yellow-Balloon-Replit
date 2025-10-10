@@ -21,22 +21,32 @@ export const ImageGrid: React.FC<Props> = ({
 
   return (
     <div className={className} style={{ display: "grid", gridTemplateColumns: gridTemplate, gap }}>
-      {toShow.map((img) => (
-        <div key={img.src} style={{ width: "100%", position: "relative" }}>
-          <div style={{ position: "relative", width: "100%", paddingBottom: "66%", overflow: "hidden", borderRadius: 10 }}>
-            <img
-              src={img.src}
-              alt={img.alt ?? ""}
-              loading="lazy"
-              decoding="async"
-              style={{
-                position: "absolute", inset: 0,
-                width: "100%", height: "100%", objectFit: "cover"
-              }}
-            />
+      {toShow.map((img) => {
+        // Calculate aspect ratio from width/height if available, default to 3:2
+        const aspectRatio = img.width && img.height 
+          ? (img.height / img.width) * 100 
+          : 66;
+        
+        return (
+          <div key={img.src} style={{ width: "100%", position: "relative" }}>
+            <div style={{ position: "relative", width: "100%", paddingBottom: `${aspectRatio}%`, overflow: "hidden", borderRadius: 10 }}>
+              <img
+                src={img.src}
+                alt={img.alt ?? ""}
+                width={img.width}
+                height={img.height}
+                loading="lazy"
+                decoding="async"
+                style={{
+                  position: "absolute", inset: 0,
+                  width: "100%", height: "100%", objectFit: "cover"
+                }}
+                data-testid={`img-${img.src.split('/').pop()?.split('.')[0]}`}
+              />
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };

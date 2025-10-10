@@ -114,6 +114,9 @@ export default function LiceTreatment() {
                         <img
                           src={liceTreatmentImages[currentImageIndex].src}
                           alt={liceTreatmentImages[currentImageIndex].alt}
+                          width={liceTreatmentImages[currentImageIndex].width}
+                          height={liceTreatmentImages[currentImageIndex].height}
+                          loading="eager"
                           className="w-auto h-auto max-w-full max-h-[500px] object-contain transition-all duration-1000 ease-in-out"
                           data-testid="img-lice-carousel"
                         />
