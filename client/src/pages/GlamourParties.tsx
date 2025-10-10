@@ -215,7 +215,7 @@ export default function GlamourParties() {
                   
                   <div className="text-left max-w-md mx-auto">
                     <h4 className="font-semibold mb-3 text-center">Includes:</h4>
-                    <div className="space-y-2 text-sm">
+                    <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
                       <p>• Styling and up-dos</p>
                       <p>• Nail polish application</p>
                       <p>• Glitter hair spray</p>
