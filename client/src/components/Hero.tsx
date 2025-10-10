@@ -80,12 +80,12 @@ export default function Hero() {
 
           <div className="relative">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-gradient-to-r from-primary via-accent to-secondary p-1 bg-gradient-to-r from-primary via-accent to-secondary">
-              <div className="rounded-2xl overflow-hidden bg-white">
+              <div className="rounded-2xl overflow-hidden bg-gradient-to-br from-primary/20 via-accent/30 to-secondary/20">
                 <div className="w-full h-[400px] relative">
                   <img
                     src={galleryImages[currentImageIndex].src}
                     alt={galleryImages[currentImageIndex].alt}
-                    className="w-full h-full object-cover transition-all duration-1000 ease-in-out"
+                    className="w-full h-full object-contain transition-all duration-1000 ease-in-out"
                     data-testid="img-hero"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
