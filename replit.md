@@ -65,6 +65,12 @@ Preferred communication style: Simple, everyday language.
 - **Logo Asset**: Yellow balloon logo stored in `client/public/assets/`
 - **Image Management**: Single source of truth via `client/src/data/galleries.ts` for all gallery images
 - **Font Integration**: Google Fonts (Poppins) via CDN
+- **Image Optimization**:
+  - All gallery images have descriptive, specific alt text for accessibility
+  - Width/height attributes (1200x800) prevent layout shift during loading
+  - Lazy loading for gallery grid images (below fold)
+  - Eager loading for hero carousel images (above fold)
+  - Async decoding for non-blocking rendering
 
 ### Form and Data Management
 - **React Hook Form**: Form handling with validation
