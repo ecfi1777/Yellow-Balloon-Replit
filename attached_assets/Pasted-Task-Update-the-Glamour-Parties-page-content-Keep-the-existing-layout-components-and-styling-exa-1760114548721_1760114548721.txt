@@ -1,0 +1,88 @@
+Task: Update the Glamour Parties page content. Keep the existing layout, components, and styling exactly the same. Only change text and add one new section as described.
+
+Target route/file: The page rendered at /glamour-parties (e.g., pages/glamour-parties.* or the equivalent component).
+
+1) ADD NEW SECTION (below “What’s Included” and above “Party Details & Pricing”)
+
+Add a new section titled “Choose Your Glamour Style” using the same 3- or 4-column card/grid component already used on this page for feature boxes. Create three cards with the following copy (bulleted lists should render as simple bullets—no numbering):
+
+Card 1 — The Fairy Princess
+
+Hair Updo or Fancy Hairstyle
+
+Polish fingernails
+
+Theme decorations: balloons, cups & plates
+
+Games
+
+Music
+
+Card 2 — The Pop Star
+
+Funky updo with temporary color
+
+Polish fingernails
+
+Theme decorations: balloons, cups & plates
+
+Games
+
+Music
+
+Card 3 — Hawaiian Luau
+
+Hair braid with beads
+
+Hawaiian flower clips
+
+Polish fingernails
+
+Theme decorations: balloons, cups & plates
+
+Limbo
+
+Games
+
+Music
+
+Keep spacing, fonts, and icons consistent with the site. If the component supports icons, use existing icon styles; otherwise text-only is fine.
+
+2) EDIT EXISTING “Party Details & Pricing” BOX
+
+Replace the current pricing text with:
+
+Heading: Glamour Party Packages
+Price line: $720 for up to 12 kids
+Notes (bullets or small inline tags):
+
+Each additional child: $55
+
+Party times: Saturday or Sunday nights, 5:30 pm – 7:00 pm
+
+Deposit: $150 non-refundable deposit required to reserve
+
+Remove any references to “$35 per child,” “minimum 4 children required,” and keep the general “Includes” list and duration note if it still applies (1.5–2 hours is fine). Keep the “We provide all styling tools and accessories” line.
+
+3) EDIT “How It Works” STEPS
+
+Step 1 (Book Your Party): Remove “Minimum 4 children required.”
+New text: “Call us to schedule your glamour party and reserve your date with a $150 deposit.”
+
+Steps 2 and 3 stay the same.
+
+4) KEEP EVERYTHING ELSE AS-IS
+
+Header, “What’s Included,” CTA blocks, gallery, address, hours, and general “fun” copy remain unchanged.
+
+Acceptance Criteria
+
+New “Choose Your Glamour Style” section appears between “What’s Included” and “Party Details & Pricing,” matching the site’s existing card/grid styling.
+
+Pricing box shows $720 up to 12 kids, $55 each additional, Sat/Sun 5:30–7:00 pm, and $150 deposit required.
+
+No mentions of “$35 per child” or “minimum 4 children required” remain anywhere on the page.
+
+“How It Works” Step 1 mentions the deposit; other steps unchanged.
+
+No layout, spacing, typography, or color changes beyond the text updates and the one new section.

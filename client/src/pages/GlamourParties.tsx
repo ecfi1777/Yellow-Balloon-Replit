@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Sparkles, Phone, Users, Camera, Star, MapPin, Clock } from "lucide-react";
+import { Sparkles, Phone, Users, Camera, Star, MapPin, Clock, Wand2, Music, Flower } from "lucide-react";
 import { Link } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -31,6 +31,44 @@ export default function GlamourParties() {
       icon: <Star className="w-6 h-6" />,
       title: "Confidence Building",
       description: "Every child feels like a star with our special attention"
+    }
+  ];
+
+  const glamourStyles = [
+    {
+      icon: <Wand2 className="w-6 h-6" />,
+      title: "The Fairy Princess",
+      items: [
+        "Hair Updo or Fancy Hairstyle",
+        "Polish fingernails",
+        "Theme decorations: balloons, cups & plates",
+        "Games",
+        "Music"
+      ]
+    },
+    {
+      icon: <Music className="w-6 h-6" />,
+      title: "The Pop Star",
+      items: [
+        "Funky updo with temporary color",
+        "Polish fingernails",
+        "Theme decorations: balloons, cups & plates",
+        "Games",
+        "Music"
+      ]
+    },
+    {
+      icon: <Flower className="w-6 h-6" />,
+      title: "Hawaiian Luau",
+      items: [
+        "Hair braid with beads",
+        "Hawaiian flower clips",
+        "Polish fingernails",
+        "Theme decorations: balloons, cups & plates",
+        "Limbo",
+        "Games",
+        "Music"
+      ]
     }
   ];
 
@@ -128,6 +166,32 @@ export default function GlamourParties() {
           </div>
         </section>
 
+        {/* Choose Your Glamour Style */}
+        <section className="py-16 lg:py-24 bg-gradient-to-b from-secondary/10 to-accent/15">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl lg:text-4xl font-bold text-center mb-12">Choose Your Glamour Style</h2>
+            <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+              {glamourStyles.map((style, index) => (
+                <Card key={index} className="text-center hover-elevate transition-all duration-300" data-testid={`card-style-${index}`}>
+                  <CardHeader>
+                    <div className="mx-auto w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
+                      {style.icon}
+                    </div>
+                    <CardTitle className="text-lg">{style.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="text-muted-foreground text-sm leading-relaxed space-y-2 text-left">
+                      {style.items.map((item, itemIndex) => (
+                        <li key={itemIndex}>• {item}</li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Pricing & Details */}
         <section className="py-16 lg:py-24 bg-gradient-to-b from-accent/10 to-primary/15">
           <div className="container mx-auto px-4">
@@ -138,12 +202,16 @@ export default function GlamourParties() {
                 <CardHeader className="text-center">
                   <CardTitle className="flex items-center justify-center gap-2 text-2xl">
                     <Sparkles className="w-6 h-6 text-primary" />
-                    Glamour Party Package
+                    Glamour Party Packages
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="text-center">
-                  <div className="text-4xl font-bold text-primary mb-4">$35 <span className="text-lg font-normal text-muted-foreground">per child</span></div>
-                  <Badge variant="secondary" className="mb-6">Minimum 4 children required</Badge>
+                  <div className="text-4xl font-bold text-primary mb-4">$720 <span className="text-lg font-normal text-muted-foreground">for up to 12 kids</span></div>
+                  <div className="space-y-2 text-sm text-muted-foreground mb-6">
+                    <p>• Each additional child: $55</p>
+                    <p>• Party times: Saturday or Sunday nights, 5:30 pm – 7:00 pm</p>
+                    <p>• Deposit: $150 non-refundable deposit required to reserve</p>
+                  </div>
                   
                   <div className="text-left max-w-md mx-auto">
                     <h4 className="font-semibold mb-3 text-center">Includes:</h4>
@@ -180,7 +248,7 @@ export default function GlamourParties() {
                 <div className="space-y-4">
                   <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto">1</div>
                   <h3 className="font-semibold">Book Your Party</h3>
-                  <p className="text-muted-foreground text-sm">Call us to schedule your glamour party. Minimum 4 children required.</p>
+                  <p className="text-muted-foreground text-sm">Call us to schedule your glamour party and reserve your date with a $150 deposit.</p>
                 </div>
                 <div className="space-y-4">
                   <div className="w-12 h-12 bg-accent rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto">2</div>
