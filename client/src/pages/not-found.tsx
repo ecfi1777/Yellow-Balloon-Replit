@@ -58,20 +58,26 @@ export default function NotFound() {
         <div className="mt-12 pt-8 border-t border-border/50">
           <p className="text-sm text-muted-foreground mb-4">Quick Links:</p>
           <div className="flex flex-wrap justify-center gap-4 text-sm">
-            <Link href="/glamour-parties">
-              <a className="text-primary hover:underline" data-testid="link-glamour-parties">
-                Glamour Parties
-              </a>
+            <Link 
+              href="/glamour-parties" 
+              className="text-primary hover:underline" 
+              data-testid="link-glamour-parties"
+            >
+              Glamour Parties
             </Link>
-            <Link href="/lice-treatment">
-              <a className="text-primary hover:underline" data-testid="link-lice-treatment">
-                Lice Treatment
-              </a>
+            <Link 
+              href="/lice-treatment" 
+              className="text-primary hover:underline" 
+              data-testid="link-lice-treatment"
+            >
+              Lice Treatment
             </Link>
-            <Link href="/gallery">
-              <a className="text-primary hover:underline" data-testid="link-gallery">
-                Photo Gallery
-              </a>
+            <Link 
+              href="/gallery" 
+              className="text-primary hover:underline" 
+              data-testid="link-gallery"
+            >
+              Photo Gallery
             </Link>
           </div>
         </div>
