@@ -22,13 +22,7 @@ export const mainGalleryImages: GalleryImage[] = [
 ];
 
 export const glamourPartyImages: GalleryImage[] = [
-  { src: "/assets/gallery/glamour/Glamour_party_styling_photo_1558caf6.png", alt: "Girl enjoying glamour party makeover with updo styling" },
-  { src: "/assets/gallery/glamour/Special_occasion_styling_photo_50692872.png", alt: "Special occasion hair styling with elaborate updo" },
-  { src: "/assets/gallery/glamour/Glamour_party_celebration_5e0f28c4.png", alt: "Glamour party celebration with kids getting styled" },
-  { src: "/assets/gallery/glamour/Group_glamour_party_photo_fc0c14de.png", alt: "Group glamour party with multiple children getting styling services" },
-  { src: "/assets/gallery/glamour/Special_occasion_hair_styling_5e630398.png", alt: "Special occasion hair styling service" },
-  { src: "/assets/gallery/glamour/Stylish_braids_hair_accessories_d6e2089c.png", alt: "Stylish braids with fun hair accessories" },
-  { src: "/assets/gallery/glamour/Creative_ponytails_styling_kids_be3c5733.png", alt: "Creative ponytails and fun styling for kids" },
+  { src: "/assets/gallery/glamour/glamour_party_updo_styling.png", alt: "Beautiful glamour party updo styling with curls at The Yellow Balloon" },
 ];
 
 export const liceTreatmentImages: GalleryImage[] = [
