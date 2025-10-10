@@ -1,14 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Phone, MapPin, Clock } from "lucide-react";
 import { useState, useEffect } from "react";
-import { mainGalleryImages, glamourPartyImages, firstHaircutImages } from "@/data/galleries";
+import { mainGalleryImages } from "@/data/galleries";
 
 export default function Hero() {
-  const galleryImages = [
-    ...mainGalleryImages,
-    ...glamourPartyImages,
-    ...firstHaircutImages
-  ];
+  const galleryImages = mainGalleryImages;
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
