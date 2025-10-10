@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Sparkles, Phone, Users, Camera, Star, MapPin, Clock, Wand2, Music, Flower, ChevronLeft, ChevronRight } from "lucide-react";
+import { Sparkles, Phone, Users, Camera, Star, MapPin, Clock, Wand2, Music, Flower } from "lucide-react";
 import { Link } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -13,13 +13,13 @@ import { glamourPartyImages } from "@/data/galleries";
 export default function GlamourParties() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % glamourPartyImages.length);
-  };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % glamourPartyImages.length);
+    }, 3000); // Change image every 3 seconds
 
-  const previousImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + glamourPartyImages.length) % glamourPartyImages.length);
-  };
+    return () => clearInterval(interval);
+  }, [glamourPartyImages.length]);
 
   const features = [
     {
@@ -153,50 +153,28 @@ export default function GlamourParties() {
                         <img
                           src={glamourPartyImages[currentImageIndex].src}
                           alt={glamourPartyImages[currentImageIndex].alt}
-                          className="w-auto h-auto max-w-full max-h-[500px] object-contain"
-                          loading="eager"
+                          className="w-auto h-auto max-w-full max-h-[500px] object-contain transition-all duration-1000 ease-in-out"
                           data-testid="img-glamour-carousel"
                         />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
                       </div>
                     </div>
                   </div>
-
-                  {glamourPartyImages.length > 1 && (
-                    <>
+                  {/* Image indicators */}
+                  <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+                    {glamourPartyImages.map((_, index) => (
                       <button
-                        onClick={previousImage}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover-elevate active-elevate-2 text-primary rounded-full p-2 shadow-lg transition-all duration-200 z-10"
-                        aria-label="Previous image"
-                        data-testid="button-prev-image"
-                      >
-                        <ChevronLeft className="w-6 h-6" />
-                      </button>
-                      <button
-                        onClick={nextImage}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover-elevate active-elevate-2 text-primary rounded-full p-2 shadow-lg transition-all duration-200 z-10"
-                        aria-label="Next image"
-                        data-testid="button-next-image"
-                      >
-                        <ChevronRight className="w-6 h-6" />
-                      </button>
-
-                      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-                        {glamourPartyImages.map((_, index) => (
-                          <button
-                            key={index}
-                            onClick={() => setCurrentImageIndex(index)}
-                            className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                              index === currentImageIndex
-                                ? "bg-white w-8"
-                                : "bg-white/50 hover:bg-white/75"
-                            }`}
-                            aria-label={`Go to image ${index + 1}`}
-                            data-testid={`indicator-${index}`}
-                          />
-                        ))}
-                      </div>
-                    </>
-                  )}
+                        key={index}
+                        className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                          index === currentImageIndex 
+                            ? 'bg-white shadow-lg scale-125' 
+                            : 'bg-white/50 hover:bg-white/75'
+                        }`}
+                        onClick={() => setCurrentImageIndex(index)}
+                        data-testid={`indicator-${index}`}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>

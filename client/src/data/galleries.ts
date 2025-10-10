@@ -22,7 +22,9 @@ export const mainGalleryImages: GalleryImage[] = [
 ];
 
 export const glamourPartyImages: GalleryImage[] = [
-  { src: "/assets/gallery/glamour/glamour_party_updo_styling.png", alt: "Beautiful glamour party updo styling with curls at The Yellow Balloon" },
+  { src: "/assets/gallery/glamour/glamour_party_updo_styling.png", alt: "Glamour - Beautiful updo styling with curls at The Yellow Balloon" },
+  { src: "/assets/gallery/glamour/glamour_blue_bow_hairstyle.jpg", alt: "Glamour - Stunning blue bow hairstyle with sparkles and curls" },
+  { src: "/assets/gallery/glamour/glamour_braid_glitter.jpg", alt: "Glamour - Elegant braid with glitter for glamour party styling" },
 ];
 
 export const liceTreatmentImages: GalleryImage[] = [
