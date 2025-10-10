@@ -3,12 +3,7 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import NotFound from "@/pages/not-found";
-import LiceTreatment from "@/pages/LiceTreatment";
-import GlamourParties from "@/pages/GlamourParties";
-import MainGalleryPage from "@/pages/Gallery/MainGalleryPage";
-import GlamourPartiesGalleryPage from "@/pages/Gallery/GlamourPartiesGalleryPage";
-import LiceTreatmentGalleryPage from "@/pages/Gallery/LiceTreatmentGalleryPage";
+import { lazy, Suspense } from 'react';
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
@@ -20,6 +15,14 @@ import { mainGalleryImages } from "@/data/galleries";
 import Reviews from "@/components/Reviews";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+
+// Lazy load heavy pages
+const NotFound = lazy(() => import("@/pages/not-found"));
+const LiceTreatment = lazy(() => import("@/pages/LiceTreatment"));
+const GlamourParties = lazy(() => import("@/pages/GlamourParties"));
+const MainGalleryPage = lazy(() => import("@/pages/Gallery/MainGalleryPage"));
+const GlamourPartiesGalleryPage = lazy(() => import("@/pages/Gallery/GlamourPartiesGalleryPage"));
+const LiceTreatmentGalleryPage = lazy(() => import("@/pages/Gallery/LiceTreatmentGalleryPage"));
 
 function Home() {
   return (
@@ -47,15 +50,17 @@ function Home() {
 
 function Router() {
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/lice-treatment" component={LiceTreatment} />
-      <Route path="/glamour-parties" component={GlamourParties} />
-      <Route path="/gallery/glamour-parties" component={GlamourPartiesGalleryPage} />
-      <Route path="/gallery/lice-treatment" component={LiceTreatmentGalleryPage} />
-      <Route path="/gallery" component={MainGalleryPage} />
-      <Route component={NotFound} />
-    </Switch>
+    <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/lice-treatment" component={LiceTreatment} />
+        <Route path="/glamour-parties" component={GlamourParties} />
+        <Route path="/gallery/glamour-parties" component={GlamourPartiesGalleryPage} />
+        <Route path="/gallery/lice-treatment" component={LiceTreatmentGalleryPage} />
+        <Route path="/gallery" component={MainGalleryPage} />
+        <Route component={NotFound} />
+      </Switch>
+    </Suspense>
   );
 }
 
