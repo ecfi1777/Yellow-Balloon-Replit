@@ -26,9 +26,9 @@ export const glamourPartyImages: GalleryImage[] = [
 ];
 
 export const liceTreatmentImages: GalleryImage[] = [
-  { src: "/assets/gallery/lice/professional_lice_treatment.png", alt: "Expert lice screening and treatment services for children" },
-  { src: "/assets/gallery/lice/lice_treatment_comb.png", alt: "Professional lice treatment comb technique at The Yellow Balloon" },
-  { src: "/assets/gallery/lice/rosemary_repel_prevention.png", alt: "Rosemary Repel natural lice prevention products available" },
+  { src: "/assets/gallery/lice/professional_lice_treatment.png", alt: "Lice - Expert screening and treatment services for children" },
+  { src: "/assets/gallery/lice/lice_treatment_comb.png", alt: "Lice - Professional treatment comb technique at The Yellow Balloon" },
+  { src: "/assets/gallery/lice/rosemary_repel_prevention.png", alt: "Lice - Rosemary Repel natural prevention products available" },
 ];
 
 export const firstHaircutImages: GalleryImage[] = [
