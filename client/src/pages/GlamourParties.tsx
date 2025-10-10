@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import { ImageGrid } from "@/components/ImageGrid";
 import { ViewMoreButton } from "@/components/ViewMoreButton";
 import { glamourPartyImages } from "@/data/galleries";
+import { SEO } from "@/components/SEO";
 
 export default function GlamourParties() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -85,6 +86,13 @@ export default function GlamourParties() {
 
   return (
     <div className="min-h-screen">
+      <SEO 
+        title="Glamour Parties | The Yellow Balloon Kids Hair Salon"
+        description="Confidence-boosting styling parties with up-dos, nail polish, and glitter. $720 for up to 12 kids. Perfect for birthdays and celebrations in Gaithersburg, MD."
+        keywords="kids glamour party Gaithersburg, children's styling party, beauty party Montgomery County, kids makeover party"
+        ogUrl="https://www.theyellowballoonmaryland.com/glamour-parties"
+        canonicalUrl="https://www.theyellowballoonmaryland.com/glamour-parties"
+      />
       <Header />
       <main>
         {/* Hero Section */}

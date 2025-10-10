@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import { ImageGrid } from "@/components/ImageGrid";
 import { ViewMoreButton } from "@/components/ViewMoreButton";
 import { liceTreatmentImages } from "@/data/galleries";
+import { SEO } from "@/components/SEO";
 
 export default function LiceTreatment() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -46,6 +47,13 @@ export default function LiceTreatment() {
 
   return (
     <div className="min-h-screen">
+      <SEO 
+        title="Lice Treatment & Screening | The Yellow Balloon Kids Salon"
+        description="Private, professional lice screening ($25) and treatment ($85/hour) with school-accepted documentation. Confidential care in Gaithersburg, MD. Call (301) 569-6756."
+        keywords="lice treatment Gaithersburg, lice screening Montgomery County, professional lice removal, kids lice treatment"
+        ogUrl="https://www.theyellowballoonmaryland.com/lice-treatment"
+        canonicalUrl="https://www.theyellowballoonmaryland.com/lice-treatment"
+      />
       <Header />
       <main>
         {/* Hero Section */}
