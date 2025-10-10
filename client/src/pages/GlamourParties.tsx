@@ -1,16 +1,26 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Sparkles, Phone, Users, Camera, Star, MapPin, Clock, Wand2, Music, Flower } from "lucide-react";
+import { Sparkles, Phone, Users, Camera, Star, MapPin, Clock, Wand2, Music, Flower, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { GalleryCarousel } from "@/components/GalleryCarousel";
 import { ImageGrid } from "@/components/ImageGrid";
 import { ViewMoreButton } from "@/components/ViewMoreButton";
 import { glamourPartyImages } from "@/data/galleries";
 
 export default function GlamourParties() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % glamourPartyImages.length);
+  };
+
+  const previousImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + glamourPartyImages.length) % glamourPartyImages.length);
+  };
+
   const features = [
     {
       icon: <Sparkles className="w-6 h-6" />,
@@ -137,7 +147,56 @@ export default function GlamourParties() {
                 </div>
 
                 <div className="relative">
-                  <GalleryCarousel images={glamourPartyImages} className="rounded-3xl overflow-hidden shadow-2xl" />
+                  <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-gradient-to-r from-primary via-accent to-secondary p-1 bg-gradient-to-r from-primary via-accent to-secondary">
+                    <div className="rounded-2xl overflow-hidden bg-gradient-to-br from-primary/10 via-accent/15 to-secondary/10">
+                      <div className="w-full relative flex items-center justify-center min-h-[300px] max-h-[500px]">
+                        <img
+                          src={glamourPartyImages[currentImageIndex].src}
+                          alt={glamourPartyImages[currentImageIndex].alt}
+                          className="w-auto h-auto max-w-full max-h-[500px] object-contain"
+                          loading="eager"
+                          data-testid="img-glamour-carousel"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {glamourPartyImages.length > 1 && (
+                    <>
+                      <button
+                        onClick={previousImage}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover-elevate active-elevate-2 text-primary rounded-full p-2 shadow-lg transition-all duration-200 z-10"
+                        aria-label="Previous image"
+                        data-testid="button-prev-image"
+                      >
+                        <ChevronLeft className="w-6 h-6" />
+                      </button>
+                      <button
+                        onClick={nextImage}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover-elevate active-elevate-2 text-primary rounded-full p-2 shadow-lg transition-all duration-200 z-10"
+                        aria-label="Next image"
+                        data-testid="button-next-image"
+                      >
+                        <ChevronRight className="w-6 h-6" />
+                      </button>
+
+                      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                        {glamourPartyImages.map((_, index) => (
+                          <button
+                            key={index}
+                            onClick={() => setCurrentImageIndex(index)}
+                            className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                              index === currentImageIndex
+                                ? "bg-white w-8"
+                                : "bg-white/50 hover:bg-white/75"
+                            }`}
+                            aria-label={`Go to image ${index + 1}`}
+                            data-testid={`indicator-${index}`}
+                          />
+                        ))}
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
