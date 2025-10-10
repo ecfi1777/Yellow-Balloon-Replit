@@ -11,7 +11,7 @@ export type GalleryImage = {
  */
 
 export const mainGalleryImages: GalleryImage[] = [
-  { src: "/assets/gallery/home/baby_boy_first_haircut.jpg", alt: "Baby boy getting his first haircut at The Yellow Balloon" },
+  { src: "/assets/gallery/home/baby_boy_first_haircut.png", alt: "Baby boy getting his first haircut at The Yellow Balloon" },
   { src: "/assets/gallery/home/boy_green_temporary_color.jpg", alt: "Boy with fun green temporary hair color at The Yellow Balloon salon" },
   { src: "/assets/gallery/home/boys_haircut_back_view.jpg", alt: "Professional boy's haircut with clean fade - back view" },
   { src: "/assets/gallery/home/boys_haircut_side_view.jpg", alt: "Professional boy's haircut with clean fade - side view" },
@@ -36,7 +36,7 @@ export const liceTreatmentImages: GalleryImage[] = [
 ];
 
 export const firstHaircutImages: GalleryImage[] = [
-  { src: "/assets/gallery/home/baby_boy_first_haircut.jpg", alt: "Baby boy getting his first haircut at The Yellow Balloon" },
+  { src: "/assets/gallery/home/baby_boy_first_haircut.png", alt: "Baby boy getting his first haircut at The Yellow Balloon" },
   { src: "/assets/gallery/home/baby_getting_haircut.jpg", alt: "Baby getting haircut at The Yellow Balloon" },
   { src: "/assets/gallery/other/Happy_toddler_first_haircut_0364c47d.png", alt: "Happy toddler during first haircut experience" },
   { src: "/assets/gallery/other/Toddler_first_haircut_milestone_e5fcc8a3.png", alt: "Celebrating the first haircut milestone" },
