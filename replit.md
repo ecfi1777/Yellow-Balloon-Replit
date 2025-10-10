@@ -93,3 +93,21 @@ Preferred communication style: Simple, everyday language.
   - Gallery pages: Photo gallery with service-specific keywords
   - Service pages: Pricing and service details in descriptions
   - All pages include location (Gaithersburg, MD) for local SEO
+
+### Error Handling and User Experience
+- **Custom 404 Page** (`client/src/pages/not-found.tsx`): Branded error page with:
+  - Animated Yellow Balloon logo with bouncing animation
+  - Friendly message "This page flew away with a balloon!"
+  - Action buttons to return home or contact salon
+  - Quick links to main service pages
+  - SEO metadata for 404 pages
+- **Error Boundary** (`client/src/components/ErrorBoundary.tsx`): Application-level error handling
+  - Catches runtime errors and displays friendly recovery screen
+  - Provides "Refresh Page" and "Go Back Home" options
+  - Shows error details in development mode only
+  - Wraps entire application in App.tsx
+- **Loading States** (`client/src/components/Loading.tsx`): Consistent loading experience
+  - Full-page loading screen with animated Yellow Balloon
+  - Smaller LoadingSpinner component for inline use
+  - Used in Suspense fallback for lazy-loaded routes
+  - Matches Yellow Balloon branding and color scheme
