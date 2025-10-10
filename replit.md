@@ -111,3 +111,32 @@ Preferred communication style: Simple, everyday language.
   - Smaller LoadingSpinner component for inline use
   - Used in Suspense fallback for lazy-loaded routes
   - Matches Yellow Balloon branding and color scheme
+
+## Project Documentation
+
+### README.md
+- **Location**: Root directory (`README.md`)
+- **Purpose**: Comprehensive project documentation for developers
+- **Contents**:
+  - Project overview and features
+  - Complete tech stack (React, Vite, Express, TypeScript, Tailwind, Drizzle ORM)
+  - Prerequisites (Node.js 18+)
+  - Step-by-step installation and setup instructions
+  - Available npm scripts (dev, build, start, check, db:push)
+  - Database setup with Drizzle ORM
+  - Deployment guide (Replit and manual deployment)
+  - Project structure overview
+  - Design system details (colors, typography, layout)
+  - SEO features summary
+  - Services offered and contact information
+  - Live website link: https://www.theyellowballoonmaryland.com
+
+### .env.example
+- **Location**: Root directory (`.env.example`)
+- **Purpose**: Template for environment variables configuration
+- **Environment Variables**:
+  - `DATABASE_URL`: PostgreSQL connection string (Neon serverless database)
+  - `PORT`: Express server port (default: 5000)
+  - `NODE_ENV`: Environment mode (development/production/test)
+  - Optional Replit variables (REPL_ID, REPLIT_DB_URL)
+- **Usage**: Copy to `.env` and update with actual values for local development
