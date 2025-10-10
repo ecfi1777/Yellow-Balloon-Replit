@@ -76,3 +76,20 @@ Preferred communication style: Simple, everyday language.
 - **React Hook Form**: Form handling with validation
 - **TanStack Query**: Server state management and caching
 - **Zod**: Schema validation integrated with Drizzle
+
+### SEO and Search Optimization
+- **LocalBusiness JSON-LD Schema**: Comprehensive structured data in `client/index.html` with:
+  - Business name, address, phone, geo-coordinates
+  - Price range ($$) and service offerings with pricing
+  - Opening hours and area served (Gaithersburg, Potomac, Germantown, Montgomery County)
+- **SEO Component** (`client/src/components/SEO.tsx`): Reusable component for page-specific metadata
+  - Dynamic title, description, and keywords
+  - OpenGraph tags (og:title, og:description, og:image, og:url)
+  - Twitter Card tags for social media sharing
+  - Canonical URLs for each page
+- **Sitemap & Robots**: `client/public/sitemap.xml` and `client/public/robots.txt` configured
+- **Page-Specific SEO**: Each route has unique, optimized metadata:
+  - Homepage: General salon information
+  - Gallery pages: Photo gallery with service-specific keywords
+  - Service pages: Pricing and service details in descriptions
+  - All pages include location (Gaithersburg, MD) for local SEO
