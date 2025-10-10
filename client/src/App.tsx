@@ -17,6 +17,15 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { Loading } from "@/components/Loading";
+import Plausible from 'plausible-tracker';
+
+// Initialize Plausible Analytics once at module scope (privacy-friendly, no cookies)
+const { enableAutoPageviews } = Plausible({
+  domain: 'theyellowballoonmaryland.com'
+});
+
+// Enable automatic pageview tracking for all routes
+enableAutoPageviews();
 
 // Lazy load heavy pages
 const NotFound = lazy(() => import("@/pages/not-found"));

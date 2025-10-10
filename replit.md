@@ -77,6 +77,15 @@ Preferred communication style: Simple, everyday language.
 - **TanStack Query**: Server state management and caching
 - **Zod**: Schema validation integrated with Drizzle
 
+### Analytics and Privacy
+- **Plausible Analytics** (`plausible-tracker`): Privacy-friendly, GDPR-compliant web analytics
+  - No cookies used - fully privacy-compliant
+  - No personal data collection
+  - Automatic page view tracking for all routes
+  - Configured in `client/src/App.tsx` with domain: theyellowballoonmaryland.com
+  - No consent banner required (cookie-free tracking)
+  - Lightweight script (<1KB) with minimal performance impact
+
 ### SEO and Search Optimization
 - **LocalBusiness JSON-LD Schema**: Comprehensive structured data in `client/index.html` with:
   - Business name, address, phone, geo-coordinates
