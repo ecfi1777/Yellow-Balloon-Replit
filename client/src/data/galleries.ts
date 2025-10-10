@@ -11,15 +11,14 @@ export type GalleryImage = {
  */
 
 export const mainGalleryImages: GalleryImage[] = [
-  { src: "/assets/gallery/home/First_haircut_salon_photo_93504202.png", alt: "Child getting their first haircut at The Yellow Balloon salon" },
-  { src: "/assets/gallery/home/Boy_haircut_salon_photo_f149f7c7.png", alt: "Young boy watching cartoons while getting a haircut" },
-  { src: "/assets/gallery/home/Toddler_first_haircut_photo_84ad34eb.png", alt: "Toddler's milestone first haircut" },
-  { src: "/assets/gallery/home/School_boy_haircut_photo_358e2981.png", alt: "School-age boy receiving professional haircut" },
-  { src: "/assets/gallery/home/Happy_children_haircut_results_7e382cdb.png", alt: "Happy children showing their new haircuts" },
-  { src: "/assets/gallery/home/Hair_braiding_salon_photo_81cddccf.png", alt: "Professional hair braiding and styling service" },
-  { src: "/assets/gallery/home/Happy_child_salon_haircut_f1c818df.png", alt: "Happy child getting a haircut at the salon" },
-  { src: "/assets/gallery/home/Professional_haircut_service_kids_5811798d.png", alt: "Professional haircut service for kids" },
-  { src: "/assets/gallery/home/Excited_kids_new_hairstyles_e26ee95e.png", alt: "Excited kids showing off their new hairstyles" },
+  { src: "/assets/gallery/home/baby_boy_first_haircut.jpg", alt: "Baby boy getting his first haircut at The Yellow Balloon" },
+  { src: "/assets/gallery/home/boy_green_temporary_color.jpg", alt: "Boy with fun green temporary hair color at The Yellow Balloon salon" },
+  { src: "/assets/gallery/home/boys_haircut_back_view.jpg", alt: "Professional boy's haircut with clean fade - back view" },
+  { src: "/assets/gallery/home/boys_haircut_side_view.jpg", alt: "Professional boy's haircut with clean fade - side view" },
+  { src: "/assets/gallery/home/stylist_cutting_hair.jpg", alt: "Professional stylist cutting child's hair at The Yellow Balloon" },
+  { src: "/assets/gallery/home/baby_getting_haircut.jpg", alt: "Baby getting haircut at The Yellow Balloon with yellow balloon decoration" },
+  { src: "/assets/gallery/home/yellow_balloon_staff_1.jpeg", alt: "The Yellow Balloon professional salon staff" },
+  { src: "/assets/gallery/home/yellow_balloon_staff_2.jpeg", alt: "The Yellow Balloon team providing quality haircuts" },
 ];
 
 export const glamourPartyImages: GalleryImage[] = [
@@ -37,8 +36,8 @@ export const liceTreatmentImages: GalleryImage[] = [
 ];
 
 export const firstHaircutImages: GalleryImage[] = [
-  { src: "/assets/gallery/home/First_haircut_salon_photo_93504202.png", alt: "Child's first haircut at The Yellow Balloon" },
-  { src: "/assets/gallery/home/Toddler_first_haircut_photo_84ad34eb.png", alt: "Toddler getting their first haircut" },
+  { src: "/assets/gallery/home/baby_boy_first_haircut.jpg", alt: "Baby boy getting his first haircut at The Yellow Balloon" },
+  { src: "/assets/gallery/home/baby_getting_haircut.jpg", alt: "Baby getting haircut at The Yellow Balloon" },
   { src: "/assets/gallery/other/Happy_toddler_first_haircut_0364c47d.png", alt: "Happy toddler during first haircut experience" },
   { src: "/assets/gallery/other/Toddler_first_haircut_milestone_e5fcc8a3.png", alt: "Celebrating the first haircut milestone" },
   { src: "/assets/gallery/other/Gentle_first_haircut_service_72d2845c.png", alt: "Gentle first haircut service for young children" },
