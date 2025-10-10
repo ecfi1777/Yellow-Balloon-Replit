@@ -33,7 +33,7 @@ function Home() {
         <Features />
         <Services />
         <Pricing />
-        <section className="py-16 lg:py-24">
+        <section id="gallery" className="py-16 lg:py-24">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl lg:text-4xl font-bold text-center mb-12">Our Work</h2>
             <ImageGrid images={mainGalleryImages} maxItems={8} />
