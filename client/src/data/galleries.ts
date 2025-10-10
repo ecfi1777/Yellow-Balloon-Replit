@@ -12,10 +12,10 @@ export type GalleryImage = {
 
 export const mainGalleryImages: GalleryImage[] = [
   { src: "/assets/gallery/home/baby_boy_first_haircut.png", alt: "Baby boy getting his first haircut at The Yellow Balloon" },
-  { src: "/assets/gallery/home/boy_green_temporary_color.jpg", alt: "Boy with fun green temporary hair color at The Yellow Balloon salon" },
-  { src: "/assets/gallery/home/boys_haircut_back_view.jpg", alt: "Professional boy's haircut with clean fade - back view" },
-  { src: "/assets/gallery/home/boys_haircut_side_view.jpg", alt: "Professional boy's haircut with clean fade - side view" },
-  { src: "/assets/gallery/home/stylist_cutting_hair.jpg", alt: "Professional stylist cutting child's hair at The Yellow Balloon" },
+  { src: "/assets/gallery/home/boy_green_temporary_color.png", alt: "Boy with fun green temporary hair color at The Yellow Balloon salon" },
+  { src: "/assets/gallery/home/boys_haircut_back_view.png", alt: "Professional boy's haircut with clean fade - back view" },
+  { src: "/assets/gallery/home/boys_haircut_side_view.png", alt: "Professional boy's haircut with clean fade - side view" },
+  { src: "/assets/gallery/home/stylist_cutting_hair.png", alt: "Professional stylist cutting child's hair at The Yellow Balloon" },
   { src: "/assets/gallery/home/baby_getting_haircut.jpg", alt: "Baby getting haircut at The Yellow Balloon with yellow balloon decoration" },
   { src: "/assets/gallery/home/yellow_balloon_staff_1.jpeg", alt: "The Yellow Balloon professional salon staff" },
   { src: "/assets/gallery/home/yellow_balloon_staff_2.jpeg", alt: "The Yellow Balloon team providing quality haircuts" },
