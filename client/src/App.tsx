@@ -15,6 +15,8 @@ import { mainGalleryImages } from "@/data/galleries";
 import Reviews from "@/components/Reviews";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { Loading } from "@/components/Loading";
 
 // Lazy load heavy pages
 const NotFound = lazy(() => import("@/pages/not-found"));
@@ -50,7 +52,7 @@ function Home() {
 
 function Router() {
   return (
-    <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
+    <Suspense fallback={<Loading />}>
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/lice-treatment" component={LiceTreatment} />
@@ -66,11 +68,13 @@ function Router() {
 
 export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Router />
-      </TooltipProvider>
-    </QueryClientProvider>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <Toaster />
+          <Router />
+        </TooltipProvider>
+      </QueryClientProvider>
+    </ErrorBoundary>
   );
 }
