@@ -38,10 +38,12 @@
     {
       "@context": "https://schema.org",
       "@type": "HairSalon",
-      "name": "The Yellow Balloon",
+      "name": "The Yellow Balloon Kids Hair Salon",
+      "alternateName": "The Yellow Balloon",
       "telephone": "(301) 569-6756",
       "url": "https://www.theyellowballoonmaryland.com",
       "image": ["https://www.theyellowballoonmaryland.com/og-card.png"],
+      "priceRange": "$$",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "255 Market Street West",
@@ -50,14 +52,85 @@
         "postalCode": "20878",
         "addressCountry": "US"
       },
-      "areaServed": ["Gaithersburg","Darnestown","Potomac","Germantown","Montgomery County"],
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "39.1434",
+        "longitude": "-77.2014"
+      },
+      "areaServed": [
+        {"@type": "City", "name": "Gaithersburg"},
+        {"@type": "City", "name": "Darnestown"},
+        {"@type": "City", "name": "Potomac"},
+        {"@type": "City", "name": "Germantown"},
+        {"@type": "AdministrativeArea", "name": "Montgomery County"}
+      ],
       "openingHoursSpecification": [
         {"@type":"OpeningHoursSpecification","dayOfWeek":["Tuesday","Wednesday","Friday"],"opens":"10:00","closes":"18:00"},
         {"@type":"OpeningHoursSpecification","dayOfWeek":"Thursday","opens":"00:00","closes":"00:00","validFrom":"0000-01-01","validThrough":"9999-12-31","description":"Closed"},
         {"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday","Sunday"],"opens":"10:00","closes":"17:00"},
         {"@type":"OpeningHoursSpecification","dayOfWeek":"Monday","opens":"00:00","closes":"00:00","description":"Closed"}
       ],
-      "description": "The Yellow Balloon is a children's hair salon in Gaithersburg, MD. We make haircuts fun with toys, rides, TVs, gentle stylists—and every visit ends with a balloon and a lollipop. Services include kids' haircuts, baby's first haircut, lice screening & two-session treatment (private location), glamour styling experiences for kids & tweens, plus select adult services."
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Hair Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Kids Haircut",
+              "description": "Professional children's haircut with balloon and lollipop"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Lice Screening",
+              "description": "Professional lice screening with school-accepted documentation",
+              "offers": {
+                "@type": "Offer",
+                "price": "25",
+                "priceCurrency": "USD"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Lice Treatment",
+              "description": "Professional lice removal treatment",
+              "offers": {
+                "@type": "Offer",
+                "price": "85",
+                "priceCurrency": "USD",
+                "priceSpecification": {
+                  "@type": "UnitPriceSpecification",
+                  "price": "85",
+                  "priceCurrency": "USD",
+                  "unitText": "per hour"
+                }
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Glamour Party",
+              "description": "Confidence-boosting styling party experience for kids",
+              "offers": {
+                "@type": "Offer",
+                "price": "720",
+                "priceCurrency": "USD",
+                "description": "Base price for up to 12 kids, $55 per additional child"
+              }
+            }
+          }
+        ]
+      },
+      "description": "The Yellow Balloon is a children's hair salon in Gaithersburg, MD serving Montgomery County for over 20 years. We make haircuts fun with toys, rides, TVs, gentle stylists—and every visit ends with a balloon and a lollipop. Services include kids' haircuts, baby's first haircut, lice screening & treatment (private area), and glamour styling parties."
     }
     </script>
   </head>
