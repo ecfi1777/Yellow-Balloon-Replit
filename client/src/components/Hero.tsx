@@ -80,7 +80,7 @@ export default function Hero() {
 
           <div className="relative">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-gradient-to-r from-primary via-accent to-secondary p-1 bg-gradient-to-r from-primary via-accent to-secondary">
-              <div className="rounded-2xl overflow-hidden bg-gradient-to-br from-primary/20 via-accent/30 to-secondary/20">
+              <div className="rounded-2xl overflow-hidden bg-gradient-to-br from-primary/10 via-accent/15 to-secondary/10">
                 <div className="w-full relative flex items-center justify-center min-h-[300px] max-h-[500px]">
                   <img
                     src={galleryImages[currentImageIndex].src}
